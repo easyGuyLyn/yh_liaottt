@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="#F1F1F1">
+
+        <ImageView
+            android:id="@+id/marquee_view_iv"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/liv_marqueeviewanimation" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_weight="1">
+
+
+        <com.goldarmor.live800lib.ui.view.MarqueeView
+            android:id="@+id/marquee_view"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            app:marqueeview_is_resetLocation="false"
+            app:marqueeview_isclickalbe_stop="true"
+            app:marqueeview_repet_type="repet_interval"
+            app:marqueeview_text_color="#323232"
+            app:marqueeview_text_size="15"
+            app:marqueeview_text_speed="2"
+            android:background="#F1F1F1"
+            app:marqueeview_text_startlocationdistance="0.5" />
+
+        <View
+            android:layout_width="16dp"
+            android:layout_height="48dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/liv_shape_gradient_marqueew_2" />
+
+        <View
+            android:layout_width="16dp"
+            android:layout_height="48dp"
+            android:layout_alignParentLeft="true"
+            android:background="@drawable/liv_shape_gradient_marqueew_1" />
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/marquee_view_close"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="#F1F1F1">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/liv_shutdown" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

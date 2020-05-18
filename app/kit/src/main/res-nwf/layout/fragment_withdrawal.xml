@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_1ECE94"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <include layout="@layout/layout_local_balance" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_deposit_circular"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/withdrawal_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="80px"
+                    android:visibility="gone"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="46px"
+                    android:paddingRight="46px">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="1px"
+                        android:layout_weight="1"
+                        android:background="@color/color_E2E2E2" />
+
+                    <TextView
+                        android:id="@+id/switch_bank"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="60px"
+                        android:layout_marginRight="60px"
+                        android:drawableRight="@mipmap/icon_withdrawal_dropdown"
+                        android:drawablePadding="10px"
+                        android:text="取款银行"
+                        android:textColor="@color/color_4A4A4A"
+                        android:textSize="50px" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="1px"
+                        android:layout_weight="1"
+                        android:background="@color/color_E2E2E2" />
+                </LinearLayout>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <!--正常取款界面-->
+                        <include
+                            android:id="@+id/layout_withdraw_now"
+                            layout="@layout/fragment_withdrawal_layout"
+                            android:visibility="gone" />
+
+                        <!--&lt;!&ndash; 没有绑定手机号 &ndash;&gt;-->
+                        <!--<include-->
+                            <!--android:id="@+id/layout_bindphone_withdraw"-->
+                            <!--layout="@layout/fragment_withdrawal_bindphone"-->
+                            <!--android:visibility="gone" />-->
+
+                        <!-- 没有绑定银行卡  没有绑定手机号 共用同一布局-->
+                        <include
+                            android:id="@+id/layout_add_bank_withdraw"
+                            layout="@layout/fragment_withdrawal_add_bank"
+                            android:visibility="gone" />
+
+                        <!-- 取款有订单 -->
+                        <include
+                            android:id="@+id/layout_indent"
+                            layout="@layout/fragment_withdrawal_indentk"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/btn_retry"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/im_wait"
+                            android:layout_marginLeft="100px"
+                            android:layout_marginTop="300px"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="100px"
+                            android:background="@drawable/bg_login_button_bg"
+                            android:enabled="true"
+                            android:gravity="center"
+                            android:paddingBottom="45px"
+                            android:text="点击重试"
+                            android:textColor="@color/color_white"
+                            android:textSize="50px" />
+
+                    </LinearLayout>
+                </ScrollView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/nwf_bg_capital" />
+</RelativeLayout>

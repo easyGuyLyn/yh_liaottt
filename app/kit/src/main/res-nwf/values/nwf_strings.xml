@@ -1,0 +1,225 @@
+<resources>
+    <string name="provider_auth">com.nwf.sports.fileProvider</string>
+
+    <!-- HttpCodeException -->
+    <string name="http_code_default">未知错误%1$d</string>
+    <string name="http_code_400">无权限访问</string>
+    <string name="http_code_404">请求链接或页面找不到</string>
+    <string name="http_code_500">代码错误</string>
+    <string name="http_code_network">请检查您的网络</string>
+    <string name="loading_tip">加载中…</string>
+
+
+    <string name="str_fail_login_retry">首次进入应用初始化失败</string>
+    <string name="str_fail_get_mybank">获取银行卡信息失败</string>
+
+    <string name="str_title_modifyphone_setting">修改手机号码</string>
+    <string name="str_title_modifyloginpwd_setting">修改登录密码</string>
+    <string name="str_title_modifyptpwd_setting">修改PT密码</string>
+    <string name="str_success_moidfy_phone">修改手机号码成功</string>
+    <string name="str_fail_modify_phone">修改手机号码失败</string>
+    <string name="str_fail_verify_smscode">校验短信验证码失败</string>
+
+    <string name="n_register_account_expression">5~11位小写字母、数字及其组合</string>
+    <string name="n_register_account_expression_error">请输入5~11位小写字母、数字及组合</string>
+    <string name="n_register_account_inuse">该手机号已被注册，可直接</string>
+    <string name="n_register_account_no_inuse">该号码还未注册，</string>
+    <string name="n_register_account_no_inuse_one">去注册>></string>
+
+    <!--手机号安全验证-->
+    <string name="str_secure_veriy">安全验证</string>
+    <string name="str_send_smscode">获取验证码</string>
+    <string name="str_resend_smscode">重新获取</string>
+    <string name="str_wait_a_while">请等待%sS</string>
+    <string name="str_hint_input_smscode">请输入验证码</string>
+    <string name="str_wait">%sS</string>
+    <string name="str_hint">提示</string>
+    <string name="n_login_account_pwd_mul_error">密码多次输入错误，账号已被锁定\n请五分钟后重试或联系客服解锁</string>
+    <string name="n_contact_service">联系客服</string>
+    <string name="n_login_i_know">知道了</string>
+    <string name="n_contact_service_title">电话回拨中...</string>
+    <string name="n_contact_service_call">我们将在1分钟内为您致电，请您保持电话畅通。</string>
+    <string name="n_contact_service_i_know">知道了</string>
+    <string name="n_contact_service_callback_sure">确认回拨</string>
+    <string name="n_contact_service_online">在线客服</string>
+    <string name="n_contact_service_callback">电话回拨</string>
+    <string name="n_contact_service_choice">您可以选择以下任意一种方式来反馈您的问题</string>
+    <string name="n_deposite_contact_service">请联系客服，获取详细收款信息</string>
+    <string name="n_register_phone_err">手机号格式不正确，请重新输入</string>
+    <string name="n_register_account_set_pwd_rule">6~16位小写字母、数字组合</string>
+    <string name="str_err_password">密码不规范，请输入6~16位小写字母、数字组合</string>
+
+    <!--存款页 deposit -->
+    <string name="str_dep_mode">存款方式</string>
+    <string name="str_dep_amount_hint">请输入金额</string>
+    <string name="str_dep_amount_too_low">小于最低存款限额（%s元）</string>
+    <string name="str_dep_amount_too_high">大于最高存款限额（%s元）</string>
+    <string name="str_dep_zfb_fixed_amount">此支付方式仅支持特定额度，已为您自动调整金额</string>
+    <string name="str_dep_name_not_rule">存款人字符错误</string>
+
+    <string name="str_deposit_amount">存款金额：</string>
+    <string name="str_deposit_fee">手续费　：</string>
+    <string name="str_deposit_fee_right">收费支付\n成功率高</string>
+    <string name="tip_deposit_free">免费支付成功率低，如出现支付失败，请再次尝试。</string>
+    <string name="tip_deposit_not_free">收费支付时商户会收取手续费，手续费比例大约为存款金额的 %s 支付成功率高，稳定性好。</string>
+
+    <string name="str_unit_money">元</string>
+
+    <string name="str_send_sms_ok">发送短信验证码成功</string>
+    <string name="str_send_auth_code">验证码</string>
+    <string name="str_send_sms_fail">发送短信验证码失败</string>
+
+    <!--相关app下载-->
+    <string name="str_network_notawailable">当前网络不可用</string>
+    <string name="str_downapp_title">下载app提示</string>
+    <string name="str_downapp_3G_available">当前使用3G网络，你确定下载app吗？</string>
+    <string name="str_downapp_download">下载</string>
+    <string name="str_downapp_downloading">下载中</string>
+    <string name="str_downapp_intall">安装</string>
+    <string name="str_downapp_intalled">已安装</string>
+    <string name="str_fail_get_download_apps">获取app列表失败</string>
+    <string name="str_err_reach_max_pool">不能同时下载更多app，您可稍后再试</string>
+    <string name="str_btn_confirm">确 定</string>
+    <string name="str_btn_confirm_exit">确认退出</string>
+    <string name="str_btn_cancel">取 消</string>
+    <string name="str_fail_download_app">下载app失败,请点击重试</string>
+    <string name="str_game_id_empty">游戏id不能为空</string>
+    <string name="str_game_balance_not_enough">余额不足,转入金额超出账户余额</string>
+    <string name="str_fundshift_money_less">最低转入金额不能少于1元钱</string>
+    <string name="str_fundshift_balance_below_1yuan">账户余额低于1元，您可以先</string>
+    <string name="str_fundshift_goto_deposit">去存款>></string>
+    <string name="str_fundshift_money_empty">转移金额为空</string>
+    <string name="str_fundshift_money_invalid">转移金额应为数字</string>
+    <string name="str_fundshift_dialog_title">额度转移完毕</string>
+    <string name="str_fundshift_dialog_msg">5s后自动跳转到%s</string>
+
+    <!--检查是否绑定手机号-->
+    <string name="str_fail_check_bound_phone">检查绑定手机号失败</string>
+    <!--绑定手机号-->
+    <string name="str_title_bind_phone">绑定手机号</string>
+    <string name="str_fail_bind_phone">绑定手机号码失败</string>
+    <string name="str_fail_modification_phone">修改绑定手机号码失败</string>
+    <string name="n_register_phone_send_auth_code_error">您输入的验证码不正确，请重新输入</string>
+    <string name="str_empty_smscode">短信验证码不能为空</string>
+    <string name="str_validlength_of_smscode">短信验证码必须为6位数</string>
+    <string name="str_number_only_smscode">验证码必须为纯数字</string>
+
+    <string name="str_oldphone_empty">原手机号码不能为空</string>
+    <string name="str_oldphone_invalid">原手机号码格式不正确</string>
+    <string name="str_newphone_empty">新手机号码不能为空</string>
+    <string name="str_newphone_invalid">新手机号码格式不正确</string>
+    <string name="str_hint_input_phone">请输入您的手机号</string>
+    <string name="str_username_empty">账号不能为空</string>
+    <string name="str_username_invalid">账号需为长度6~10位的字母或数字</string>
+    <string name="str_pwd_empty">密码不能为空</string>
+    <string name="str_phone_empty">手机号码不能为空</string>
+    <string name="str_phone_invalid">您输入的手机号有误，请重新输入</string>
+
+    <string name="str_addbank_empty_account_name">银行账号名称不能为空</string>
+    <string name="str_addbank_account_name_toolong">银行账号名称不能超过20个字</string>
+    <string name="str_addbank_invalid_account_name">银行账户名称格式不正确</string>
+    <string name="str_addbank_account_no_empty">银行账号不能为空</string>
+    <string name="str_addbank_account_no_toolong">银行账号不能超过19位</string>
+    <string name="str_addbank_account_no_invalid">银行账号须为16到19个数字</string>
+    <string name="str_addbank_account_site_empty">开户网点不能为空</string>
+    <string name="str_addbank_account_site_toolong">开户网点不能超过20个字</string>
+    <string name="str_addbank_account_site_invalid">开户网点须为2到20个汉字或字母</string>
+    <string name="str_addbank_bank_name_empty">银行名称不能为空</string>
+    <string name="str_addbank_bank_type_empty">银行类型不能为空</string>
+    <string name="str_addbank_country_empty">开户省份不能为空</string>
+    <string name="str_addbank_city_empty">开户城市不能为空</string>
+
+    <string name="str_balance_not_sufficient">余额不足</string>
+    <string name="str_phone_inuse">此号已被绑定，请更换手机号或</string>
+
+    <string name="str_title_withdraw_money">取款金额</string>
+    <string name="str_withdraw_no_bank_info">没有银行卡信息</string>
+    <string name="str_withdraw_no_money_input">没有输入取款金额</string>
+    <string name="str_withdraw_money_must_above_100">单笔限额：10元～500万，请重新输入</string>
+    <string name="str_withdraw_money_balance_insufficient">取款金额大于账户余额，请重新输入</string>
+    <string name="str_withdraw_money_balance_toosmall">您的账户余额低于10元，无法取款</string>
+    <string name="str_withdraw_money_format_error">取款金额须为数字,小数点后可有两位数字</string>
+    <string name="str_withdraw_money_invalid">取款金额输入有误</string>
+    <string name="str_withdraw_no_pwd_input">没有输入登录密码</string>
+    <string name="str_withdraw_remark_toolong">输入的备注不能超过22个字符</string>
+
+    <!--取款-->
+    <string name="str_addbank_bindphone">为了您的资金安全，请您完善手机号后再添加银行卡</string>
+    <string name="str_no_bindingbank">暂未绑定银行卡</string>
+    <string name="str_need_complete_bindingbank">您需要完善账户资料后才能取款哦！</string>
+    <string name="str_all_balance">全部余额</string>
+    <string name="str_perfect_account">完善账户</string>
+    <string name="str_fail_cancel_withdraw">取消取款失败</string>
+    <string name="str_btn_cancel_withdraw">取消取款</string>
+    <string name="str_hint_input_withdraw_money">请输入取款金额</string>
+    <string name="str_fail_query_withdraw_progress">查询取款进度失败</string>
+
+    <!--添加银行卡-->
+    <string name="str_title_addbank">添加新银行卡</string>
+    <string name="str_bankaccountname">持卡人姓名</string>
+    <string name="str_input_bankacountname">请输入持卡人姓名</string>
+    <string name="str_bankno">银行卡号</string>
+    <string name="str_input_bankno">请输入要绑定的银行卡号</string>
+    <string name="str_bankname">开卡行</string>
+    <string name="str_input_bankname">请选择该银行卡开卡行</string>
+    <string name="str_bankcity">开卡城市</string>
+    <string name="str_input_bankcity">请选择该银行卡开卡城市</string>
+    <string name="str_banksite">开卡网点</string>
+    <string name="str_input_banksite">请输入该银行卡开卡网点</string>
+    <string name="str_bindbank">确认绑定</string>
+    <string name="str_go_bindbank">去绑定手机号</string>
+    <string name="str_confirm_add_bank">确认添加</string>
+    <string name="str_submit">提交</string>
+    <string name="str_cannot_check_boundphone">检测到是否已绑定手机号失败</string>
+    <string name="str_cannot_get_allbankinfo">获取银行相关信息失败</string>
+    <string name="str_add_bank_ok">添加银行卡成功</string>
+    <string name="str_modify_bank_ok">修改银行卡成功</string>
+    <string name="str_cannot_add_bank">添加银行卡失败</string>
+    <string name="str_cannot_modify_bank">修改银行卡失败</string>
+    <string name="str_cannot_delete_bank">删除银行卡失败</string>
+    <string name="str_cannot_delete_ok">删除银行卡成功</string>
+
+    <string name="n_register_phone_waiting">请等待</string>
+    <string name="n_register_phone_send_auth_code_hint">请输入六位数验证码</string>
+    <string name="n_register_phone_send_auth_code">重新获取验证码</string>
+
+
+    <string name="str_title_cancel_withdraw">您确定取消取款吗？</string>
+    <string name="str_btn_confirm_cancel">确认取消</string>
+    <string name="str_btn_donot_cancel">不取消了</string>
+    <string name="str_success_cancel_withdraw">取消取款成功</string>
+    <string name="str_withdraw_status_cancelled">此次取款已经被取消</string>
+    <string name="str_withdraw_status_rejected">抱歉!此次取款已被系统拒绝</string>
+
+    <!--账户记录-->
+    <string name="str_history_deposit_tint">只能查询到最近10天存款记录</string>
+    <string name="str_history_deposit_empty_tint">最近10天没有存款记录</string>
+    <string name="str_history_withdraw_tint">只能查询到最近10天取款记录</string>
+    <string name="str_history_withdraw_empty_tint">最近10天没有取款记录</string>
+    <string name="str_history_activity_tint">只能查询到最近10天优惠记录</string>
+    <string name="str_history_activity_empty_tint">最近10天没有优惠记录</string>
+    <string name="str_progress_handling">待支付</string>
+    <string name="str_progress_approval">已批准</string>
+    <string name="str_progress_pending">待审核</string>
+    <string name="str_progress_rejected">已拒绝</string>
+    <string name="str_progress_wait_approval">受理中</string>
+    <string name="str_progress_cancelled">已取消</string>
+    <string name="str_progress_expired">已过期</string>
+    <string name="str_progress_auditing">审核中</string>
+    <string name="str_progress_dispatched">已派发</string>
+
+    <string name="str_success_modify_loginpwd">修改登录密码成功</string>
+    <string name="str_fail_modify_loginpwd">修改登录密码失败</string>
+    <string name="str_verifyloginpwd_pwd_empty">登录密码不能为空</string>
+    <string name="str_verifyloginpwd_pwd_invalid">登录密码不正确</string>
+    <string name="str_verifyloginpwd_title">验证现登录密码</string>
+    <string name="str_verifyloginpwd_hint">请输入原登录密码</string>
+    <string name="str_incorrect_loginpwd">您输入的密码不正确，请重新输入</string>
+
+    <string name="str_hint_password">6~16位字母、数字组合</string>
+    <string name="str_hint_incorrect_password">请重新输入6~16位字母或数字密码组合</string>
+    <string name="str_fail_verify_loginpwd">验证登录密码失败</string>
+    <string name="action_settings">Settings</string>
+    <string name="str_dialog_msg_logout">您确定要退出么？\n退出后下次还可以使用本账号登录。</string>
+    <string name="n_homepage_game_no_network">当前网络不可用，请检查您的网络设置</string>
+</resources>

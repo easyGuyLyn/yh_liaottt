@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="132px"
+        android:background="@color/color_white">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/nwf_icon_logo" />
+
+
+        <ImageView
+            android:id="@+id/iv_homepage_contract_service"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="30px"
+            android:src="@mipmap/icon_service" />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_F3F4F5" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.zhouwei.mzbanner.MZBannerView
+                android:id="@+id/banner_normal"
+                android:layout_width="match_parent"
+                android:layout_height="388px"
+                android:layout_marginTop="10px"
+                app:canLoop="true"
+                app:indicatorAlign="center"
+                app:middle_page_cover="true"
+                app:open_mz_mode="true" />
+
+            <com.nwf.sports.ui.views.BannerIndicatorView
+                android:id="@+id/banner_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10px"
+                app:app_normal_color="@color/color_ECEBED"
+                app:app_selected_color="@color/color_1ECE94" />
+
+            <LinearLayout
+                android:id="@+id/login_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/bt_login"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="65px"
+                    android:layout_marginRight="30px"
+                    android:layout_weight="1"
+                    android:minHeight="120px"
+                    android:background="@mipmap/mian_home_login_button_bg"
+                    android:gravity="center"
+                    android:paddingBottom="45px"
+                    android:text="登录"
+                    android:textColor="@color/color_white"
+                    android:textSize="54px" />
+
+                <TextView
+                    android:id="@+id/bt_register"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="65px"
+                    android:layout_weight="1"
+                    android:background="@mipmap/mian_home_register_button_bg"
+                    android:minHeight="120px"
+                    android:gravity="center"
+                    android:paddingBottom="45px"
+                    android:text="注册"
+                    android:textColor="@color/color_white"
+                    android:textSize="54px" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="推荐游戏"
+                android:padding="30px"
+                android:textColor="@color/color_221D4C"
+                android:textSize="45px"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_mygame_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/color_white"
+                app:elevation="0dp">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tablayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_white"
+                    android:paddingLeft="70px" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/color_F3F3F4"
+                android:visibility="visible" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_game_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="30px">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="60px"
+                    android:text="APP下载"
+                    android:textColor="@color/color_221D4C"
+                    android:textSize="45px" />
+
+                <TextView
+                    android:id="@+id/tv_all_appdownloads"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="50px"
+                    android:text="更多"
+                    android:textColor="@color/color_0B7BFB"
+                    android:textSize="45px" />
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/im_appdownload"
+                android:layout_width="match_parent"
+                android:layout_height="261px"
+                android:scaleType="fitXY"
+                android:src="@mipmap/nwf_banner_placeholder" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30px"
+                android:orientation="horizontal"
+                android:padding="30px">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:minHeight="60px"
+                    android:text="更多优惠"
+                    android:textColor="@color/color_221D4C"
+                    android:textSize="45px" />
+
+                <TextView
+                    android:id="@+id/tv_all_discounts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="50px"
+                    android:text="全部"
+                    android:textColor="@color/color_0B7BFB"
+                    android:textSize="45px" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_discounts_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="90px" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

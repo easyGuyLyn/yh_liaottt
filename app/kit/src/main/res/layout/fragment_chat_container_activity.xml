@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/im_toolbar"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="136px"
+        android:background="@color/color_white"
+        android:paddingLeft="24px"
+        android:paddingRight="18px">
+
+        <ImageView
+            android:id="@+id/iv_com_title_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10px"
+            android:paddingRight="10px"
+            android:src="@mipmap/nwf_icon_back" />
+
+        <TextView
+            android:id="@+id/tv_com_title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text=""
+            android:textColor="@color/color_030303"
+            android:textSize="17sp" />
+
+        <ImageView
+            android:id="@+id/tv_com_title_more"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10px"
+            android:paddingRight="10px"
+            android:src="@mipmap/im_icon_title_group" />
+
+        <ImageView
+            android:id="@+id/tv_com_title_red_packet"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="35px"
+            android:layout_toLeftOf="@+id/tv_com_title_more"
+            android:paddingLeft="10px"
+            android:visibility="gone"
+            android:paddingRight="10px"
+            android:src="@mipmap/icon_menu_send_red_packet" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="@color/color_F3F3F4"
+        android:visibility="visible" />
+
+    <FrameLayout
+        android:id="@+id/containerFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

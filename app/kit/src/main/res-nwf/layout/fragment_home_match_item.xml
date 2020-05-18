@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="@color/color_F3F3F4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="45px"
+        android:paddingTop="45px"
+        android:gravity="center|bottom"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/nwf_teamlogo" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="叙利亚头顿"
+                android:textColor="@color/color_383D52"
+                android:textSize="40px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="90px"
+            android:layout_marginRight="90px"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_game_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="[足]" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="24px"
+                    android:layout_toRightOf="@+id/tv_game_type"
+                    android:background="@drawable/bg_home_match_item_type"
+                    android:paddingLeft="15px"
+                    android:paddingTop="5px"
+                    android:paddingRight="15px"
+                    android:paddingBottom="5px"
+                    android:text="进行中"
+                    android:textColor="@color/color_E22C46"
+                    android:textSize="30px"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="24px"
+                    android:layout_toRightOf="@+id/tv_game_type"
+                    android:text="04.16  15:00"
+                    android:textColor="@color/color_8F8CA5"
+                    android:textSize="30px"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="24px"
+                    android:layout_toRightOf="@+id/tv_time"
+                    android:background="@drawable/bg_home_match_item_type_suspend"
+                    android:paddingLeft="15px"
+                    android:paddingTop="5px"
+                    android:paddingRight="15px"
+                    android:paddingBottom="5px"
+                    android:text="未开始"
+                    android:textColor="@color/color_white"
+                    android:textSize="30px" />
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36px"
+                android:src="@mipmap/sport_game_page_vs" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="36px"
+                android:layout_toRightOf="@+id/tv_time"
+                android:background="@drawable/bg_home_match_item_green"
+                android:paddingLeft="20px"
+                android:paddingRight="20px"
+                android:paddingTop="10px"
+                android:paddingBottom="10px"
+                android:text="进入直播间"
+                android:textColor="@color/im_white"
+                android:textSize="36px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/nwf_teamlogo2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="马德里竞技"
+                android:textColor="@color/color_383D52"
+                android:textSize="40px" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

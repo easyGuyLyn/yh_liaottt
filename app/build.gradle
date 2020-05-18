@@ -1,0 +1,111 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
+
+    //不检查png
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+
+    signingConfigs {
+        config {
+            keyAlias 'wfc'
+            keyPassword 'wildfirechat'
+            storeFile file('../wfc.keystore')
+            storePassword 'wildfirechat'
+        }
+    }
+
+
+
+    defaultConfig {
+        applicationId "com.ivi.imsdk"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
+
+        ndk {
+            abiFilters "armeabi-v7a", 'x86'
+        }
+        manifestPlaceholders = [
+
+                MI_APP_ID    : "2882303761517722456",
+                MI_APP_KEY   : "5731772292456",
+
+                HMS_APP_ID   : "100221325",
+
+                MEIZU_APP_ID : "113616",
+                MEIZU_APP_KEY: "fcd886f51c144b45b87a67a28e2934d1",
+
+                VIVO_APP_ID  : "12918",
+                VIVO_APP_KEY : "c42feb05-de6c-427d-af55-4f902d9e0a75"
+        ]
+
+    }
+    buildTypes {
+        debug {
+            // 不开启混淆
+            minifyEnabled false
+            // 不开启ZipAlign优化
+            zipAlignEnabled false
+            // 不移除无用的resource文件
+            shrinkResources false
+            // 使用config签名
+            signingConfig signingConfigs.config
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        release {
+            minifyEnabled true
+            // 开启ZipAlign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            // 使用config签名
+            signingConfig signingConfigs.config
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+
+    sourceSets {
+        main {
+            // wfc kit start
+            res.srcDirs += ['kit/src/main/res','kit/src/main/res-nwf', 'kit/src/main/res-av', 'kit/src/main/res-chat']
+            assets.srcDirs += ['kit/src/main/assets']
+            java.srcDirs += ['kit/src/main/java']
+            // wfc kit end
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+
+    implementation 'androidx.multidex:multidex:2.0.0'
+
+    implementation 'com.jakewharton:butterknife:10.2.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.0'
+
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    implementation project(':imgamelib')
+}

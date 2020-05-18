@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="38dp"
+            android:layout_marginTop="150px"
+            android:layout_marginRight="38dp"
+            android:background="@mipmap/bg_robdialog_red_envelope"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="90px"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/nwf_teamlogo" />
+
+                    <TextView
+                        android:id="@+id/tv_user_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:lineSpacingMultiplier="1.5"
+                        android:paddingLeft="45px"
+                        android:paddingRight="45px"
+                        android:text="橙子的红包"
+                        android:textColor="@color/color_white"
+                        android:textSize="54px" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_red_packet_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="70px"
+                    android:gravity="center"
+                    android:lineSpacingMultiplier="1.5"
+                    android:text="手慢了，红包派完了"
+                    android:textColor="@color/color_white"
+                    android:textSize="40px" />
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_particulars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="500px"
+                android:text="查看领取详情 >"
+                android:textColor="@color/color_FAD17E"
+                android:textSize="40px" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/im_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="60px"
+            android:src="@mipmap/icon_red_packet_dialog_close"></ImageView>
+
+    </LinearLayout>
+</RelativeLayout>

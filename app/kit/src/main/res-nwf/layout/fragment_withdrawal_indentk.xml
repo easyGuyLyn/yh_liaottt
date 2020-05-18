@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/im_wait"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="180px"
+        android:src="@mipmap/nwf_icon_withdrawal_wait" />
+
+    <TextView
+        android:id="@+id/btn_cancel_withdrawal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/im_wait"
+        android:layout_marginLeft="100px"
+        android:layout_marginTop="120px"
+        android:layout_marginRight="100px"
+        android:background="@drawable/bg_login_button_bg"
+        android:enabled="true"
+        android:gravity="center"
+        android:paddingBottom="45px"
+        android:text="@string/str_btn_cancel_withdraw"
+        android:textColor="@color/color_white"
+        android:textSize="50px" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/tv_to_service"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_white"
+        android:gravity="center"
+        android:paddingBottom="86px"
+        android:text="取款有问题？联系客服"
+        android:textColor="@color/color_9B9B9B"
+        android:textSize="34px" />
+</LinearLayout>
+
+

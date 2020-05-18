@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:color="@color/color_1ECE94" android:state_selected="true" />
+    <item android:color="@color/color_8F8CA5" android:state_selected="false" />
+    <!-- 默认/未激活的字体颜色 -->
+    <item
+        android:color="@color/color_8F8CA5" />
+</selector>

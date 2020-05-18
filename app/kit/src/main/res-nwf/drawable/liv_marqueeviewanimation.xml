@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item
+        android:drawable="@drawable/liv_marqueeviewimage1"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/liv_marqueeviewimage2"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/liv_marqueeviewimage3"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/liv_marqueeviewimage4"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/liv_marqueeviewimage5"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/liv_marqueeviewimage6"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/liv_marqueeviewimage7"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/liv_marqueeviewimage8"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/liv_marqueeviewimage9"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/liv_marqueeviewimage10"
+        android:duration="100" />
+    <item
+        android:drawable="@drawable/liv_marqueeviewimage11"
+        android:duration="100" />
+
+</animation-list>

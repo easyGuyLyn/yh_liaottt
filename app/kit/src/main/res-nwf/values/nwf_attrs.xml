@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--验证码的属性-->
+    <declare-styleable name="VerCodeEditText">
+        <attr name="figures" format="integer" />
+        <attr name="verCodeMargin" format="dimension" />
+        <attr name="bottomLineSelectedColor" format="reference" />
+        <attr name="bottomLineNormalColor" format="reference" />
+        <attr name="bottomLineHeight" format="dimension" />
+        <attr name="selectedBackgroundColor" format="reference" />
+        <attr name="cursorDuration" format="integer" />
+        <attr name="cursorWidth" format="dimension" />
+        <attr name="cursorColor" format="color|reference" />
+    </declare-styleable>
+
+    <!--星星控件属性-->
+    <declare-styleable name="StarBarView">
+        <!--设置星星间的间隔-->
+        <attr name="space_width" format="dimension" />
+        <!--星星间宽度-->
+        <attr name="star_width" format="dimension" />
+        <!--星星间高度-->
+        <attr name="star_height" format="dimension" />
+        <!--最大数量-->
+        <attr name="star_max" format="integer" />
+        <!--选中数量-->
+        <attr name="star_rating" format="float" />
+        <!--未选中图片-->
+        <attr name="star_hollow" format="reference" />
+        <!--选中图片-->
+        <attr name="star_solid" format="reference" />
+        <!--是否可以滑动改变选中数量-->
+        <attr name="star_isIndicator" format="boolean" />
+        <!--排列方向-->
+        <attr name="star_orientation" format="enum">
+            <enum name="vertical" value="1" />
+            <enum name="horizontal" value="0" />
+        </attr>
+    </declare-styleable>
+
+
+    <declare-styleable name="BezierBannerDot">
+        <attr name="selectedColor" format="color"/>
+        <attr name="unSelectedColor" format="color"/>
+        <attr name="selectedRaduis" format="dimension"/>
+        <attr name="unSelectedRaduis" format="dimension"/>
+        <attr name="spacing" format="dimension"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="NoticeView">
+        <!-- 图标 -->
+        <attr name="nvIcon" format="reference"/>
+        <!-- 图标与内容的间隙 -->
+        <attr name="nvIconPadding" format="dimension"/>
+        <!-- 图标颜色 -->
+        <attr name="nvIconTint" format="color"/>
+
+        <!-- 文本尺寸 -->
+        <attr name="nvTextSize" format="dimension"/>
+        <!-- 文本颜色 -->
+        <attr name="nvTextColor" format="color"/>
+        <!-- 文本最大行数 -->
+        <attr name="nvTextMaxLines" format="integer"/>
+        <!-- 文本对齐方式 -->
+        <attr name="nvTextGravity" format="integer">
+            <enum name="left" value="3"/>
+            <enum name="center" value="17"/>
+            <enum name="right" value="5"/>
+        </attr>
+
+        <!-- 切换动画间隔时间，毫秒 -->
+        <attr name="nvInterval" format="integer"/>
+        <!-- 切换动画持续时间，毫秒 -->
+        <attr name="nvDuration" format="integer"/>
+    </declare-styleable>
+
+
+
+    <!--******************用于切换环境*************************-->
+    <string-array name="base_url_array">
+        <item>https://gwapi.czsjnp.com/</item>
+        <item>http://uatnwfgwapi.agg013.com/</item>
+        <item>http://10.91.37.42:11000/</item>
+    </string-array>
+
+    <string-array name="base_url_name_array">
+        <item>正式环境</item>
+        <item>UAT环境</item>
+        <item>本地环境</item>
+    </string-array>
+
+    <string-array name="base_im_url_name_array">
+        <item>110.173.49.42</item>
+        <item>110.173.53.28</item>
+        <item>10.91.37.3</item>
+    </string-array>
+    <!--***********************************************-->
+
+
+</resources>

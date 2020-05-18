@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+
+    <ImageView
+        android:id="@+id/iv_item_appdownload"
+        android:layout_width="150px"
+        android:layout_height="150px"
+        android:layout_centerVertical="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/icon_service" />
+
+    <LinearLayout
+        android:id="@+id/group_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/iv_item_appdownload"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toLeftOf="@+id/btn_item_appdownload"
+        android:layout_toRightOf="@+id/iv_item_appdownload"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvname_item_appdownload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ag国际厅"
+            android:textColor="@color/color_4A4A4A"
+            android:textSize="50px" />
+
+        <TextView
+            android:id="@+id/tvdescription_item_appdownload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="六张牌先发最公平的百家乐"
+            android:textColor="#9B9B9B"
+            android:textSize="32px" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_item_appdownload"
+        android:layout_width="200px"
+        android:layout_height="90px"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bg_downloadapps"
+        android:text="下载"
+        android:enabled="true"
+        android:textColor="@color/color_white"
+        android:textSize="33px" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="70dp"
+        android:background="#C8C7CC" />
+</RelativeLayout>

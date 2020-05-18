@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_40_gray"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/transparency"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="250px"
+        android:orientation="vertical"
+        android:visibility="gone"></LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/bg_login_dialogfragment">
+
+        <com.nwf.sports.ui.views.CustomViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.nwf.sports.ui.views.CustomViewPager>
+
+
+        <TextView
+            android:id="@+id/tv_register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/color_white"
+            android:gravity="center"
+            android:paddingBottom="86px"
+            android:visibility="gone"
+            android:text="还没有账号？立即注册"
+            android:textColor="@color/color_9B9B9B"
+            android:textSize="34px" />
+
+        <ImageView
+            android:id="@+id/im_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="86px"
+            android:src="@mipmap/icon_close" />
+    </RelativeLayout>
+
+
+</LinearLayout>

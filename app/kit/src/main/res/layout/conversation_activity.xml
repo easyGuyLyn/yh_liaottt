@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.wildfire.chat.kit.widget.InputAwareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rootLinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/im_white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--内容-->
+        <LinearLayout
+            android:id="@+id/contentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
+
+            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/swipeRefreshLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/msgRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+            <View style="@style/Line" />
+
+            <cn.wildfire.chat.kit.conversation.ConversationInputPanel
+                android:id="@+id/inputPanelFrameLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/multiMessageActionContainerLinearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/floating_window"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:paddingBottom="130dp"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/img_recharge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/im_icon_float_pay"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/img_live_streaming"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/im_icon_floaticon_live"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/img_playing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/im_icon_float_rule"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/img_joinin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/im_icon_float_join"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/img_bet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/im_icon_float_touzhu"
+                android:visibility="gone" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</cn.wildfire.chat.kit.widget.InputAwareLayout>

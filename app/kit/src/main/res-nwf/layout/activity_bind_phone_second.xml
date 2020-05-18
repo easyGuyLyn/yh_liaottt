@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.nwf.sports.ui.views.PNTitleBar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/v_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:moreColor="#FF3300"
+        app:moreImage="@android:color/transparent"
+        app:moreText=""
+        app:titleText="绑定手机号" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="@color/color_F3F3F4"
+        android:visibility="visible" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180px"
+        android:text="您要绑定的手机号是"
+        android:textColor="@color/color_4A4A4A"
+        android:textSize="40px" />
+
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="185 **** **23"
+        android:textColor="@color/color_4A4A4A"
+        android:textSize="90px" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="30px">
+
+        <!--显示倒计时控件-->
+        <FrameLayout
+            android:id="@+id/flayout_pbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/iv_bg_sendsms"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/resend_bg" />
+
+            <ProgressBar
+                android:id="@+id/pb_circle"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:progressDrawable="@drawable/circle_progress_bar"
+                tools:max="60"
+                tools:progress="20" />
+
+            <TextView
+                android:id="@+id/tv_countdown_sendsms"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:textColor="@color/color_4A4A4A"
+                android:textSize="14sp"
+                tools:text="60s" />
+        </FrameLayout>
+
+        <!--重新发送验证码-->
+        <LinearLayout
+            android:id="@+id/ll_resend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_wait_sendsms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
+                android:drawableLeft="@mipmap/nwf_icon_bindphone_regain"
+                android:drawablePadding="10dp"
+                android:text="@string/n_register_phone_send_auth_code"
+                android:textColor="@color/color_1ECE94"
+                android:textSize="48px" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <com.nwf.sports.ui.views.vcedittext.VerificationCodeEditText
+        android:id="@+id/ed_verfifcation_code"
+        android:layout_width="match_parent"
+        android:layout_height="150px"
+        android:layout_margin="60px"
+        android:inputType="number"
+        android:text=""
+        android:textColor="@color/color_4A4A4A"
+        android:textSize="80px"
+        app:bottomLineHeight="2dp"
+        app:bottomLineNormalColor="@color/color_E2E2E2"
+        app:bottomLineSelectedColor="@color/color_1ECE94"
+        app:cursorColor="@android:color/white"
+        app:cursorWidth="2dp"
+        app:figures="6"
+        android:lines="1"
+        app:selectedBackgroundColor="@color/color_white"
+        app:verCodeMargin="30px" />
+
+    <TextView
+        android:id="@+id/btn_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100px"
+        android:layout_marginTop="150px"
+        android:layout_marginRight="100px"
+        android:background="@drawable/bg_login_button_bg"
+        android:enabled="false"
+        android:gravity="center"
+        android:paddingBottom="45px"
+        android:text="确定"
+        android:textColor="@color/color_white"
+        android:textSize="50px" />
+</LinearLayout>

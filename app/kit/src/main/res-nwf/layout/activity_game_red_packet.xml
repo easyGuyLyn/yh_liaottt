@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/im_white"
+    android:orientation="vertical">
+
+    <com.nwf.sports.ui.views.PNTitleBar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/v_dep_name_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:moreColor="#8F8CA5"
+        app:moreImage="@android:color/transparent"
+        app:moreText="玩法规则"
+        app:titleText="红包游戏" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="0dp"
+        android:background="#C8C7CC" />
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="match_parent"
+        android:layout_height="280px"
+        android:layout_marginTop="50px"
+        app:tabBackground="@null"
+        app:tabPaddingBottom="0dp"
+        app:tabPaddingEnd="0dp"
+        app:tabPaddingStart="0dp"
+        app:tabPaddingTop="0dp"
+        app:tabRippleColor="@null" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="@color/color_F3F3F4" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_game_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?><!--添加银行卡-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/tv_add_bank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="54px"
+        android:background="@drawable/bg_withdrawal_add_bank"
+        android:gravity="center"
+        android:minHeight="210px"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/icon_withdrawal_add" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/str_no_bindingbank"
+            android:textColor="@color/color_4A4A4A"
+            android:textSize="36px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/str_need_complete_bindingbank"
+            android:textColor="@color/color_9B9B9B"
+            android:textSize="30px" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btn_go_bindbank"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100px"
+        android:layout_marginTop="120px"
+        android:layout_marginRight="100px"
+        android:layout_marginBottom="180px"
+        android:background="@drawable/bg_login_button_bg"
+        android:enabled="true"
+        android:gravity="center"
+        android:paddingBottom="45px"
+        android:text="@string/str_perfect_account"
+        android:textColor="@color/color_white"
+        android:textSize="50px" />
+</LinearLayout>
+
+

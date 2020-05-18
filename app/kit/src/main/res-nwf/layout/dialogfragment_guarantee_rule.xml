@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="38dp"
+        android:layout_marginTop="150px"
+        android:layout_marginRight="38dp"
+        android:background="@drawable/bg_niuniu_guarantee_rule"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="115px"
+            android:text="押金规则"
+            android:textColor="@color/color_black"
+            android:textSize="54px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45px"
+            android:text="庄家（发包者):"
+            android:textColor="@color/color_black"
+            android:textSize="40px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10px"
+            android:text="押金=红包金额*（红包数量-1）*最高赔率"
+            android:textColor="@color/color_2A2A2A"
+            android:textSize="40px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="55px"
+            android:text="闲家（抢包者）："
+            android:textColor="@color/color_black"
+            android:textSize="40px" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10px"
+            android:text="红包总金额*最高赔率"
+            android:textColor="@color/color_2A2A2A"
+            android:textSize="40px" />
+
+        <TextView
+            android:id="@+id/tv_roger"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70px"
+            android:background="@mipmap/icon_niuniu_question_affirm"
+            android:gravity="center_horizontal"
+            android:paddingTop="40px"
+            android:text="知道了"
+            android:textColor="@color/color_white"
+            android:textSize="48px" />
+
+    </LinearLayout>
+
+</RelativeLayout>

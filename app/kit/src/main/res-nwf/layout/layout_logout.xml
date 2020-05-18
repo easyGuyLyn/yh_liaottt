@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_logout"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="37px"
+                android:paddingBottom="37px"
+                android:text="@string/str_dialog_msg_logout"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3px"
+                android:background="@android:color/transparent" />
+
+            <Button
+                android:id="@+id/btn_confirm_exit_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_logout"
+                android:gravity="center"
+                android:paddingTop="37px"
+                android:paddingBottom="37px"
+                android:text="@string/str_btn_confirm_exit"
+                android:textColor="#FF3300"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/btn_cancel_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_logout"
+            android:gravity="center"
+            android:paddingTop="37px"
+            android:paddingBottom="37px"
+            android:text="@string/str_btn_cancel"
+            android:textColor="#4A4A4A"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

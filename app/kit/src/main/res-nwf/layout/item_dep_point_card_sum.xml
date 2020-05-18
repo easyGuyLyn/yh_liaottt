@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/v_root"
+    android:layout_width="match_parent"
+    android:layout_height="100px"
+    android:layout_margin="20px"
+    android:background="@drawable/bg_deposit_point_card_item_normal"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvw_dep_pc_sum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="30元"
+        android:textColor="@color/color_4A4A4A"
+        android:textSize="40px" />
+
+
+</LinearLayout>

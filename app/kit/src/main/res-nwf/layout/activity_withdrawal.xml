@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.nwf.sports.ui.views.PNTitleBar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/v_dep_name_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:moreColor="#FF3300"
+        android:visibility="gone"
+        app:moreImage="@android:color/transparent"
+        app:moreText=""
+        app:titleText="取款" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="0dp"
+        android:background="#C8C7CC" />
+
+    <FrameLayout
+        android:id="@+id/containerFrameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

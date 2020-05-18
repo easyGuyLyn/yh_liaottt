@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--标题文字颜色-->
+    <color name="n_title_text">#D6D6D6</color>
+    <!--标题背景色-->
+    <color name="n_title_bg">#1D1D1D</color>
+
+    <color name="color_transparency">#00FFFFFF</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_black">#000000</color>
+    <color name="color_4A4A4A">#4A4A4A</color>
+    <color name="color_E2E2E2">#E2E2E2</color>
+    <color name="color_CFCFCF">#CFCFCF</color>
+    <color name="color_1ECE94">#1ECE94</color>
+    <color name="color_9B9B9B">#9B9B9B</color>
+    <color name="color_100000">#100000</color>
+    <color name="color_FF3300">#FF3300</color>
+    <color name="color_FCFCFC">#FCFCFC</color>
+    <color name="color_524C72">#524C72</color>
+    <color name="color_B9CAD2">#B9CAD2</color>
+    <color name="color_221D4C">#221D4C</color>
+    <color name="color_F3F4F5">#F3F4F5</color>
+    <color name="color_ECEBED">#ECEBED</color>
+    <color name="color_FFA520">#FFA520</color>
+    <color name="color_4B85FD">#4B85FD</color>
+    <color name="color_ECF1FF">#ECF1FF</color>
+    <color name="color_F5F5F5">#F5F5F5</color>
+    <color name="color_DFDDE6">#DFDDE6</color>
+    <color name="color_030303">#030303</color>
+    <color name="color_F3F3F4">#F3F3F4</color>
+    <color name="color_dadada">#dadada</color>
+    <color name="color_E8E8E8">#E8E8E8</color>
+    <color name="color_8F8CA5">#8F8CA5</color>
+    <color name="color_F7F7F7">#F7F7F7</color>
+    <color name="color_EAEAEA">#EAEAEA</color>
+    <color name="color_0B7BFB">#0B7BFB</color>
+    <color name="color_383D52">#383D52</color>
+    <color name="color_F7F7FA">#F7F7FA</color>
+    <color name="color_FDEAED">#FDEAED</color>
+    <color name="color_E22C46">#E22C46</color>`
+    <color name="color_F4F4F4">#F4F4F4</color>
+    <color name="color_FAD17E">#FAD17E</color>
+    <color name="color_E4E4E4">#E4E4E4</color>
+    <color name="color_111111">#111111</color>
+    <color name="color_2A2A2A">#2A2A2A</color>
+
+    <!--背景40透明度灰色-->
+    <color name="color_40_black">#66000000</color>
+    <color name="color_40_gray">#66666666</color>
+    <color name="color_80_FBFBFB">#33FBFBFB</color>
+    <color name="color_10_1ECE94">#1A1ECE94</color>
+
+</resources>

@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/login_bg_figure" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        android:src="@mipmap/login_top_figure" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:src="@mipmap/login_below_figure" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100px"
+            android:text="登录永乐棋牌，享更爽游戏体验"
+            android:textColor="@color/color_4A4A4A"
+            android:textSize="43px"
+            android:visibility="gone" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="账号注册"
+            android:textColor="@color/color_black"
+            android:textSize="70px" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="46px"
+            android:layout_marginTop="36px"
+            android:layout_marginRight="46px"
+            android:background="@drawable/edittext_common_bg"
+            android:gravity="center_vertical"
+            android:minHeight="160px"
+            android:orientation="horizontal"
+            android:paddingLeft="50px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:minWidth="150px"
+                android:text="密码"
+                android:textColor="@color/color_4A4A4A" />
+
+            <EditText
+                android:id="@+id/ed_password"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2px"
+                android:layout_marginBottom="2px"
+                android:layout_weight="1"
+                android:background="@color/color_white"
+                android:ems="16"
+                android:gravity="center_vertical"
+                android:hint="请输入密码"
+                android:inputType="textPassword"
+                android:lines="1"
+                android:maxLength="16"
+                android:singleLine="true"
+                android:textColor="@color/color_black"
+                android:textColorHint="@color/color_9B9B9B"
+                android:textSize="40px" />
+
+            <ImageView
+                android:id="@+id/iv_login_pwd_show"
+                android:layout_width="60px"
+                android:layout_height="60px"
+                android:layout_marginRight="50px"
+                android:background="@mipmap/icon_password_oppen" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_account_auth_code_error"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10px"
+            android:layout_marginBottom="20px"
+            android:paddingLeft="250px"
+            android:text="由6~16位字母或数字组合"
+            android:textColor="@color/color_4A4A4A"
+            android:textSize="35px"
+            android:visibility="visible" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="46px"
+            android:layout_marginRight="46px"
+            android:background="@drawable/edittext_common_bg"
+            android:gravity="center_vertical"
+            android:minHeight="160px"
+            android:orientation="horizontal"
+            android:paddingLeft="50px">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50px"
+                android:gravity="center"
+                android:text="推荐码"
+                android:textColor="@color/color_4A4A4A" />
+
+            <EditText
+                android:id="@+id/ed_referral"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="2px"
+                android:layout_marginRight="70px"
+                android:layout_marginBottom="2px"
+                android:background="@color/color_white"
+                android:gravity="center_vertical"
+                android:hint="输入推荐码（必填）"
+                android:lines="1"
+                android:maxLength="8"
+                android:singleLine="true"
+                android:textColor="@color/color_black"
+                android:textColorHint="@color/color_9B9B9B"
+                android:textSize="40px" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/skip_second"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100px"
+            android:layout_marginTop="150px"
+            android:layout_marginRight="100px"
+            android:background="@drawable/bg_login_button_bg"
+            android:enabled="false"
+            android:gravity="center"
+            android:paddingBottom="45px"
+            android:text="注册"
+            android:textColor="@color/color_white"
+            android:textSize="50px" />
+
+    </LinearLayout>
+
+</RelativeLayout>

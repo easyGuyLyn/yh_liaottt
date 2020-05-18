@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_red_packet"
+    android:layout_width="280dp"
+    android:layout_height="wrap_content"
+    android:autoLink="phone|email|map|web"
+    android:gravity="center"
+    android:minHeight="40dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_red_packet_over"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/bg_niuniu_over_bg_right" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/im_white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_banker_number"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_niuniu_redpacket_winning_over"
+                android:gravity="center"
+                android:text="庄赢4"
+                android:textColor="@color/im_white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_player_number"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="0.5dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_niuniu_redpacket_winning_over"
+                android:gravity="center"
+                android:text="闲赢0"
+                android:textColor="@color/im_white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_niuniu_redpacket_winning_over_manor"
+            android:paddingLeft="25dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="14dp">
+
+            <ImageView
+                android:id="@+id/im_portrait"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@mipmap/im_avatar_def" />
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@+id/im_portrait"
+                android:gravity="center"
+                android:text="橙子"
+                android:textColor="@color/color_383D52"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_banker_niu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_user_name"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="3dp"
+                android:layout_toRightOf="@+id/im_portrait"
+                android:gravity="center"
+                android:text="庄家（牛9）"
+                android:textColor="@color/color_9B9B9B"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="8dp"
+                android:gravity="center"
+                android:text="查看详情"
+                android:textColor="@color/color_1ECE94"
+                android:textSize="12sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

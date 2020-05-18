@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.nwf.sports.ui.views.PNTitleBar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/v_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:moreColor="#FF3300"
+        app:moreImage="@android:color/transparent"
+        app:moreText=""
+        app:titleText="绑定手机号" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="@color/color_F3F3F4"
+        android:visibility="visible" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120px"
+        android:src="@mipmap/icon_smartphone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60px"
+        android:text="请输入您要绑定的手机号"
+        android:textColor="@color/color_4A4A4A"
+        android:textSize="40px" />
+
+
+    <EditText
+        android:id="@+id/ed_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100px"
+        android:layout_marginTop="180px"
+        android:layout_marginRight="100px"
+        android:inputType="number"
+        android:lines="1"
+        android:maxLength="12"
+        android:singleLine="true"
+        android:textCursorDrawable="@drawable/edittext_cursor_cokor"
+        android:textSize="60px"
+        android:theme="@style/MyEdittext" />
+
+
+    <TextView
+        android:id="@+id/tv_phone_error_auth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20px"
+        android:text="@string/n_register_phone_err"
+        android:textColor="@color/color_FF3300"
+        android:textSize="35px"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/btn_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="100px"
+        android:layout_marginTop="100px"
+        android:layout_marginRight="100px"
+        android:background="@drawable/bg_login_button_bg"
+        android:enabled="false"
+        android:gravity="center"
+        android:paddingBottom="45px"
+        android:text="下一步"
+        android:textColor="@color/color_white"
+        android:textSize="50px" />
+</LinearLayout>

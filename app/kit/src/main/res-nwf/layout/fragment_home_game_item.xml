@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:paddingLeft="10px"
+    android:paddingTop="40px"
+    android:paddingRight="10px">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/item_game_image"
+            android:layout_width="150px"
+            android:layout_height="150px"
+            android:layout_marginLeft="20px"
+            android:scaleType="fitXY" />
+
+        <ImageView
+            android:id="@+id/item_game_maintenance"
+            android:layout_width="150px"
+            android:layout_height="150px"
+            android:layout_marginLeft="20px"
+            android:visibility="gone"
+            android:src="@mipmap/icon_game_maintenance"
+            android:scaleType="fitXY" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="24px">
+
+        <TextView
+            android:id="@+id/tv_game_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10px"
+            tools:text="VG斗地主"
+            android:minWidth="200px"
+            android:textColor="@color/color_221D4C"
+            android:textSize="30px"
+            />
+
+        <TextView
+            android:id="@+id/tv_start_game"
+            android:layout_width="180px"
+            android:layout_height="60px"
+            android:layout_marginTop="20px"
+            android:background="@drawable/bg_home_game_item_promptly"
+            android:gravity="center"
+            android:text="立即游戏"
+            android:textColor="@color/color_4B85FD"
+            android:textSize="30px" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

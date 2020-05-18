@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/search"
+        android:icon="@mipmap/im_ic_search"
+        android:title="@string/im_search"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/more"
+        android:icon="@mipmap/im_ic_add"
+        android:title="更多"
+        app:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/chat"
+                android:icon="@mipmap/ic_create_group_cheat"
+                android:orderInCategory="100"
+                android:title="发起群聊"
+                app:iconTint="@color/colorPrimary"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/add_contact"
+                android:icon="@mipmap/im_ic_add"
+                android:orderInCategory="101"
+                android:title="添加朋友"
+                app:iconTint="@color/colorPrimary" />
+            <item
+                android:id="@+id/scan_qrcode"
+                android:icon="@mipmap/im_qr_code"
+                android:orderInCategory="101"
+                android:title="扫一扫"
+                app:iconTint="@color/colorPrimary" />
+        </menu>
+    </item>
+</menu>

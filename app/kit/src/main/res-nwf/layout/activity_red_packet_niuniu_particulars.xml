@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/im_white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/bg_redenvelope_details"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="126px"
+            android:paddingLeft="24px"
+            android:paddingRight="38px">
+
+            <ImageView
+                android:id="@+id/iv_com_title_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:paddingLeft="10px"
+                android:paddingRight="10px"
+                android:src="@mipmap/nwf_icon_back_white" />
+
+            <TextView
+                android:id="@+id/tv_com_title_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="红包详情"
+                android:textColor="@color/color_white"
+                android:textSize="54px" />
+
+            <TextView
+                android:id="@+id/tv_com_title_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="红包记录"
+                android:textColor="@color/color_white"
+                android:textSize="40px" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50px"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/tv_red_packet_username_portrait"
+                android:layout_width="120px"
+                android:layout_height="120px"/>
+
+            <TextView
+                android:id="@+id/tv_red_packet_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="45px"
+                android:gravity="center"
+                android:text="橙子的红包"
+                android:textColor="@color/color_white"
+                android:textSize="54px" />
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_red_packet_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="¥ 100.00-1"
+            android:textColor="@color/color_white"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="18dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center|bottom"
+                    android:text="¥"
+                    android:textColor="@color/color_111111"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_money_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:text="12.85"
+                    android:textColor="@color/color_111111"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/img_niuniu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="8dp"
+                    android:src="@mipmap/icon_niu5" />
+
+                <TextView
+                    android:id="@+id/tv_niuniu_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center|bottom"
+                    android:paddingBottom="30px"
+                    android:text="牛5"
+                    android:textColor="@color/color_FFA520"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_over"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="本包游戏截止"
+                android:visibility="gone"
+                android:textColor="@color/color_030303" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp">
+
+                <TextView
+                    android:id="@+id/tv_banker_number"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="11dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_manor_number"
+                    android:gravity="center"
+                    android:minHeight="44dp"
+                    android:text="庄赢4"
+                    android:textColor="@color/color_white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_player_numbet"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_player_number"
+                    android:gravity="center"
+                    android:minHeight="44dp"
+                    android:text="闲赢0"
+                    android:textColor="@color/color_white"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_collect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="54px"
+                android:layout_marginTop="70px"
+                android:layout_marginBottom="20px"
+                android:text="已领取7/7,共100.00/100.00元"
+                android:textColor="@color/color_9B9B9B"
+                android:textSize="34px" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:background="@color/color_DFDDE6" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/red_packet_record"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible"></androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

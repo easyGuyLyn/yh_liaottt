@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--<item android:drawable="@drawable/bg_deposit_type_normal" android:state_selected="false" />-->
+    <item android:drawable="@drawable/bg_deposit_type_select_pressed" android:state_selected="true" />
+
+    <item android:drawable="@drawable/bg_deposit_type_normal" android:state_enabled="true" />
+    <item android:drawable="@drawable/bg_deposit_type_pressed" android:state_enabled="false" />
+
+    <!-- 默认时的背景图片 -->
+    <item android:drawable="@drawable/bg_deposit_type_normal" />
+</selector>

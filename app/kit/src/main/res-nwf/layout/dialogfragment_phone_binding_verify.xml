@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="114px"
+        android:layout_marginRight="114px"
+        android:background="@drawable/dialogframe_hint_common_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title_secureverify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="38px"
+            android:layout_marginBottom="38px"
+            android:gravity="center"
+            android:text="请先绑定手机号"
+            android:textColor="@color/color_4A4A4A"
+            android:textSize="50px" />
+
+
+        <EditText
+            android:id="@+id/tvPhone_secureverify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40px"
+            android:layout_marginRight="40px"
+            android:background="@drawable/bg_phone_binding_ed"
+            android:drawableLeft="@mipmap/icon_phone"
+            android:drawablePadding="20px"
+            android:gravity="center_vertical"
+            android:hint="请输入手机号"
+            android:maxLength="12"
+            android:minHeight="120px"
+            android:paddingLeft="20px"
+            android:paddingRight="20px"
+            android:text=""
+            android:textColor="@color/color_4A4A4A"
+            android:textSize="40px" />
+
+        <TextView
+            android:id="@+id/tvPhone_erre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38px"
+            android:layout_marginTop="20px"
+            android:layout_marginBottom="20px"
+            android:text="请输入11~12位正确的手机号码"
+            android:textColor="@color/color_FF3300"
+            android:textSize="34px"
+            android:visibility="invisible" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="38px"
+            android:layout_marginRight="38px"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/etSmscode_secureverify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_phone_binding_ed"
+                android:drawableLeft="@mipmap/icon_verify"
+                android:drawablePadding="20px"
+                android:gravity="center_vertical"
+                android:hint="@string/str_hint_input_smscode"
+                android:inputType="numberDecimal"
+                android:lines="1"
+                android:maxLength="6"
+                android:minHeight="120px"
+                android:paddingLeft="20px"
+                android:paddingRight="20px"
+                android:textColor="@color/color_4A4A4A"
+                android:textColorHint="@color/color_9B9B9B"
+                android:textSize="40px" />
+
+            <TextView
+                android:id="@+id/btn_send_secureverify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:minWidth="200px"
+                android:padding="21px"
+                android:text="@string/str_send_smscode"
+                android:textColor="@color/color_1ECE94"
+                android:textSize="40px" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_err_secureverify"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="38px"
+            android:layout_marginTop="20px"
+            android:text="您输入的验证码不正确，请重新输入！"
+            android:textColor="@color/color_FF3300"
+            android:textSize="34px"
+            android:visibility="invisible" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60px">
+
+            <Button
+                android:id="@+id/btnCancel_secureverify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/dialogframe_hint_common_left_bg"
+                android:gravity="center"
+                android:padding="39px"
+                android:text="@string/str_btn_cancel"
+                android:textColor="@color/color_white" />
+
+            <Button
+                android:id="@+id/btnConfirm_secureverify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/dialogframe_hint_common_right_bg"
+                android:gravity="center"
+                android:padding="39px"
+                android:text="@string/str_btn_confirm"
+                android:textColor="@color/color_white" />
+        </LinearLayout>
+    </LinearLayout>
+
+</FrameLayout>

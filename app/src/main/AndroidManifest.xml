@@ -1,0 +1,533 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ivi.imsdk">
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <!-- 通过GPS得到精确位置 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- 通过网络得到粗略位置 -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- 访问网络. 某些位置信息需要从网络服务器获取 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 访问WiFi状态. 需要WiFi信息用于网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 修改WiFi状态. 发起WiFi扫描, 需要WiFi信息用于网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <!-- 访问网络状态, 检测网络的可用性. 需要网络运营商相关信息用于网络定位 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 访问网络的变化, 需要某些信息用于网络定位 -->
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <!-- 访问手机当前状态, 需要某些信息用于网络定位 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <!-- 蓝牙分享所需的权限 -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <application
+        android:name="cn.wildfirechattest.TestApplication"
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme"
+        tools:replace="android:allowBackup">
+
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.1" />
+
+        <!--用于适配-->
+        <meta-data
+            android:name="design_width"
+            android:value="1080" />
+        <meta-data
+            android:name="design_height"
+            android:value="1920" />
+        <meta-data
+            android:name="android.webkit.WebView.EnableSafeBrowsing"
+            android:value="true" />
+
+        <!--地图-->
+        <meta-data
+            android:name="TencentMapSDK"
+            android:value="TOEBZ-67IR4-ZDHUV-DSDXX-TJZU7-UYFE7" />
+        <!-- 百度定位 -->
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="HSSfBGPKP3rC1HNZdGGQa2FCzfGOG2ki" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.LauncherActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:fitsSystemWindows="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowFullscreen="true"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.notch_support"
+                android:value="true" />
+
+        </activity>
+
+
+        <activity
+            android:name="com.nwf.sports.chat.main.SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme.FullScreen">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:fitsSystemWindows="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowFullscreen="true"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.LoginActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:fitsSystemWindows="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowFullscreen="true"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="com.nwf.sports.ui.activity.RegisterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:fitsSystemWindows="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowFullscreen="true"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.webview.OnlinePlayActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.DepositTransferActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.DepositbankFasterActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.DepositPointCardActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.BindPhoneActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.BindPhoneSecondActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.AddBankActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.HistoryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.ManagementPhoneActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.BankManagementActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.ModificationPasswordActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.ServiceActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.DiscountsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.webview.IntroduceActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.DownloadAppsActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.AboutActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+
+        <service android:name="com.nwf.sports.utils.line.LineHelperService" />
+        <!--线路检查服务-->
+
+        <activity
+            android:name="com.nwf.sports.ui.activity.webview.XPlayGameActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:fitsSystemWindows="true"
+            android:theme="@style/ImSdkTheme"
+            android:windowFullscreen="true"
+            android:windowSoftInputMode="stateHidden|adjustResize">
+
+            <meta-data
+                android:name="android.notch_support"
+                android:value="true" />
+
+        </activity>
+
+
+        <!--        聊天 -->
+
+
+        <activity
+            android:name="com.nwf.sports.chat.ChatFriendActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.conversation.ConversationActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="com.nwf.sports.chat.login.LoginActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.user.SetAliasActivity"
+            android:label="设置用户备注"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.user.ChangeMyNameActivity"
+            android:label="修改昵称"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme" />
+
+        <activity
+            android:name="cn.wildfire.chat.kit.mm.TakePhotoActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme.FullScreen" />
+        <activity
+            android:name="com.nwf.sports.chat.location.ui.activity.MyLocationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.SetGroupNameActivity"
+            android:label="修改群名称"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="com.nwf.sports.chat.setting.SettingActivity"
+            android:label="设置"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="com.nwf.sports.chat.setting.AboutActivity"
+            android:label="关于"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="com.nwf.sports.chat.location.ui.activity.ShowLocationActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme" />
+
+        <activity
+            android:name="cn.wildfire.chat.kit.mm.MMPreviewActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme.FullScreen" />
+        <activity
+            android:name="cn.wildfire.chat.kit.voip.SingleVoipCallActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme">
+            <intent-filter>
+                <action android:name="${applicationId}.kit.voip.single" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name="cn.wildfire.chat.kit.conversation.CreateConversationActivity"
+            android:label="创建会话"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.AddGroupMemberActivity"
+            android:label="添加新成员"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.RemoveGroupMemberActivity"
+            android:label="删除群成员"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.conversation.mention.MentionGroupMemberActivity"
+            android:label="选择群成员"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.GroupListActivity"
+            android:label="群列表"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.contact.newfriend.FriendRequestListActivity"
+            android:label="好友请求"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.contact.newfriend.SearchUserActivity"
+            android:label="搜索用户"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.contact.newfriend.InviteFriendActivity"
+            android:label="邀请好友"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.user.UserInfoActivity"
+            android:label="用户信息"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.settings.PrivacySettingActivity"
+            android:label="隐私设置"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.settings.blacklist.BlacklistListActivity"
+            android:label="黑名单"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.settings.MessageNotifySettingActivity"
+            android:label="新消息通知"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.conversation.ConversationInfoActivity"
+            android:label="会话详情"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.chatroom.ChatRoomListActivity"
+            android:label="聊天室列表"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.search.SearchPortalActivity"
+            android:label="搜索中心"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.conversation.forward.ForwardActivity"
+            android:label="转发"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.conversation.forward.PickConversationTargetToForwardActivity"
+            android:label="选取会话"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="com.nwf.sports.chat.login.SMSLoginActivity"
+            android:label="登录"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.channel.ChannelListActivity"
+            android:label="频道列表"
+            android:theme="@style/ImSdkTheme" />
+
+        <activity
+            android:name="cn.wildfire.chat.kit.channel.CreateChannelActivity"
+            android:label="创建频道"
+            android:theme="@style/ImSdkTheme"
+            android:windowSoftInputMode="adjustPan|stateHidden|adjustResize" />
+
+        <activity
+            android:name="cn.wildfire.chat.kit.channel.ChannelInfoActivity"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="com.nwf.sports.chat.main.MainActivity"
+            android:label="火信"
+            android:launchMode="singleTask"
+            android:theme="@style/ImSdkTheme">
+            <intent-filter>
+                <action android:name="${applicationId}.main" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="cn.wildfire.chat.kit.WfcWebViewActivity"
+            android:theme="@style/ImSdkTheme">
+            <intent-filter>
+                <action android:name="${applicationId}.webview" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="cn.wildfire.chat.kit.search.SearchMessageActivity"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.channel.SearchChannelActivity"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.PickGroupMemberActivity"
+            android:theme="@style/ImSdkTheme" />
+
+        <activity
+            android:name="com.nwf.sports.chat.main.PCLoginActivity"
+            android:label="PC登录"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.qrcode.QRCodeActivity"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.GroupInfoActivity"
+            android:label="群信息"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.qrcode.ScanQRCodeActivity"
+            android:label="扫一扫"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="com.nwf.sports.ui.activity.SendRedPacketActivity"
+            android:label="发送红包"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="com.nwf.sports.ui.activity.SendSweepRedPacketActivity"
+            android:label="发送扫雷红包"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="com.nwf.sports.ui.activity.SendNiuNiuRedPacketActivity"
+            android:label="发送牛牛红包"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="com.nwf.sports.ui.activity.RedPacketParticularsActivity"
+            android:label="红包详情"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="com.nwf.sports.ui.activity.NiuniuRedPacketParticularsActivity"
+            android:label="牛牛红包详情"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="com.nwf.sports.ui.activity.RedpacketGameActivity"
+            android:label="红包游戏"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="com.nwf.sports.ui.activity.RedPacketRegulationActivity"
+            android:label="红包规则"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="com.nwf.sports.ui.activity.RedPacketHistoryActivity"
+            android:label="红包记录"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="com.nwf.sports.ui.activity.WithdrawalActivity"
+            android:label="取款"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.manage.GroupManageActivity"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.manage.GroupManagerListActivity"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.manage.AddGroupManagerActivity"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.manage.GroupMuteActivity"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.manage.GroupMemberPermissionActivity"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.group.GroupMemberListActivity"
+            android:label="群成员列表"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme" />
+        <activity
+            android:name="cn.wildfire.chat.kit.contact.pick.PickContactActivity"
+            android:label="联系人选择"
+            android:theme="@style/ImSdkTheme" />
+        <activity android:name="cn.wildfire.chat.kit.group.SetGroupAnnouncementActivity" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/im_provider_paths" />
+        </provider>
+        <service android:name="cn.wildfire.chat.kit.voip.FloatingVoipService" />
+
+    </application>
+</manifest>

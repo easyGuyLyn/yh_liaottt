@@ -1,0 +1,74 @@
+<resources>
+
+
+    <style name="nwf_SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 将splash图片设置在这，这样这张图片取代白屏 -->
+        <!--<item name="android:windowBackground">@mipmap/bg</item>-->
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="nwf_BasedialogAnim" mce_bogus="1" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/qt_dialog_push_in</item>
+        <item name="android:windowExitAnimation">@anim/qt_dialog_push_out</item>
+    </style>
+
+    <!-- 公共标题自定义属性 -->
+    <declare-styleable name="nwf_NTitleBar">
+        <!-- 修改标题文字 -->
+        <attr name="titleText" format="string" />
+        <!-- 是否显示返回按钮 -->
+        <attr name="backImageShow" format="boolean" />
+        <!-- 是否显示更多图标 -->
+        <attr name="moreImageShow" format="boolean" />
+        <!-- 修改右侧更多文字 -->
+        <attr name="moreText" format="string" />
+        <!--修改标题文字颜色-->
+        <attr name="titleColor" format="color" />
+        <!--修改更多文字颜色-->
+        <attr name="moreColor" format="color" />
+        <!--修改更多的图片-->
+        <attr name="moreImage" format="reference" />
+        <!--只显示更多文字-->
+        <attr name="moreTextOnly" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="BannerIndicatorView">
+        <attr name="app_cell_radius" format="dimension"></attr>
+        <attr name="app_cell_margin" format="dimension"></attr>
+        <attr name="app_cell_count" format="integer"></attr>
+        <attr name="app_current_position" format="integer"></attr>
+        <attr name="app_selected_color" format="color|reference"></attr>
+        <attr name="app_normal_color" format="color|reference"></attr>
+        <attr name="app_indicator_style" format="enum">
+            <enum name="CIRCLE" value="0"></enum>
+            <enum name="RECT" value="1"></enum>
+        </attr>
+    </declare-styleable>
+
+    <style name="MyEdittext" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/color_1ECE94</item>
+        <item name="colorControlActivated">@color/color_1ECE94</item>
+    </style>
+
+    <declare-styleable name="NumberProgressBar">
+        <attr name="progress_current" format="integer"/>
+        <attr name="progress_max" format="integer"/>
+
+        <attr name="progress_unreached_color" format="color"/>
+        <attr name="progress_reached_color" format="color"/>
+
+        <attr name="progress_reached_bar_height" format="dimension"/>
+        <attr name="progress_unreached_bar_height" format="dimension"/>
+
+        <attr name="progress_text_size" format="dimension"/>
+        <attr name="progress_text_color" format="color"/>
+
+        <attr name="progress_text_offset" format="dimension"/>
+
+        <attr name="progress_text_visibility" format="enum">
+            <enum name="visible" value="0"/>
+            <enum name="invisible" value="1"/>
+        </attr>
+    </declare-styleable>
+
+</resources>

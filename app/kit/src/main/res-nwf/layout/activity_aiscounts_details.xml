@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_white"
+    android:orientation="vertical">
+
+    <com.nwf.sports.ui.views.PNTitleBar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/v_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:moreImageShow="false"
+        app:titleText="优惠活动" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="@color/color_F3F3F4"
+        android:visibility="visible" />
+
+    <FrameLayout
+        android:id="@+id/flayout_record"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:visibility="gone" />
+
+    <com.tencent.smtt.sdk.WebView
+        android:id="@+id/wv_homepage_introduce_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

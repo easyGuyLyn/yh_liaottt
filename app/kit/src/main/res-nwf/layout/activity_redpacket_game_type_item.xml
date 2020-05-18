@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="10px"
+    android:paddingRight="10px">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="45px"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/img_head_portrait"
+            android:layout_width="130px"
+            android:layout_height="130px"
+            android:src="@mipmap/icon_redpacket_welfare_chat" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="30px"
+                android:text="聊天群（群聊吹水，整点福利发送）"
+                android:textColor="@color/color_383D52"
+                android:textSize="45px" />
+
+            <TextView
+                android:id="@+id/tv_rule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25px"
+                android:paddingLeft="30px"
+                android:text="发包流水1000抢包流水500即可进群抢福利"
+                android:textColor="@color/color_8F8CA5"
+                android:textSize="36px" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="@color/color_F3F3F4" />
+
+</LinearLayout>
