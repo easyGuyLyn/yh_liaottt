@@ -93,10 +93,10 @@ public class IMApplication extends BaseApp {
 
 
     public void chatInit() {
-        String imHost = (String) SPTool.get(ConstantValue.SAVA_IM_URL, "");
-        if (!TextUtils.isEmpty(imHost)) {
-            RetrofitHelper.setImDomain(imHost);
-        }
+//        String imHost = (String) SPTool.get(ConstantValue.SAVA_IM_URL, "");
+//        if (!TextUtils.isEmpty(imHost)) {
+//            RetrofitHelper.setImDomain(imHost);
+//        }
 
 //        // bugly，务必替换为你自己的!!!
 //        if ("wildfirechat.cn".equals(RetrofitHelper.imUrl())) {

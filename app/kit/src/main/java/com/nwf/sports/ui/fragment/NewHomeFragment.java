@@ -93,27 +93,27 @@ public class NewHomeFragment extends BaseFragment {
     @Override
     public void initViews(@Nullable Bundle savedInstanceState) {
         RxBus.get().register(this);
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
-            loginLayout.setVisibility(View.GONE);
-        } else {
-            loginLayout.setVisibility(View.VISIBLE);
-        }
+//        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+//            loginLayout.setVisibility(View.GONE);
+//        } else {
+//            loginLayout.setVisibility(View.VISIBLE);
+//        }
 
         mHomeGameBeans.clear();
         mHomeGameBeans.add(new HomeGameBean("红包游戏", R.drawable.icon_home_game_red_packet, R.drawable.bg_home_game_red_packet));
-        mHomeGameBeans.add(new HomeGameBean("体育游戏", R.drawable.icon_home_game_sports, R.drawable.bg_home_game_sports));
-        mHomeGameBeans.add(new HomeGameBean("热门赛事直播", R.drawable.icon_home_game_sports_competition, R.drawable.bg_home_game_sports_competition));
-        mHomeGameBeans.add(new HomeGameBean("敬请期待", R.drawable.icon_home_game_expect, R.drawable.bg_home_game_expect));
+//        mHomeGameBeans.add(new HomeGameBean("体育游戏", R.drawable.icon_home_game_sports, R.drawable.bg_home_game_sports));
+//        mHomeGameBeans.add(new HomeGameBean("热门赛事直播", R.drawable.icon_home_game_sports_competition, R.drawable.bg_home_game_sports_competition));
+//        mHomeGameBeans.add(new HomeGameBean("敬请期待", R.drawable.icon_home_game_expect, R.drawable.bg_home_game_expect));
 
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(new RedPackageGameFragment());
-        fragmentList.add(new SportsGameFragment());
-        fragmentList.add(new SportsGameMatchFragment());
-        fragmentList.add(new SportsGameWaitFragment());
+//        fragmentList.add(new SportsGameFragment());
+//        fragmentList.add(new SportsGameMatchFragment());
+//        fragmentList.add(new SportsGameWaitFragment());
         AdapterFragment adpter = new AdapterFragment(getChildFragmentManager(), fragmentList);
         mViewPager.setAdapter(adpter);
         // 预加载数量
-        mViewPager.setOffscreenPageLimit(4);
+        mViewPager.setOffscreenPageLimit(1);
 
         mTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         mTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
@@ -150,15 +150,15 @@ public class NewHomeFragment extends BaseFragment {
             }
         });
         mViewPagerNum = 0;
-        setBanner();
-
-        vNotice.start(Arrays.asList(notices));
-        vNotice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Toast.makeText(getActivity(), notices[vNotice.getIndex()], Toast.LENGTH_SHORT).show();
-            }
-        });
+//        setBanner();
+//
+//        vNotice.start(Arrays.asList(notices));
+//        vNotice.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Toast.makeText(getActivity(), notices[vNotice.getIndex()], Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
     }
 
@@ -167,14 +167,14 @@ public class NewHomeFragment extends BaseFragment {
     protected void loadData() {
         isUIVisible = true;
         isViewCreated = true;
-        if (IMApplication.isGain) {
-            if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
-                loginLayout.setVisibility(View.GONE);
-            } else {
-                loginLayout.setVisibility(View.VISIBLE);
-            }
-
-        }
+//        if (IMApplication.isGain) {
+//            if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+//                loginLayout.setVisibility(View.GONE);
+//            } else {
+//                loginLayout.setVisibility(View.VISIBLE);
+//            }
+//
+//        }
     }
 
 
@@ -238,20 +238,20 @@ public class NewHomeFragment extends BaseFragment {
                 return new BannerPaddingViewHolder();
             }
         });
-        mBannerIndicator.bindWithViewPager(mNormalBanner.getViewPager(), mBannerLists.size());
-        mNormalBanner.start();
+     //   mBannerIndicator.bindWithViewPager(mNormalBanner.getViewPager(), mBannerLists.size());
+        //mNormalBanner.start();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        mNormalBanner.pause();
+      //  mNormalBanner.pause();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        mNormalBanner.start();
+      //  mNormalBanner.start();
     }
 
 
@@ -286,7 +286,7 @@ public class NewHomeFragment extends BaseFragment {
      */
     @Subscribe(tags = {@Tag(ConstantValue.EVENT_TYPE_LOGIN)})
     public void loginSucceed(String string) {
-        ToastUtil.showToastLong("登录成功");
+        ToastUtil.showToastLong("登录IM成功");
         loginLayout.setVisibility(View.GONE);
     }
 
@@ -295,9 +295,9 @@ public class NewHomeFragment extends BaseFragment {
      */
     @Subscribe(tags = {@Tag(ConstantValue.LOG_OUT)})
     public void logOut(String string) {
-        DataCenter.getInstance().getUserInfoCenter().clearUserInfoBean();
-        loginLayout.setVisibility(View.VISIBLE);
-        ((MainActivity) getActivity()).switchTab(MainActivity.TAB_INDEX_HOME);
+//        DataCenter.getInstance().getUserInfoCenter().clearUserInfoBean();
+//        loginLayout.setVisibility(View.VISIBLE);
+//        ((MainActivity) getActivity()).switchTab(MainActivity.TAB_INDEX_HOME);
     }
 
     @Override
@@ -311,11 +311,11 @@ public class NewHomeFragment extends BaseFragment {
      */
     @Subscribe(tags = {@Tag(ConstantValue.START_REQUEST)})
     public void startRequest(String type) {
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
-            loginLayout.setVisibility(View.GONE);
-        } else {
-            loginLayout.setVisibility(View.VISIBLE);
-        }
+//        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+//            loginLayout.setVisibility(View.GONE);
+//        } else {
+//            loginLayout.setVisibility(View.VISIBLE);
+//        }
     }
 
 

@@ -1,5 +1,6 @@
 package cn.wildfire.chat.kit.conversationlist;
 
+import android.util.Log;
 import android.view.View;
 
 import com.hwangjr.rxbus.RxBus;
@@ -125,10 +126,12 @@ public class ConversationListFragment extends ProgressFragment {
             ConnectionStatusNotification connectionStatusNotification = new ConnectionStatusNotification();
             switch (status) {
                 case ConnectionStatus.ConnectionStatusConnecting:
+                    Log.e("TT","正在连接");
                     connectionStatusNotification.setValue("正在连接...");
                     statusNotificationViewModel.showStatusNotification(connectionStatusNotification);
                     break;
                 case ConnectionStatus.ConnectionStatusReceiveing:
+                    Log.e("TT","正在同步");
                     connectionStatusNotification.setValue("正在同步...");
                     statusNotificationViewModel.showStatusNotification(connectionStatusNotification);
                     break;
@@ -136,6 +139,7 @@ public class ConversationListFragment extends ProgressFragment {
                     statusNotificationViewModel.removeStatusNotification(connectionStatusNotification);
                     break;
                 case ConnectionStatus.ConnectionStatusUnconnected:
+                    Log.e("TT","连接失败");
                     connectionStatusNotification.setValue("连接失败");
                     statusNotificationViewModel.showStatusNotification(connectionStatusNotification);
                     break;

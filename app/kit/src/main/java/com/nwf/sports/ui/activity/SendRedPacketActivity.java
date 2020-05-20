@@ -188,8 +188,8 @@ public class SendRedPacketActivity extends BaseActivity {
             return;
         }
         Map<String, Object> params = new HashMap<>();
-        params.put("productId", Constant.PRODUCT_ID);
-        params.put("userName", DataCenter.getInstance().getUserInfoBean().username);
+        params.put("productId",  DataCenter.getInstance().getProductId());
+        params.put("userName", DataCenter.getInstance().getLoginName());
         params.put("sendTitle", tvHint.getText().toString().trim());
         params.put("sendNumber", tvMoneyNumber.getText().toString().trim());
         if (type.getValue() == Conversation.ConversationType.Single.getValue()) {  //红包类型（0手气红包，1普通红包，2单人红包，3埋雷红包，4牛牛红包）
@@ -200,7 +200,7 @@ public class SendRedPacketActivity extends BaseActivity {
         params.put("sendAmount", tvMoney.getText().toString().trim());
         params.put("groupId", target);
         params.put("specialNumber", "");
-        params.put("grabPacketKey", MD5Util.md5(target + Constant.PRODUCT_ID  + DataCenter.getInstance().getUserInfoBean().username, MD5Util.md5Key));
+       // params.put("grabPacketKey", MD5Util.md5(target + Constant.PRODUCT_ID  + DataCenter.getInstance().getUserInfoBean().username, MD5Util.md5Key));
 
         mLoadingDialogFragment = new LoadingDialogFragment();
         DialogFramentManager.getInstance().showDialog(getSupportFragmentManager(), mLoadingDialogFragment);

@@ -15,11 +15,18 @@ import com.nwf.sports.chat.AppService;
 import com.nwf.sports.chat.login.model.LoginResult;
 import com.nwf.sports.chat.main.MainActivity;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.OnClick;
 import butterknife.OnTextChanged;
 import cn.wildfire.chat.kit.ChatManagerHolder;
 import cn.wildfire.chat.kit.WfcBaseActivity;
+import ivi.net.base.netlibrary.callback.RequestCallBack;
+import ivi.net.base.netlibrary.model.ResponseModel;
+import ivi.net.base.netlibrary.request.Request;
 
 public class SMSLoginActivity extends WfcBaseActivity {
     @BindView(R.id.loginButton)
@@ -36,6 +43,12 @@ public class SMSLoginActivity extends WfcBaseActivity {
     @Override
     protected int contentLayout() {
         return R.layout.login_activity_sms;
+    }
+
+    @Override
+    protected void afterViews() {
+        super.afterViews();
+        loginButton.setEnabled(true);
     }
 
     @OnTextChanged(value = R.id.phoneNumberEditText, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
@@ -63,46 +76,79 @@ public class SMSLoginActivity extends WfcBaseActivity {
 
     @OnClick(R.id.loginButton)
     void login() {
-        String phoneNumber = phoneNumberEditText.getText().toString().trim();
-        String authCode = authCodeEditText.getText().toString().trim();
+//        String phoneNumber = phoneNumberEditText.getText().toString().trim();
+//        String authCode = authCodeEditText.getText().toString().trim();
+//
+//        MaterialDialog dialog = new MaterialDialog.Builder(this)
+//                .content("登录中...")
+//                .progress(true, 100)
+//                .cancelable(false)
+//                .build();
+//        dialog.show();
+//
+//
+//        AppService.Instance().smsLogin(phoneNumber, authCode, new AppService.LoginCallback() {
+//            @Override
+//            public void onUiSuccess(LoginResult loginResult) {
+//                if (isFinishing()) {
+//                    return;
+//                }
+//                dialog.dismiss();
+//                //需要注意token跟clientId是强依赖的，一定要调用getClientId获取到clientId，然后用这个clientId获取token，这样connect才能成功，如果随便使用一个clientId获取到的token将无法链接成功。
+//                ChatManagerHolder.gChatManager.connect(loginResult.getUserId(), loginResult.getToken());
+//                SharedPreferences sp = getSharedPreferences("config", Context.MODE_PRIVATE);
+//                sp.edit()
+//                        .putString("id", loginResult.getUserId())
+//                        .putString("token", loginResult.getToken())
+//                        .apply();
+//                Intent intent = new Intent(SMSLoginActivity.this, MainActivity.class);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                startActivity(intent);
+//                finish();
+//            }
+//
+//            @Override
+//            public void onUiFailure(int code, String msg) {
+//                if (isFinishing()) {
+//                    return;
+//                }
+//                Toast.makeText(SMSLoginActivity.this, "登录失败：" + code + " " + msg, Toast.LENGTH_SHORT).show();
+//                dialog.dismiss();
+//            }
+//        });
 
-        MaterialDialog dialog = new MaterialDialog.Builder(this)
-                .content("登录中...")
-                .progress(true, 100)
-                .cancelable(false)
-                .build();
-        dialog.show();
 
 
-        AppService.Instance().smsLogin(phoneNumber, authCode, new AppService.LoginCallback() {
-            @Override
-            public void onUiSuccess(LoginResult loginResult) {
-                if (isFinishing()) {
-                    return;
-                }
-                dialog.dismiss();
-                //需要注意token跟clientId是强依赖的，一定要调用getClientId获取到clientId，然后用这个clientId获取token，这样connect才能成功，如果随便使用一个clientId获取到的token将无法链接成功。
-                ChatManagerHolder.gChatManager.connect(loginResult.getUserId(), loginResult.getToken());
-                SharedPreferences sp = getSharedPreferences("config", Context.MODE_PRIVATE);
-                sp.edit()
-                        .putString("id", loginResult.getUserId())
-                        .putString("token", loginResult.getToken())
-                        .apply();
-                Intent intent = new Intent(SMSLoginActivity.this, MainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                finish();
-            }
+//        Map<String, Object> params = new HashMap<>();
+//        params.put("clientId", ChatManagerHolder.gChatManager.getClientId());
+//        params.put("platform", new Integer(2));
+//        params.put("productId", "A01");
+//        params.put("loginName", "gmob382");
+//
+//        Request.with(this).loading().post("/im/login", params, new RequestCallBack<LoginResult>() {
+//            @Override
+//            public void onGatewaySuccess(@Nullable LoginResult loginResult, ResponseModel.Head head) {
+//
+//                ChatManagerHolder.gChatManager.connect(loginResult.getUserId(), loginResult.getToken());
+////                SharedPreferences sp = getSharedPreferences("config", Context.MODE_PRIVATE);
+////                sp.edit()
+////                        .putString("id", loginResult.getUserId())
+////                        .putString("token", loginResult.getToken())
+////                        .apply();
+//
+//            }
+//
+//            @Override
+//            public void onGatewayError(Throwable exception) {
+//                super.onGatewayError(exception);
+//
+//
+//
+//            }
+//        });
 
-            @Override
-            public void onUiFailure(int code, String msg) {
-                if (isFinishing()) {
-                    return;
-                }
-                Toast.makeText(SMSLoginActivity.this, "登录失败：" + code + " " + msg, Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
-        });
+
+
     }
 
     private Handler handler = new Handler();

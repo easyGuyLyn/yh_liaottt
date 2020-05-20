@@ -1,5 +1,7 @@
 package com.nwf.sports.utils;
 
+import com.nwf.sports.utils.data.DataCenter;
+
 /**
  * Created by Nereus on 2017/5/18.
  */
@@ -38,7 +40,7 @@ public abstract class Constant {
     public static final String PRODUCT_INITIAL = "v";
 
     //产品的ID
-    public static final String PRODUCT_ID = "E03";
+    public static final String PRODUCT_ID = DataCenter.getInstance().getProductId();
 
     //产品的平台
     public static final String PRODUCT_PLATFORM = "android";

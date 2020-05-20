@@ -79,27 +79,39 @@
             android:theme="@style/ImSdkTheme"
             android:windowFullscreen="true"
             android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
 
-            <meta-data
-                android:name="android.notch_support"
-                android:value="true" />
+<!--            <meta-data-->
+<!--                android:name="android.notch_support"-->
+<!--                android:value="true" />-->
 
         </activity>
+
+
+        <activity
+            android:name="cn.wildfirechattest.TestActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImSdkTheme.FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
 
 
         <activity
             android:name="com.nwf.sports.chat.main.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ImSdkTheme.FullScreen">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+<!--            <intent-filter>-->
+<!--            <action android:name="android.intent.action.MAIN" />-->
+<!--            <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <activity

@@ -66,6 +66,7 @@
                         android:layout_height="388px"
                         android:layout_marginTop="10px"
                         app:canLoop="true"
+                        android:visibility="gone"
                         app:indicatorAlign="center"
                         app:middle_page_cover="true"
                         app:open_mz_mode="true" />
@@ -75,6 +76,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:visibility="gone"
                         android:layout_marginTop="10px"
                         app:app_normal_color="@color/color_ECEBED"
                         app:app_selected_color="@color/color_1ECE94" />
@@ -84,6 +86,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="30dp"
                         android:layout_marginLeft="52px"
+                        android:visibility="gone"
                         android:layout_marginBottom="10px"
                         android:background="@color/im_white"
                         app:nvIcon="@mipmap/icon_notice"
@@ -98,6 +101,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20px"
+                        android:visibility="gone"
                         android:orientation="horizontal">
 
                         <TextView

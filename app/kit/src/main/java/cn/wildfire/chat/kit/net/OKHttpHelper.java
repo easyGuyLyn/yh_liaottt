@@ -3,6 +3,7 @@ package cn.wildfire.chat.kit.net;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.nwf.sports.net.MyHttpLoggingInterceptor;
+import com.nwf.sports.net.NetUtil;
 
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
@@ -13,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 import cn.wildfire.chat.kit.net.base.ResultWrapper;
 import cn.wildfire.chat.kit.net.base.StatusResult;
 import okhttp3.Call;
+import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -29,8 +31,9 @@ public class OKHttpHelper {
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .addInterceptor(new MyHttpLoggingInterceptor())
-            .addInterceptor(new IMLoggingInterceptor())
+        //    .addInterceptor(new IMLoggingInterceptor())
             .build();
+
     private static Gson gson = new Gson();
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
@@ -66,8 +69,13 @@ public class OKHttpHelper {
     }
 
     public static <T> void post(final String url, Map<String, Object> param, final Callback<T> callback) {
-        RequestBody body = RequestBody.create(JSON, gson.toJson(param));
+
+        String jsonData = gson.toJson(param);
+
+        RequestBody body = RequestBody.create(JSON, jsonData);
+
         final Request request = new Request.Builder()
+                .headers(Headers.of(NetUtil.setHeaders(jsonData)))
                 .url(url)
                 .post(body)
                 .build();

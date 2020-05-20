@@ -15,6 +15,9 @@ public class DataCenter {
 
     private String game_token = "";
     private String game_u2token = "";
+    private String loginName ="";
+    private  String productId="";
+    private String UserToken="";
 
 
     public String getGame_token() {
@@ -31,6 +34,31 @@ public class DataCenter {
 
     public void setGame_u2token(String game_u2token) {
         this.game_u2token = game_u2token;
+    }
+
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getUserToken() {
+        return UserToken;
+    }
+
+    public void setUserToken(String userToken) {
+        UserToken = userToken;
+    }
+
+    public String getLoginName() {
+        return loginName;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
     }
 
     private static DataCenter instance;

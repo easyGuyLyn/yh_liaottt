@@ -13,7 +13,7 @@ import java.math.BigDecimal;
  * <p>修改备注：
  **/
 public class UserInfoBean {
-    public boolean isRealLogin; //是否已经真实登录
+    public boolean isRealLogin = true; //是否已经真实登录
     public String username; //账号
     public String password;//密码
     public int levelNum;

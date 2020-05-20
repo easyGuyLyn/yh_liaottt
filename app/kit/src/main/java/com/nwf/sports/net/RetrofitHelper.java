@@ -24,8 +24,8 @@ public class RetrofitHelper {
     private static ClientConfig clientConfig;
     private static ProxyCallFactory proxyCallFactory;
     private static String domainUrl = "https://gwapi.czsjnp.com";
-    private static String IM_SERVER_HOST = "110.173.49.42";
-    private static String APP_SERVER_ADDRESS = "http://110.173.49.42:8888";
+    private static String IM_SERVER_HOST = "10.66.72.55";
+    private static String APP_SERVER_ADDRESS = "http://10.66.72.55:1883";
 
     /**
      * 应该在Application onCreate中实例
@@ -76,7 +76,7 @@ public class RetrofitHelper {
      * @return
      */
     public static String imUrl() {
-        APP_SERVER_ADDRESS = "http://" + IM_SERVER_HOST + ":8888";
+        APP_SERVER_ADDRESS = "http://" + IM_SERVER_HOST + ":1883";
         return APP_SERVER_ADDRESS;
     }
 

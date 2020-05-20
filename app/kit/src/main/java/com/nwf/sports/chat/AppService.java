@@ -152,7 +152,7 @@ public class AppService implements AppServiceProvider {
      */
     public void sendRedPacket(Map<String, Object> params, SendRedPacketCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/packet/send-packet";
+        String url = RetrofitHelper.imUrl() + "/game/api/packet/send-packet";
 
         OKHttpHelper.post(url, params, new SimpleCallback<RedPacketResult>() {
             @Override
@@ -182,15 +182,14 @@ public class AppService implements AppServiceProvider {
      */
     public void robRedPacket(String packetId, String groupId, RobRedPacketCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/packet/grab-packet";
+        String url = RetrofitHelper.imUrl() + "/game/api/packet/grab-packet";
         Map<String, Object> params = new HashMap<>();
-        String username = DataCenter.getInstance().getUserInfoBean().username;
 
-        params.put("productId", Constant.PRODUCT_ID);
-        params.put("userName", username);
+        params.put("productId", DataCenter.getInstance().getProductId());
+        params.put("userName", DataCenter.getInstance().getLoginName());
         params.put("packetId", packetId);
         params.put("groupId", groupId);
-        params.put("grabPacketKey", MD5Util.md5(groupId + Constant.PRODUCT_ID + packetId + username, MD5Util.md5Key));//MD5(groupId+productId+packetId+userName,加密KEY)
+        //  params.put("grabPacketKey", MD5Util.md5(groupId + Constant.PRODUCT_ID + packetId + username, MD5Util.md5Key));//MD5(groupId+productId+packetId+userName,加密KEY)
 
         OKHttpHelper.post(url, params, new SimpleCallback<StatusResult>() {
             @Override
@@ -257,9 +256,11 @@ public class AppService implements AppServiceProvider {
      */
     public void queryPacketState(String packetId, QueryPacketStateCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/packet/queryPacket";
+        String url = RetrofitHelper.imUrl() + "/game/api/packet/query-packet";
         Map<String, Object> params = new HashMap<>();
         params.put("packetId", packetId);
+        params.put("productId", DataCenter.getInstance().getProductId());
+        params.put("userName", DataCenter.getInstance().getLoginName());
 
         OKHttpHelper.post(url, params, new SimpleCallback<RedPacketStateResult>() {
             @Override
@@ -288,14 +289,14 @@ public class AppService implements AppServiceProvider {
      */
     public void RedPacketDetail(String packetId, String pageNo, String pageSize, RedPacketDetailCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/packet/receive-packet-detail";
+        String url = RetrofitHelper.imUrl() + "/game/api/packet/receive-packet-detail";
         Map<String, Object> params = new HashMap<>();
-        String username = DataCenter.getInstance().getUserInfoBean().username;
 
-        params.put("userName", username);
+        params.put("userName", DataCenter.getInstance().getLoginName());
         params.put("pageNo", pageNo);
         params.put("packetId", packetId);
         params.put("pageSize", pageSize);
+        params.put("productId", DataCenter.getInstance().getProductId());
 
         OKHttpHelper.post(url, params, new SimpleCallback<RedPacketDetailResult>() {
             @Override
@@ -324,13 +325,11 @@ public class AppService implements AppServiceProvider {
      */
     public void QueryRedpacketGroup(int groupType, QueryRedpacketGroupCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/packet/query_redpacket_group";
+        String url = RetrofitHelper.imUrl() + "/game/api/packet/query_redpacket_group";
         Map<String, Object> params = new HashMap<>();
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
-            String username = DataCenter.getInstance().getUserInfoBean().username;
-            params.put("userName", username);
-        }
-        params.put("productId", Constant.PRODUCT_ID);
+        String username = DataCenter.getInstance().getLoginName();
+        params.put("userName", username);
+        params.put("productId", DataCenter.getInstance().getProductId());
         params.put("groupType", groupType);
 
         OKHttpHelper.post(url, params, new SimpleCallback<RedPacketGameListResult>() {
@@ -360,7 +359,7 @@ public class AppService implements AppServiceProvider {
      */
     public void QueryGroupJoinInfo(String groupId, QueryGroupJoinInfoCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/packet/query_group_join_info";
+        String url = RetrofitHelper.imUrl() + "/game/api/packet/query_group_join_info";
         Map<String, Object> params = new HashMap<>();
         if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
             String sportUserId = DataCenter.getInstance().getUserInfoBean().getSportUserId();
@@ -395,15 +394,13 @@ public class AppService implements AppServiceProvider {
      */
     public void QueryRedPacketRecord(String type, int pageNo, QueryRedPacketRecordCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/packet/query_my_packet_list";
+        String url = RetrofitHelper.imUrl() + "/game/api/packet/query_my_packet_list";
         Map<String, Object> params = new HashMap<>();
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
-            String username = DataCenter.getInstance().getUserInfoBean().getUsername();
-            params.put("userName", username);
-        }
+        params.put("userName", DataCenter.getInstance().getLoginName());
         params.put("type", type);
         params.put("pageNo", pageNo);
         params.put("pageSize", "20");
+        params.put("productId", DataCenter.getInstance().getProductId());
 
         OKHttpHelper.post(url, params, new SimpleCallback<RedPacketRecordListDetailsResult>() {
             @Override
@@ -424,6 +421,7 @@ public class AppService implements AppServiceProvider {
 
         void onFailure(int code, String msg);
     }
+
     /**
      * 查询昵称是否修改
      *
@@ -431,7 +429,7 @@ public class AppService implements AppServiceProvider {
      */
     public void queryChangenameFlag(QueryChangenameFlagCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/packet/query_changename_flag";
+        String url = RetrofitHelper.imUrl() + "/game/api/packet/query_changename_flag";
         Map<String, Object> params = new HashMap<>();
         if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
             String username = DataCenter.getInstance().getUserInfoBean().getUsername();

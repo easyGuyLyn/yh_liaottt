@@ -51,6 +51,7 @@ import com.nwf.sports.ui.fragment.DepositFragment;
 import com.nwf.sports.ui.fragment.MineFragment;
 import com.nwf.sports.ui.fragment.NewHomeFragment;
 import com.nwf.sports.ui.views.CustomViewPager;
+import com.nwf.sports.utils.SingleToast;
 import com.nwf.sports.utils.data.DataCenter;
 import com.nwf.sports.utils.line.LineErrorDialogBean;
 import com.nwf.sports.utils.line.LineHelperService;
@@ -103,7 +104,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 
     public static final int TAB_INDEX_HOME = 0;
     public static final int TAB_INDEX_DEPOSIT = 1;
-    public static final int TAB_INDEX_CHAT = 2;
+    public static final int TAB_INDEX_CHAT = 1;
     //    public static final int TAB_INDEX_WITHDRAWAL = 3;
     public static final int TAB_INDEX_MINE = 3;
     @BindView(R.id.layout_home)
@@ -174,43 +175,44 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         mUpdatePresenter = new UpdatePresenter(this, this);
         List<Fragment> fragmentList = new ArrayList<>();
         fragmentList.add(NewHomeFragment.newInstance());
-        fragmentList.add(DepositFragment.newInstance());
+        // fragmentList.add(DepositFragment.newInstance());
         fragmentList.add(new ConversationListFragment());
 //        fragmentList.add(WithdrawalFragment.newInstance());
-        fragmentList.add(MineFragment.newInstance());
+        // fragmentList.add(MineFragment.newInstance());
         AdapterFragment adpter = new AdapterFragment(getSupportFragmentManager(), fragmentList);
         mViewPager.setAdapter(adpter);
         // 预加载数量
-        mViewPager.setOffscreenPageLimit(4);
+        mViewPager.setOffscreenPageLimit(2);
+        switchTab(TAB_INDEX_HOME);
 
-        int skipType = getIntent().getIntExtra(ConstantValue.SKIP_MIAN_TYPE, -1);
-        if (skipType == -1) {
-            // 初始化选中home页
-            switchTab(TAB_INDEX_HOME);
-        } else {
-            switchTab(skipType);
-            String stringExtra = getIntent().getStringExtra(ConstantValue.MAIN_OPEN_TYPE);
-            switch (stringExtra) {
-                case ConstantValue.SKIP_LOGIN:
-                    skipRegister("");
-                    break;
-                case ConstantValue.SKIP_REGISTER:
-                    skipLogin(new SkipLoginBean("", ""));
-                    break;
-            }
-        }
+//        int skipType = getIntent().getIntExtra(ConstantValue.SKIP_MIAN_TYPE, -1);
+//        if (skipType == -1) {
+//            // 初始化选中home页
+//            switchTab(TAB_INDEX_HOME);
+//        } else {
+//            switchTab(skipType);
+//            String stringExtra = getIntent().getStringExtra(ConstantValue.MAIN_OPEN_TYPE);
+//            switch (stringExtra) {
+//                case ConstantValue.SKIP_LOGIN:
+//                    skipRegister("");
+//                    break;
+//                case ConstantValue.SKIP_REGISTER:
+//                    skipLogin(new SkipLoginBean("", ""));
+//                    break;
+//            }
+//        }
 
-        if (!IMApplication.isGain) {  //如果初始化没走完 就弹出dialog
-            mLoadingDialogFragment = new LoadingDialogFragment();
-            DialogFramentManager.getInstance().showDialog(getSupportFragmentManager(), mLoadingDialogFragment);
-        }
-        if (IMApplication.mLineErrorDialogBean != null) {//如果出现异常情况 就弹出dialog
-            onLineErreEvent(IMApplication.mLineErrorDialogBean);
-        }
+//        if (!IMApplication.isGain) {  //如果初始化没走完 就弹出dialog
+//            mLoadingDialogFragment = new LoadingDialogFragment();
+//            DialogFramentManager.getInstance().showDialog(getSupportFragmentManager(), mLoadingDialogFragment);
+//        }
+//        if (IMApplication.mLineErrorDialogBean != null) {//如果出现异常情况 就弹出dialog
+//            onLineErreEvent(IMApplication.mLineErrorDialogBean);
+//        }
 
-        if (IMApplication.isGain) {
-            mUpdatePresenter.checkupgrade();
-        }
+//        if (IMApplication.isGain) {
+//            mUpdatePresenter.checkupgrade();
+//        }
 
         setSupportActionBar(toolbar);
         init();
@@ -226,15 +228,22 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         imServiceStatusViewModel.imServiceStatusLiveData().observe(this, imStatusLiveDataObserver);
         IMConnectionStatusViewModel connectionStatusViewModel = ViewModelProviders.of(this).get(IMConnectionStatusViewModel.class);
         connectionStatusViewModel.connectionStatusLiveData().observe(this, status -> {
-            if (status == ConnectionStatus.ConnectionStatusTokenIncorrect || status == ConnectionStatus.ConnectionStatusSecretKeyMismatch || status == ConnectionStatus.ConnectionStatusRejected || status == ConnectionStatus.ConnectionStatusLogout) {
+            if (status == ConnectionStatus.ConnectionStatusTokenIncorrect
+                    || status == ConnectionStatus.ConnectionStatusSecretKeyMismatch
+                    || status == ConnectionStatus.ConnectionStatusRejected
+                    || status == ConnectionStatus.ConnectionStatusLogout) {
                 Log.e("TT", "聊天错误码===" + status);
+                SingleToast.showLongMsg("聊天错误码=== " + status);
                 ChatManager.Instance().disconnect(true);
                 RxBus.get().post(ConstantValue.LOG_OUT, "LOG_OUT");
+            } else if (status == ConnectionStatus.ConnectionStatusConnected) {
+                SingleToast.showLongMsg("聊天已连接 ");
+
             }
         });
 
-        refreshRedOacketLimit("");
-        queryChangenameFlag();
+        //  refreshRedOacketLimit("");
+        // queryChangenameFlag();
     }
 
     private ContactViewModel contactViewModel;
@@ -307,24 +316,24 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
         toolbarlayout.setVisibility(View.GONE);
         switch (index) {
             case TAB_INDEX_HOME:
-                refreshRedOacketLimit("");
+                //   refreshRedOacketLimit("");
                 mViewPager.setCurrentItem(TAB_INDEX_HOME, false);
                 changeTabState(index);
                 break;
-            case TAB_INDEX_DEPOSIT:
-                if (!DataCenter.getInstance().getUserInfoBean().isRealLogin) {
-                    skipLogin(new SkipLoginBean("", ""));
-                    return;
-                }
-                mViewPager.setCurrentItem(TAB_INDEX_DEPOSIT, false);
-                changeTabState(index);
-                break;
+//            case TAB_INDEX_DEPOSIT:
+//                if (!DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+//                    skipLogin(new SkipLoginBean("", ""));
+//                    return;
+//                }
+//                mViewPager.setCurrentItem(TAB_INDEX_DEPOSIT, false);
+//                changeTabState(index);
+//                break;
             case TAB_INDEX_CHAT:
-                refreshRedOacketLimit("");
-                if (!DataCenter.getInstance().getUserInfoBean().isRealLogin) {
-                    skipLogin(new SkipLoginBean("", ""));
-                    return;
-                }
+//                refreshRedOacketLimit("");
+//                if (!DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+//                    skipLogin(new SkipLoginBean("", ""));
+//                    return;
+//                }
                 toolbarlayout.setVisibility(View.VISIBLE);
                 setTitle("消息");
                 mViewPager.setCurrentItem(TAB_INDEX_CHAT, false);
@@ -338,14 +347,14 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 //                mViewPager.setCurrentItem(TAB_INDEX_WITHDRAWAL, false);
 //                changeTabState(index);
 //                break;
-            case TAB_INDEX_MINE:
-                if (!DataCenter.getInstance().getUserInfoBean().isRealLogin) {
-                    skipLogin(new SkipLoginBean("", ""));
-                    return;
-                }
-                mViewPager.setCurrentItem(TAB_INDEX_MINE, false);
-                changeTabState(index);
-                break;
+//            case TAB_INDEX_MINE:
+//                if (!DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+//                    skipLogin(new SkipLoginBean("", ""));
+//                    return;
+//                }
+//                mViewPager.setCurrentItem(TAB_INDEX_MINE, false);
+//                changeTabState(index);
+//                break;
             default:
         }
     }
@@ -365,13 +374,13 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
                 layoutWithdrawal.setSelected(false);
                 layoutMine.setSelected(false);
                 break;
-            case TAB_INDEX_DEPOSIT:
-                layoutHome.setSelected(false);
-                layoutDeposit.setSelected(true);
-                layoutChat.setSelected(false);
-                layoutWithdrawal.setSelected(false);
-                layoutMine.setSelected(false);
-                break;
+//            case TAB_INDEX_DEPOSIT:
+//                layoutHome.setSelected(false);
+//                layoutDeposit.setSelected(true);
+//                layoutChat.setSelected(false);
+//                layoutWithdrawal.setSelected(false);
+//                layoutMine.setSelected(false);
+//                break;
             case TAB_INDEX_CHAT:
                 layoutHome.setSelected(false);
                 layoutDeposit.setSelected(false);
@@ -386,13 +395,13 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 //                layoutWithdrawal.setSelected(true);
 //                layoutMine.setSelected(false);
 //                break;
-            case TAB_INDEX_MINE:
-                layoutHome.setSelected(false);
-                layoutDeposit.setSelected(false);
-                layoutChat.setSelected(false);
-                layoutWithdrawal.setSelected(false);
-                layoutMine.setSelected(true);
-                break;
+//            case TAB_INDEX_MINE:
+//                layoutHome.setSelected(false);
+//                layoutDeposit.setSelected(false);
+//                layoutChat.setSelected(false);
+//                layoutWithdrawal.setSelected(false);
+//                layoutMine.setSelected(true);
+//                break;
             default:
         }
     }
@@ -449,9 +458,9 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
      */
     @Subscribe(tags = {@Tag(ConstantValue.SKIP_REGISTER)})
     public void skipRegister(String s) {
-        DialogFramentManager.getInstance().clearDialog();
-        RegisterDialogFragment registerDialogFragment = RegisterDialogFragment.getInstance(s);
-        DialogFramentManager.getInstance().showDialog(getSupportFragmentManager(), registerDialogFragment);
+//        DialogFramentManager.getInstance().clearDialog();
+//        RegisterDialogFragment registerDialogFragment = RegisterDialogFragment.getInstance(s);
+//        DialogFramentManager.getInstance().showDialog(getSupportFragmentManager(), registerDialogFragment);
     }
 
     /**
@@ -459,9 +468,9 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
      */
     @Subscribe(tags = {@Tag(ConstantValue.SKIP_LOGIN)})
     public void skipLogin(SkipLoginBean skipLoginBean) {
-        DialogFramentManager.getInstance().clearDialog();
-        LoginDialogFragment loginDialogFragment = LoginDialogFragment.getInstance(skipLoginBean.phone, skipLoginBean.type);
-        DialogFramentManager.getInstance().showDialog(getSupportFragmentManager(), loginDialogFragment);
+//        DialogFramentManager.getInstance().clearDialog();
+//        LoginDialogFragment loginDialogFragment = LoginDialogFragment.getInstance(skipLoginBean.phone, skipLoginBean.type);
+//        DialogFramentManager.getInstance().showDialog(getSupportFragmentManager(), loginDialogFragment);
 //        RxBus.get().post(ConstantValue.LOG_OUT, "LOG_OUT");
 //        Intent intent = new Intent(this, LoginActivity.class);
 //        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -498,9 +507,9 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
      */
     @Subscribe(tags = {@Tag(ConstantValue.TOKEN_LOSE_EFFICACY)})
     public void tokenLoseEfficacy(String type) {
-        Toast.makeText(this, "登录失效，请重新登录", Toast.LENGTH_SHORT).show();
-        ActivityStackManager.getInstance().finishToActivity(MainActivity.class, true);
-        RxBus.get().post(ConstantValue.LOG_OUT, "LOG_OUT");
+//        Toast.makeText(this, "登录失效，请重新登录", Toast.LENGTH_SHORT).show();
+//        ActivityStackManager.getInstance().finishToActivity(MainActivity.class, true);
+//        RxBus.get().post(ConstantValue.LOG_OUT, "LOG_OUT");
     }
 
     /**
@@ -508,13 +517,13 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
      */
     @Subscribe(tags = {@Tag(ConstantValue.EVENT_TYPE_LOGIN)})
     public void loginSucceed(String string) {
-        refreshRedOacketLimit("");
-        queryChangenameFlag();
+//        refreshRedOacketLimit("");
+//        queryChangenameFlag();
     }
 
     public void queryChangenameFlag() {
         if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
-            boolean type = (boolean) SPTool.get(DataCenter.getInstance().getUserInfoBean().username+ConstantValue.MODIFICATION_NAME, false);
+            boolean type = (boolean) SPTool.get(DataCenter.getInstance().getUserInfoBean().username + ConstantValue.MODIFICATION_NAME, false);
             if (type) {
                 return;
             }
@@ -581,55 +590,55 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     }
 
 
-    /**
-     * 线路处理或者登录出现异常
-     *
-     * @param event
-     */
-    @Subscribe(tags = {@Tag(ConstantValue.PING_DOMAIN_ERRE)})
-    public void onLineErreEvent(LineErrorDialogBean event) {
-        if (mLoadingDialogFragment != null) {
-            mLoadingDialogFragment.dismissAllowingStateLoss();
-            mLoadingDialogFragment = null;
-        }
-        if (!NetworkUtils.isConnected()) {
-            mLineHelpErreDialogFragment = new LineHelpErreDialogFragment()
-                    .setTvTitle("提示")
-                    .setTvContent("尊敬的用户: " + getString(R.string.n_homepage_game_no_network) + "\n错误码：-5")
-                    .setOnLeftButtonListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            ActivityStackManager.getInstance().finishAllActivity();
-                        }
-                    }, "关闭");
-            DialogFramentManager.getInstance().showDialog(getSupportFragmentManager(), mLineHelpErreDialogFragment);
-            return;
-        }
-        mLineHelpErreDialogFragment = new LineHelpErreDialogFragment()
-                .setTvTitle("提示")
-                .setTvContent("尊敬的用户: " + event.getMsg() + "\n错误码：" + event.getCode())
-                .setOnLeftButtonListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        DialogFramentManager.getInstance().clearDialog();
-                    }
-                }, "关闭")
-                .setOnRightButtonListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (!NetworkUtils.isConnected()) {
-                            showMessage(getString(R.string.n_homepage_game_no_network));
-                            return;
-                        }
-                        DialogFramentManager.getInstance().clearDialog();
-                        mLoadingDialogFragment = new LoadingDialogFragment();
-                        DialogFramentManager.getInstance().showDialog(getSupportFragmentManager(), mLoadingDialogFragment);
-                        LineHelperService.startService(MainActivity.this);
-                    }
-                }, "重试");
-        DialogFramentManager.getInstance().showDialog(getSupportFragmentManager(), mLineHelpErreDialogFragment);
-        IMApplication.mLineErrorDialogBean = null;
-    }
+//    /**
+//     * 线路处理或者登录出现异常
+//     *
+//     * @param event
+//     */
+//    @Subscribe(tags = {@Tag(ConstantValue.PING_DOMAIN_ERRE)})
+//    public void onLineErreEvent(LineErrorDialogBean event) {
+//        if (mLoadingDialogFragment != null) {
+//            mLoadingDialogFragment.dismissAllowingStateLoss();
+//            mLoadingDialogFragment = null;
+//        }
+//        if (!NetworkUtils.isConnected()) {
+//            mLineHelpErreDialogFragment = new LineHelpErreDialogFragment()
+//                    .setTvTitle("提示")
+//                    .setTvContent("尊敬的用户: " + getString(R.string.n_homepage_game_no_network) + "\n错误码：-5")
+//                    .setOnLeftButtonListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            ActivityStackManager.getInstance().finishAllActivity();
+//                        }
+//                    }, "关闭");
+//            DialogFramentManager.getInstance().showDialog(getSupportFragmentManager(), mLineHelpErreDialogFragment);
+//            return;
+//        }
+//        mLineHelpErreDialogFragment = new LineHelpErreDialogFragment()
+//                .setTvTitle("提示")
+//                .setTvContent("尊敬的用户: " + event.getMsg() + "\n错误码：" + event.getCode())
+//                .setOnLeftButtonListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        DialogFramentManager.getInstance().clearDialog();
+//                    }
+//                }, "关闭")
+//                .setOnRightButtonListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        if (!NetworkUtils.isConnected()) {
+//                            showMessage(getString(R.string.n_homepage_game_no_network));
+//                            return;
+//                        }
+//                        DialogFramentManager.getInstance().clearDialog();
+//                        mLoadingDialogFragment = new LoadingDialogFragment();
+//                        DialogFramentManager.getInstance().showDialog(getSupportFragmentManager(), mLoadingDialogFragment);
+//                        LineHelperService.startService(MainActivity.this);
+//                    }
+//                }, "重试");
+//        DialogFramentManager.getInstance().showDialog(getSupportFragmentManager(), mLineHelpErreDialogFragment);
+//        IMApplication.mLineErrorDialogBean = null;
+//    }
 
 
     /**
@@ -637,16 +646,16 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
      */
     @Subscribe(tags = {@Tag(ConstantValue.START_REQUEST)})
     public void startRequest(String type) {
-        if (mLoadingDialogFragment != null) {
-            mLoadingDialogFragment.dismissAllowingStateLoss();
-            mLoadingDialogFragment = null;
-        }
-        if (mUpdatePresenter != null) {
-            mUpdatePresenter.onDestory();
-        }
-        LogUtils.e("这个-===" + RetrofitHelper.baseUrl());
-        mUpdatePresenter = new UpdatePresenter(this, this);
-        mUpdatePresenter.checkupgrade();
+//        if (mLoadingDialogFragment != null) {
+//            mLoadingDialogFragment.dismissAllowingStateLoss();
+//            mLoadingDialogFragment = null;
+//        }
+//        if (mUpdatePresenter != null) {
+//            mUpdatePresenter.onDestory();
+//        }
+//        LogUtils.e("这个-===" + RetrofitHelper.baseUrl());
+//        mUpdatePresenter = new UpdatePresenter(this, this);
+//        mUpdatePresenter.checkupgrade();
     }
 
 
@@ -655,13 +664,13 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
      */
     @Subscribe(tags = {@Tag(ConstantValue.LOG_OUT)})
     public void logOut(String string) {
-        DataCenter.getInstance().getUserInfoCenter().clearUserInfoBean();
-
-        ChatManagerHolder.gChatManager.disconnect(true);
-        SharedPreferences sp = getSharedPreferences("config", Context.MODE_PRIVATE);
-        sp.edit().clear().apply();
-
-        switchTab(MainActivity.TAB_INDEX_HOME);
+//        DataCenter.getInstance().getUserInfoCenter().clearUserInfoBean();
+//
+//        ChatManagerHolder.gChatManager.disconnect(true);
+//        SharedPreferences sp = getSharedPreferences("config", Context.MODE_PRIVATE);
+//        sp.edit().clear().apply();
+//
+//        switchTab(MainActivity.TAB_INDEX_HOME);
 //        Intent intent = new Intent(this, LoginActivity.class);
 //        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        startActivity(intent);
@@ -699,7 +708,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
                 break;
             case REQUEST_IGNORE_BATTERY_CODE:
                 if (resultCode == RESULT_CANCELED) {
-                    Toast.makeText(this, "允许野火IM后台运行，更能保证消息的实时性", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "允许IM后台运行，更能保证消息的实时性", Toast.LENGTH_SHORT).show();
                 }
                 break;
             default:

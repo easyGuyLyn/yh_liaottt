@@ -12,16 +12,23 @@ import com.nwf.sports.IMApplication;
 import com.nwf.sports.utils.data.DataCenter;
 import com.nwf.sports.utils.ssl.SSLUtil;
 
+import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
+import okio.Buffer;
 
 import static com.nwf.sports.net.RetrofitHelper.DEFAULT_READ_TIMEOUT_SECONDS;
 import static com.nwf.sports.net.RetrofitHelper.DEFAULT_TIMEOUT_SECONDS;
@@ -70,6 +77,59 @@ public class NetUtil {
         headers.put("token", DataCenter.getInstance().getUserInfoBean().token);
         return headers;
     }
+
+    public static Map<String, String> setHeaders(String jsonData) {
+
+        String qid = UUID.randomUUID().toString();
+        String sign = "";
+        String timestamp = System.currentTimeMillis() + "";
+        String token = DataCenter.getInstance().getGame_token();
+
+
+        sign = md5(stringSort(jsonData) + timestamp + DataCenter.getInstance().getGame_u2token());
+
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("token", token);
+        headers.put("timestamp", timestamp);
+        headers.put("sign", sign);
+        headers.put("qid", qid);
+
+        return headers;
+    }
+
+    private static String stringSort(String src) {
+
+        char[] charAraay = src.toCharArray();
+        Arrays.sort(charAraay);
+        return new String(charAraay);
+
+    }
+
+
+    public static String md5(String string) {
+        if (TextUtils.isEmpty(string)) {
+            return "";
+        }
+        MessageDigest md5 = null;
+        try {
+            md5 = MessageDigest.getInstance("MD5");
+            byte[] bytes = md5.digest(string.getBytes());
+            String result = "";
+            for (byte b : bytes) {
+                String temp = Integer.toHexString(b & 0xff);
+                if (temp.length() == 1) {
+                    temp = "0" + temp;
+                }
+                result += temp;
+            }
+            return result;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
 
     /**
      * 登录后设置cookie

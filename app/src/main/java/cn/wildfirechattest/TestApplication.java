@@ -5,8 +5,10 @@ import android.os.Handler;
 
 
 import com.nwf.sports.IMApplication;
+import com.nwf.sports.utils.data.DataCenter;
 
 import androidx.multidex.MultiDex;
+import ivi.net.base.netlibrary.NetLibrary;
 
 
 public class TestApplication extends IMApplication {
@@ -31,6 +33,12 @@ public class TestApplication extends IMApplication {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+
+        //初始化网络操作
+        NetLibrary.init(this, new INetConfig());
+
+        DataCenter.getInstance().setLoginName("gmob382");
+        DataCenter.getInstance().setProductId("A01");
     }
 
 

@@ -39,6 +39,9 @@ public class IMLoggingInterceptor implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
 
         Request request = chain.request();
+        Headers dheaders = request.headers();
+
+
 
         String qid = UUID.randomUUID().toString();
         String sign = "";
@@ -67,6 +70,7 @@ public class IMLoggingInterceptor implements Interceptor {
 
 
         Request.Builder builder = request.newBuilder()
+                .headers(dheaders)
                 .headers(Headers.of(headers));
 
 
