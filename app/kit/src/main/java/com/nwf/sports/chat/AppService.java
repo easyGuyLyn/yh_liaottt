@@ -220,7 +220,7 @@ public class AppService implements AppServiceProvider {
 
         String url = RetrofitHelper.imUrl() + "/credit/query";
         Map<String, Object> params = new HashMap<>();
-        String username = DataCenter.getInstance().getUserInfoBean().username;
+        String username = DataCenter.getInstance().getLoginName();
         params.put("pid", Constant.PRODUCT_ID);
         params.put("loginname", username);
 //        String format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
