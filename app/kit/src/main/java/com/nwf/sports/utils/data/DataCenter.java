@@ -12,6 +12,27 @@ import com.nwf.sports.mvp.model.UserInfoBean;
  **/
 
 public class DataCenter {
+
+    private String game_token = "";
+    private String game_u2token = "";
+
+
+    public String getGame_token() {
+        return game_token;
+    }
+
+    public void setGame_token(String game_token) {
+        this.game_token = game_token;
+    }
+
+    public String getGame_u2token() {
+        return game_u2token;
+    }
+
+    public void setGame_u2token(String game_u2token) {
+        this.game_u2token = game_u2token;
+    }
+
     private static DataCenter instance;
     private UserInfoCenter userInfoCenter = new UserInfoCenter(); //用户数据
     private MyBankRepositoryCenter repository = new MyBankRepositoryCenter(); //银行卡数据
@@ -48,6 +69,7 @@ public class DataCenter {
     public void setUserInfoBean(UserInfoBean userInfoBean) {
         userInfoCenter.setUserInfoBean(userInfoBean);
     }
+
     public String getCookie() {
         return Cookie;
     }

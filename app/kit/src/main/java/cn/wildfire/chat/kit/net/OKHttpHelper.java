@@ -29,6 +29,7 @@ public class OKHttpHelper {
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .addInterceptor(new MyHttpLoggingInterceptor())
+            .addInterceptor(new IMLoggingInterceptor())
             .build();
     private static Gson gson = new Gson();
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
@@ -111,6 +112,8 @@ public class OKHttpHelper {
     }
 
     private static <T> void handleResponse(String url, Call call, okhttp3.Response response, Callback<T> callback) {
+
+
         if (callback != null) {
             if (!response.isSuccessful()) {
                 callback.onFailure(response.code(), response.message());
@@ -140,10 +143,10 @@ public class OKHttpHelper {
                 StatusResult statusResult;
                 if (type instanceof Class && type.equals(StatusResult.class)) {
                     statusResult = gson.fromJson(response.body().string(), StatusResult.class);
-                    if (statusResult.isSuccess()) {
+                    if (statusResult.getHead().getErrCode().equals("0000")) {
                         callback.onSuccess((T) statusResult);
                     } else {
-                        callback.onFailure(statusResult.getCode(), statusResult.getMessage());
+                        callback.onFailure(0, statusResult.getHead().getErrMsg());
                     }
                 } else {
                     ResultWrapper<T> wrapper = gson.fromJson(response.body().string(), new ResultType(type));
@@ -151,10 +154,10 @@ public class OKHttpHelper {
                         callback.onFailure(-1, "response is null");
                         return;
                     }
-                    if (wrapper.isSuccess() && wrapper.getResult() != null) {
+                    if (wrapper.getHead().getErrCode().equals("0000") && wrapper.getResult() != null) {
                         callback.onSuccess(wrapper.getResult());
                     } else {
-                        callback.onFailure(wrapper.getCode(), wrapper.getMessage());
+                        callback.onFailure(0, wrapper.getHead().getErrMsg());
                     }
                 }
             } catch (JsonSyntaxException e) {

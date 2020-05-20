@@ -4,30 +4,77 @@ package cn.wildfire.chat.kit.net.base;
  * Created by imndx on 2017/12/16.
  */
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+import androidx.annotation.Keep;
+
 /**
  * 用来表示result的状态，上层基本不用关注
  */
+
+@Keep
 public class StatusResult {
-    private int code;
-    private String message;
 
-    public int getCode() {
-        return code;
+
+    @SerializedName("head")
+    private Head head;
+
+
+    public Head getHead() {
+        return head;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setHead(Head head) {
+        this.head = head;
     }
 
-    public String getMessage() {
-        return message;
-    }
+    @Keep
+    public static class Head implements Serializable {
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
+        @SerializedName("cost")
+        private double cost;
 
-    public boolean isSuccess() {
-        return code == 0;
+        @SerializedName("errCode")
+        private String errCode;
+
+        @SerializedName("errMsg")
+        private String errMsg;
+
+
+        public double getCost() {
+            return cost;
+        }
+
+        public void setCost(double cost) {
+            this.cost = cost;
+        }
+
+        public String getErrCode() {
+            return errCode;
+        }
+
+        public void setErrCode(String errCode) {
+            this.errCode = errCode;
+        }
+
+        public String getErrMsg() {
+            return errMsg;
+        }
+
+        public void setErrMsg(String errMsg) {
+            this.errMsg = errMsg;
+        }
+
+
+        @Override
+        public String toString() {
+            return "Head{" +
+                    "cost=" + cost +
+                    ", errCode='" + errCode + '\'' +
+                    ", errMsg='" + errMsg + '\'' +
+                    '}';
+        }
     }
 }

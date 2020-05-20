@@ -123,10 +123,10 @@ public class AppService implements AppServiceProvider {
         OKHttpHelper.post(url, params, new SimpleCallback<StatusResult>() {
             @Override
             public void onUiSuccess(StatusResult statusResult) {
-                if (statusResult.getCode() == 0) {
+                if (statusResult.getHead().getErrCode().equals("0000")) {
                     callback.onUiSuccess();
                 } else {
-                    callback.onUiFailure(statusResult.getCode(), "");
+                    callback.onUiFailure(0, statusResult.getHead().getErrMsg());
                 }
             }
 
