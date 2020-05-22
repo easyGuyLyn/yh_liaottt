@@ -29,7 +29,7 @@ import com.nwf.sports.ui.dialogfragment.DialogFramentManager;
 import com.nwf.sports.ui.dialogfragment.SafetyVerificationDialogFragment;
 import com.nwf.sports.ui.views.PNTitleBar;
 import com.nwf.sports.utils.BindPhoneFlowEnum;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,7 +96,7 @@ public class BankManagementActivity extends BaseActivity implements BankView, Ba
                     tvAddBank.setOnClickListener(new View.OnClickListener() {  //添加银行卡
                         @Override
                         public void onClick(View v) {
-                            if (TextUtils.isEmpty(DataCenter.getInstance().getUserInfoBean().getPhone())) {
+                            if (TextUtils.isEmpty(IMDataCenter.getInstance().getUserInfoBean().getPhone())) {
                                 ToastUtil.showToastLong("请先绑定手机号");
                                 Bundle mbundle = new Bundle();
                                 mbundle.putString(ConstantValue.BIND_PHONE_FLOW, BindPhoneFlowEnum.TOBINDBANK.getServicename());

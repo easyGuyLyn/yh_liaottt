@@ -8,7 +8,7 @@ import com.dawoo.coretool.util.packageref.PackageInfoUtil;
 import com.google.gson.Gson;
 import com.nwf.sports.IMApplication;
 import com.nwf.sports.mvp.model.UserInfoBean;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -67,7 +67,7 @@ public class FlurryAgentUtils {
         }
         String username = "";
         try {
-            UserInfoBean localUserInfo = DataCenter.getInstance().getUserInfoBean();
+            UserInfoBean localUserInfo = IMDataCenter.getInstance().getUserInfoBean();
             username = localUserInfo.getUsername();
         } catch (Exception e) {
             username = "";

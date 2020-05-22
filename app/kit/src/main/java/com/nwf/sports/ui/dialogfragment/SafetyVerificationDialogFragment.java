@@ -16,7 +16,7 @@ import com.nwf.sports.utils.HideDataUtil;
 import com.nwf.sports.utils.InputMethodUtils;
 import com.nwf.sports.utils.PNCheck;
 import com.nwf.sports.utils.Ticker;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -95,7 +95,7 @@ public class SafetyVerificationDialogFragment extends BaseDialogFragment impleme
                 }
             });
         }
-        String phone = DataCenter.getInstance().getUserInfoBean().getPhone();
+        String phone = IMDataCenter.getInstance().getUserInfoBean().getPhone();
         if (!TextUtils.isEmpty(phone)){
             String s = HideDataUtil.hideCardNo(phone, 3, 3);
             tvPhone.setText(s.replaceAll("(.{4})", "$1\t\t"));
@@ -175,7 +175,7 @@ public class SafetyVerificationDialogFragment extends BaseDialogFragment impleme
         switch (view.getId()) {
             case R.id.btn_send_secureverify:
                 Map<String, String> map = new HashMap<>();
-                map.put("mobile", DataCenter.getInstance().getUserInfoBean().getPhone());
+                map.put("mobile", IMDataCenter.getInstance().getUserInfoBean().getPhone());
                 map.put("sendType", Constant.PRODUCT_N_SEND_AUTH_CODE_PHONE);
                 map.put("smsType", Constant.PRODUCT_N_SEND_AUTH_CODE_TYPE);
                 mSendSmsCodePresenter.sendSmsCodePhone(map);

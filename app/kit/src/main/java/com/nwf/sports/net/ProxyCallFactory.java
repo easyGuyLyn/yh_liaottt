@@ -1,7 +1,7 @@
 package com.nwf.sports.net;
 
 import com.nwf.sports.net.util.RequestBuilder;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.io.IOException;
 
@@ -23,7 +23,7 @@ public class ProxyCallFactory implements Call.Factory
 {
     private OkHttpClient client;
     private ClientConfig clientConfig;
-    private DataCenter dataCenter = DataCenter.getInstance();
+    private IMDataCenter dataCenter = IMDataCenter.getInstance();
 
     public ProxyCallFactory(OkHttpClient client, ClientConfig clientConfig)
     {

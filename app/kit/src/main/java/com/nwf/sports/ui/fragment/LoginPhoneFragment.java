@@ -29,7 +29,7 @@ import com.nwf.sports.ui.dialogfragment.DialogFramentManager;
 import com.nwf.sports.utils.Constant;
 import com.nwf.sports.utils.DoubleClickHelper;
 import com.nwf.sports.utils.Ticker;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 import com.nwf.sports.utils.textviewlink.TextViewLinkUtil;
 
 import java.util.HashMap;
@@ -351,7 +351,7 @@ public class LoginPhoneFragment extends BaseFragment implements CheckPhoneView, 
 
     @Override
     public void setData(Object data) {
-        DataCenter.getInstance().getUserInfoCenter().clearUserInfoBean();
+        IMDataCenter.getInstance().getUserInfoCenter().clearUserInfoBean();
         if (data instanceof LoginResult) {
             if (Check.isNull(data)) {
                 return;
@@ -372,7 +372,7 @@ public class LoginPhoneFragment extends BaseFragment implements CheckPhoneView, 
             localUserInfo.setRealName(loginResult.getRealName());
             localUserInfo.setSportUserId(loginResult.getSportUserId());
             localUserInfo.setSportToken(loginResult.getSportToken());
-            DataCenter.getInstance().setUserInfoBean(localUserInfo);
+            IMDataCenter.getInstance().setUserInfoBean(localUserInfo);
 
 
             //需要注意token跟clientId是强依赖的，一定要调用getClientId获取到clientId，然后用这个clientId获取token，这样connect才能成功，如果随便使用一个clientId获取到的token将无法链接成功。

@@ -9,6 +9,24 @@ import java.io.Serializable;
 public class LoginResult implements Serializable {
     private String userId;
     private String token;
+    private boolean register;//是否新注册
+    private boolean changeNameFlag;//是否已经修改昵称
+
+    public boolean isRegister() {
+        return register;
+    }
+
+    public void setRegister(boolean register) {
+        this.register = register;
+    }
+
+    public boolean isChangeNameFlag() {
+        return changeNameFlag;
+    }
+
+    public void setChangeNameFlag(boolean changeNameFlag) {
+        this.changeNameFlag = changeNameFlag;
+    }
 
     public String getUserId() {
         return userId;

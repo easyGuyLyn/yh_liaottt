@@ -15,7 +15,7 @@ import com.nwf.sports.net.RxHelper;
 import com.nwf.sports.net.request.AppTextMessageResponse;
 import com.nwf.sports.net.rx.ProgressSubscriber;
 import com.nwf.sports.net.rx.SubscriberOnNextListener;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import rx.Subscription;
 import timber.log.Timber;
@@ -46,7 +46,7 @@ public class WithdrawPresenter<T extends IBaseView> extends BasePresenter {
      * @param money
      */
     public void withdrawMoney(String bankid, String money) {
-        boolean islogin = DataCenter.getInstance().getUserInfoBean().isRealLogin;
+        boolean islogin = IMDataCenter.getInstance().getUserInfoBean().isRealLogin;
         if (!islogin) {
             Timber.w("未登录的情况下不需要请求余额");
             return;

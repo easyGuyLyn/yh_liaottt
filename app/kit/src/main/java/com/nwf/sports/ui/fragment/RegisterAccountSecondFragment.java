@@ -28,7 +28,7 @@ import com.nwf.sports.ui.dialogfragment.DialogFramentManager;
 import com.nwf.sports.utils.Constant;
 import com.nwf.sports.utils.DoubleClickHelper;
 import com.nwf.sports.utils.LimitInputTextWatcher;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -189,7 +189,7 @@ public class RegisterAccountSecondFragment extends BaseFragment implements Commo
             if (Check.isNull(data)) {
                 return;
             }
-            DataCenter.getInstance().getUserInfoCenter().clearUserInfoBean();
+            IMDataCenter.getInstance().getUserInfoCenter().clearUserInfoBean();
             LoginResult loginResult = (LoginResult) data;
             UserInfoBean localUserInfo = new UserInfoBean();
             localUserInfo.setRealLogin(true);
@@ -205,7 +205,7 @@ public class RegisterAccountSecondFragment extends BaseFragment implements Commo
             localUserInfo.setRealName(loginResult.getRealName());
             localUserInfo.setSportUserId(loginResult.getSportUserId());
             localUserInfo.setSportToken(loginResult.getSportToken());
-            DataCenter.getInstance().setUserInfoBean(localUserInfo);
+            IMDataCenter.getInstance().setUserInfoBean(localUserInfo);
             showMessage("注册成功");
 
             //需要注意token跟clientId是强依赖的，一定要调用getClientId获取到clientId，然后用这个clientId获取token，这样connect才能成功，如果随便使用一个clientId获取到的token将无法链接成功。

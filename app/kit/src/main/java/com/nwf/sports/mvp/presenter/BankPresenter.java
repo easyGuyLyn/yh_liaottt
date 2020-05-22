@@ -18,7 +18,7 @@ import com.nwf.sports.net.RxHelper;
 import com.nwf.sports.net.request.AppTextMessageResponse;
 import com.nwf.sports.net.rx.ProgressSubscriber;
 import com.nwf.sports.net.rx.SubscriberOnNextListener;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 import com.nwf.sports.utils.data.MyBankRepositoryCenter;
 
 import java.util.List;
@@ -51,7 +51,7 @@ public class BankPresenter<T extends IBaseView> extends BasePresenter {
      * 获取银行卡列表
      */
     public void getMyBank() {
-        boolean islogin = DataCenter.getInstance().getUserInfoBean().isRealLogin;
+        boolean islogin = IMDataCenter.getInstance().getUserInfoBean().isRealLogin;
         if (!islogin) {
             Timber.w("未登录的情况下不需要请求银行卡");
             return;
@@ -72,8 +72,8 @@ public class BankPresenter<T extends IBaseView> extends BasePresenter {
                             response.setData(localMyBankResult);
                         }
                         if (response.isSuccess()) {
-                            DataCenter.getInstance().getMyBankRepositoryCenter().saveBankNumber(response.getData().bankList.size());
-                            DataCenter.getInstance().getMyBankRepositoryCenter().saveMyBanks(response.getData());
+                            IMDataCenter.getInstance().getMyBankRepositoryCenter().saveBankNumber(response.getData().bankList.size());
+                            IMDataCenter.getInstance().getMyBankRepositoryCenter().saveMyBanks(response.getData());
                             ((BankView) mView).setMyBank(response.getData());
                         } else {
                             //真的失败了
@@ -122,10 +122,10 @@ public class BankPresenter<T extends IBaseView> extends BasePresenter {
                             return;
                         }
                         if (response.isSuccess() && response.getData() != null) {
-                            DataCenter.getInstance().getMyBankRepositoryCenter().saveAllBanks(response.getData());
+                            IMDataCenter.getInstance().getMyBankRepositoryCenter().saveAllBanks(response.getData());
                             view.AllBankInfoSucceed(response.getData());
                         } else {
-                            List<BankInfo> allBanks = DataCenter.getInstance().getMyBankRepositoryCenter().getAllBanks();
+                            List<BankInfo> allBanks = IMDataCenter.getInstance().getMyBankRepositoryCenter().getAllBanks();
                             if (allBanks != null) {
                                 view.AllBankInfoSucceed(allBanks);
                             } else {
@@ -137,7 +137,7 @@ public class BankPresenter<T extends IBaseView> extends BasePresenter {
                     @Override
                     public void onError(String e) {
                         if (null != view) {
-                            List<BankInfo> allBanks = DataCenter.getInstance().getMyBankRepositoryCenter().getAllBanks();
+                            List<BankInfo> allBanks = IMDataCenter.getInstance().getMyBankRepositoryCenter().getAllBanks();
                             if (allBanks != null) {
                                 view.AllBankInfoSucceed(allBanks);
                             } else {
@@ -315,7 +315,7 @@ public class BankPresenter<T extends IBaseView> extends BasePresenter {
 
 
     private MyBankResult loadLocalData() {
-        MyBankRepositoryCenter repository = DataCenter.getInstance().getMyBankRepositoryCenter();
+        MyBankRepositoryCenter repository = IMDataCenter.getInstance().getMyBankRepositoryCenter();
         MyBankResult result = repository.getMyBanks();
         return result;
     }

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.MutableLiveData;
@@ -195,6 +196,7 @@ public class GroupViewModel extends ViewModel implements OnGroupInfoUpdateListen
 
             @Override
             public void onFail(int errorCode) {
+                Log.e("ok ","addGroupMember 错误码 "+ errorCode);
                 result.setValue(false);
             }
         });

@@ -26,7 +26,7 @@ import com.nwf.sports.ui.views.PNTitleBar;
 import com.nwf.sports.utils.Constant;
 import com.nwf.sports.utils.MD5Util;
 import com.nwf.sports.utils.Ticker;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 import com.nwf.sports.utils.data.MyLocalCenter;
 
 import java.util.Calendar;
@@ -81,9 +81,9 @@ public class ServiceActivity extends BaseActivity implements GetbindphoneView {
             }
         });
         mPhonePresenter = new PhonePresenter(this, this);
-        UserInfoBean userInfoBean = DataCenter.getInstance().getUserInfoBean();
+        UserInfoBean userInfoBean = IMDataCenter.getInstance().getUserInfoBean();
         if (userInfoBean.isRealLogin) {
-            MyLocalCenter myLocalCenterCenter = DataCenter.getInstance().getMyLocalCenter();
+            MyLocalCenter myLocalCenterCenter = IMDataCenter.getInstance().getMyLocalCenter();
             serviceCallback = myLocalCenterCenter.getServiceCallback();
             if (!TextUtils.isEmpty(serviceCallback)) {
                 vTitle.setFocusable(true);
@@ -93,7 +93,7 @@ public class ServiceActivity extends BaseActivity implements GetbindphoneView {
                 ivServicePhoneClear.setVisibility(View.VISIBLE);
                 btnCallback.setEnabled(true);
             } else {
-                String phone = DataCenter.getInstance().getUserInfoBean().getPhone();
+                String phone = IMDataCenter.getInstance().getUserInfoBean().getPhone();
                 if (TextUtils.isEmpty(phone)) {
                     serviceCallback = "";
                     edPhone.setText(serviceCallback);
@@ -113,7 +113,7 @@ public class ServiceActivity extends BaseActivity implements GetbindphoneView {
                 ivServicePhoneClear.setVisibility(View.VISIBLE);
                 tvServicePhoneErrorAuth.setVisibility(View.INVISIBLE);
                 btnCallback.setEnabled(true);
-                DataCenter.getInstance().getMyLocalCenter().saveServiceCallback(serviceCallback);
+                IMDataCenter.getInstance().getMyLocalCenter().saveServiceCallback(serviceCallback);
 
                 vTitle.setFocusable(true);
                 vTitle.setFocusableInTouchMode(true);
@@ -176,7 +176,7 @@ public class ServiceActivity extends BaseActivity implements GetbindphoneView {
     //校验手机号码
     private boolean onCheckPhone() {
         if (!hasFocusn) {
-            serviceCallback = DataCenter.getInstance().getMyLocalCenter().getServiceCallback();
+            serviceCallback = IMDataCenter.getInstance().getMyLocalCenter().getServiceCallback();
         } else {
             serviceCallback = edPhone.getText().toString().trim().replace(" ", "");
         }
@@ -194,7 +194,7 @@ public class ServiceActivity extends BaseActivity implements GetbindphoneView {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn_callback:
-                DataCenter.getInstance().getMyLocalCenter().saveServiceCallback(serviceCallback);
+                IMDataCenter.getInstance().getMyLocalCenter().saveServiceCallback(serviceCallback);
                 serviceCallback = Base64.encodeToString(serviceCallback.getBytes(), Base64.NO_WRAP);//base 64
                 StringBuilder host = new StringBuilder();
                 host.append("pid=").append(Constant.PRODUCT_ID.toLowerCase()).append("&phone=").append(serviceCallback);
@@ -203,14 +203,14 @@ public class ServiceActivity extends BaseActivity implements GetbindphoneView {
                 break;
             case R.id.btn_immediately_relation:
 //                LIVUserInfo info = new LIVUserInfo();
-//                UserInfoBean userInfoBean = DataCenter.getInstance().getUserInfoBean();
+//                UserInfoBean userInfoBean = IMDataCenter.getInstance().getUserInfoBean();
 //                //设置用户唯一id
 //                info.setUserId(userInfoBean.username);
 //                //设置用户姓名
 //                info.setName(userInfoBean.username);
 //                LIVManager.getInstance().startService(this, info);
 
-                String userId = DataCenter.getInstance().getUserInfoBean().username;
+                String userId = IMDataCenter.getInstance().getUserInfoBean().username;
                 String userName = "永乐体育会员";
                 String loginName = userName;
                 String name = userName;
@@ -280,7 +280,7 @@ public class ServiceActivity extends BaseActivity implements GetbindphoneView {
         ivServicePhoneClear.setVisibility(View.VISIBLE);
         tvServicePhoneErrorAuth.setVisibility(View.INVISIBLE);
         btnCallback.setEnabled(true);
-        DataCenter.getInstance().getMyLocalCenter().saveServiceCallback(serviceCallback);
+        IMDataCenter.getInstance().getMyLocalCenter().saveServiceCallback(serviceCallback);
 
         vTitle.setFocusable(true);
         vTitle.setFocusableInTouchMode(true);

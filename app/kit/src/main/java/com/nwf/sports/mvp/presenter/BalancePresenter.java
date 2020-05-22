@@ -13,7 +13,7 @@ import com.nwf.sports.net.RxHelper;
 import com.nwf.sports.net.request.AppTextMessageResponse;
 import com.nwf.sports.net.rx.ProgressSubscriber;
 import com.nwf.sports.net.rx.SubscriberOnNextListener;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import rx.Subscription;
 import timber.log.Timber;
@@ -43,7 +43,7 @@ public class BalancePresenter<T extends IBaseView> extends BasePresenter {
      * 请求余额—本地余额
      */
     public void getBalance() {
-        boolean islogin = DataCenter.getInstance().getUserInfoBean().isRealLogin;
+        boolean islogin = IMDataCenter.getInstance().getUserInfoBean().isRealLogin;
         if (!islogin) {
             Timber.w("未登录的情况下不需要请求余额");
             return;
@@ -70,7 +70,7 @@ public class BalancePresenter<T extends IBaseView> extends BasePresenter {
                         }
                         if (response.isSuccess() && null != response.getData() && null != response.getData().getTotalBalance()) {
                             GetBalanceResult getBalanceResult = response.getData();
-                            DataCenter.getInstance().getMyLocalCenter().saveBalance(getBalanceResult.getTotalBalance().toPlainString());
+                            IMDataCenter.getInstance().getMyLocalCenter().saveBalance(getBalanceResult.getTotalBalance().toPlainString());
                             RxBus.get().post(ConstantValue.REFRESH_BALANCE, getBalanceResult.getTotalBalance().toPlainString()); //通知其他 界面余额数据变更
                             ((BalanceView) mView).setBalance(getBalanceResult);
                         } else {

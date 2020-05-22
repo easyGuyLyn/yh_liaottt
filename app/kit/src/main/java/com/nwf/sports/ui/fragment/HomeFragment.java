@@ -38,7 +38,7 @@ import com.nwf.sports.ui.dialogfragment.LoginDialogFragment;
 import com.nwf.sports.ui.dialogfragment.RegisterDialogFragment;
 import com.nwf.sports.ui.views.BannerIndicatorView;
 import com.nwf.sports.utils.ActivityUtil;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
 
@@ -113,15 +113,15 @@ public class HomeFragment extends BaseFragment implements HomeView {
         RxBus.get().register(this);
         mHomePresenter = new HomePresenter(getActivity(), this);
         setDiscounts();
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+        if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
             loginLayout.setVisibility(View.GONE);
         } else {
             loginLayout.setVisibility(View.VISIBLE);
         }
 
-        HomeDiscountsResult homePage = DataCenter.getInstance().getMyLocalCenter().getHomePage();
-        List<HomeGameResult> homeGameResult = DataCenter.getInstance().getMyLocalCenter().getHomeGameResult();
-        DownloadAppResult downloadData = DataCenter.getInstance().getMyLocalCenter().getDownloadData();
+        HomeDiscountsResult homePage = IMDataCenter.getInstance().getMyLocalCenter().getHomePage();
+        List<HomeGameResult> homeGameResult = IMDataCenter.getInstance().getMyLocalCenter().getHomeGameResult();
+        DownloadAppResult downloadData = IMDataCenter.getInstance().getMyLocalCenter().getDownloadData();
 
         if (homeGameResult.size() > 0) {
             gameListSuccess(homeGameResult);
@@ -147,7 +147,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
             mHomePresenter.gameList();
             mHomePresenter.homePage();
             mHomePresenter.downloadApps();
-            if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+            if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
                 loginLayout.setVisibility(View.GONE);
             } else {
                 loginLayout.setVisibility(View.VISIBLE);
@@ -281,14 +281,14 @@ public class HomeFragment extends BaseFragment implements HomeView {
      * @param item
      */
     public void startGame(HomeGameResult.GameItemBean item) {
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+        if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
             Map<String, String> map = new HashMap<>();
             map.put("actype", "1");
             map.put("currency ", "CNY");
             map.put("gameId", item.getGameId());
             map.put("gmid", item.getGmid());
             map.put("language", "zh");
-            map.put("loginName", DataCenter.getInstance().getUserInfoBean().getUsername());
+            map.put("loginName", IMDataCenter.getInstance().getUserInfoBean().getUsername());
             mHomePresenter.loginGame(map, item.getChineseName());
         } else {
             Map<String, String> map = new HashMap<>();
@@ -297,7 +297,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
             map.put("gameId", item.getGameId());
             map.put("gmid", item.getGmid());
             map.put("language", "zh");
-            map.put("loginName", DataCenter.getInstance().getUserInfoBean().getUsername());
+            map.put("loginName", IMDataCenter.getInstance().getUserInfoBean().getUsername());
             mHomePresenter.trialGame(map, item.getChineseName());
         }
     }
@@ -429,14 +429,14 @@ public class HomeFragment extends BaseFragment implements HomeView {
      */
     @Subscribe(tags = {@Tag(ConstantValue.LOG_OUT)})
     public void logOut(String string) {
-        DataCenter.getInstance().getUserInfoCenter().clearUserInfoBean();
+        IMDataCenter.getInstance().getUserInfoCenter().clearUserInfoBean();
         loginLayout.setVisibility(View.VISIBLE);
         ((MainActivity) getActivity()).switchTab(MainActivity.TAB_INDEX_HOME);
     }
 
     @Override
     public void gameListSuccess(List<HomeGameResult> gameResults) {
-        DataCenter.getInstance().getMyLocalCenter().saveHomeGameResult(gameResults);
+        IMDataCenter.getInstance().getMyLocalCenter().saveHomeGameResult(gameResults);
         mHomeMyGames.clear();
         for (HomeGameResult homeGameResult : gameResults) {
             for (HomeGameResult.GameItemBean gameItemBean : homeGameResult.getGameItem()) {
@@ -454,7 +454,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
 
     @Override
     public void homePageSuccess(HomeDiscountsResult homeDiscountsResult) {
-        DataCenter.getInstance().getMyLocalCenter().saveHomePage(homeDiscountsResult);
+        IMDataCenter.getInstance().getMyLocalCenter().saveHomePage(homeDiscountsResult);
         mBannerLists.clear();
         mBannerLists.addAll(homeDiscountsResult.getBannerList());
         mDiscounts.clear();
@@ -466,7 +466,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
     @Override
     public void downloadApps(DownloadAppResult downloadAppResult) {
         mDownloadAppResult = downloadAppResult;
-        DataCenter.getInstance().getMyLocalCenter().saveDownload(downloadAppResult);
+        IMDataCenter.getInstance().getMyLocalCenter().saveDownload(downloadAppResult);
         //设置图片圆角角度
 //        RoundedCorners roundedCorners = new RoundedCorners(27);
         RequestOptions options = RequestOptions.placeholderOf(R.mipmap.nwf_banner_placeholder);
@@ -508,7 +508,7 @@ public class HomeFragment extends BaseFragment implements HomeView {
         mHomePresenter.homePage();
         mHomePresenter.downloadApps();
 
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+        if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
             loginLayout.setVisibility(View.GONE);
         } else {
             loginLayout.setVisibility(View.VISIBLE);

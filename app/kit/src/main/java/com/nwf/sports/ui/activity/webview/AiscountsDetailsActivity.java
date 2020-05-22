@@ -25,7 +25,7 @@ import com.nwf.sports.ui.dialogfragment.LoginDialogFragment;
 import com.nwf.sports.ui.dialogfragment.RegisterDialogFragment;
 import com.nwf.sports.ui.views.PNTitleBar;
 import com.nwf.sports.utils.ActivityUtil;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 import com.tencent.smtt.sdk.WebView;
 
 import java.util.List;
@@ -77,7 +77,7 @@ public class AiscountsDetailsActivity extends BaseActivity {
             }
         });
         vTitle.setTitle(title);
-        if (TextUtils.isEmpty(DataCenter.getInstance().getUserInfoBean().getPhone())){
+        if (TextUtils.isEmpty(IMDataCenter.getInstance().getUserInfoBean().getPhone())){
             isBindPhone = false;
         }else {
             isBindPhone = true;
@@ -309,13 +309,13 @@ public class AiscountsDetailsActivity extends BaseActivity {
             wvHomepageIntroduceContent.post(new Runnable() {
                 @Override
                 public void run() {
-                    UserInfoBean userInfoBean = DataCenter.getInstance().getUserInfoBean();
+                    UserInfoBean userInfoBean = IMDataCenter.getInstance().getUserInfoBean();
                     UserInformJS userInformJS = new UserInformJS();
                     userInformJS.isLogin = userInfoBean.isRealLogin() ? "true" : "false";
                     userInformJS.account = userInfoBean.isRealLogin() ? userInfoBean.getUsername() : ""; // 试玩账号不传值
                     userInformJS.star = userInfoBean.getLevelNum();
                     userInformJS.token = userInfoBean.getToken();
-                    List<MyBankItemResult> myBanks = DataCenter.getInstance().getMyBankRepositoryCenter().getMyBanks().bankList;
+                    List<MyBankItemResult> myBanks = IMDataCenter.getInstance().getMyBankRepositoryCenter().getMyBanks().bankList;
                     if (myBanks.size() > 0) {
                         userInformJS.hasBankCard = "" + true;
                     } else {

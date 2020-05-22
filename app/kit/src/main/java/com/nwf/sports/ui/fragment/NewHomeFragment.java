@@ -19,7 +19,6 @@ import com.nwf.sports.adapter.BannerPaddingViewHolder;
 import com.nwf.sports.mvp.model.HomeDiscountsResult;
 import com.nwf.sports.mvp.model.HomeGameBean;
 import com.nwf.sports.mvp.model.HomeGameResult;
-import com.nwf.sports.ui.activity.MainActivity;
 import com.nwf.sports.ui.dialogfragment.DialogFramentManager;
 import com.nwf.sports.ui.dialogfragment.LoginDialogFragment;
 import com.nwf.sports.ui.dialogfragment.RegisterDialogFragment;
@@ -27,12 +26,11 @@ import com.nwf.sports.ui.views.BannerIndicatorView;
 import com.nwf.sports.ui.views.CustomViewPager;
 import com.nwf.sports.ui.views.NoticeView;
 import com.nwf.sports.utils.ActivityUtil;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -93,7 +91,7 @@ public class NewHomeFragment extends BaseFragment {
     @Override
     public void initViews(@Nullable Bundle savedInstanceState) {
         RxBus.get().register(this);
-//        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+//        if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
 //            loginLayout.setVisibility(View.GONE);
 //        } else {
 //            loginLayout.setVisibility(View.VISIBLE);
@@ -168,7 +166,7 @@ public class NewHomeFragment extends BaseFragment {
         isUIVisible = true;
         isViewCreated = true;
 //        if (IMApplication.isGain) {
-//            if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+//            if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
 //                loginLayout.setVisibility(View.GONE);
 //            } else {
 //                loginLayout.setVisibility(View.VISIBLE);
@@ -184,14 +182,14 @@ public class NewHomeFragment extends BaseFragment {
      * @param item
      */
     public void startGame(HomeGameResult.GameItemBean item) {
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+        if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
             Map<String, String> map = new HashMap<>();
             map.put("actype", "1");
             map.put("currency ", "CNY");
             map.put("gameId", item.getGameId());
             map.put("gmid", item.getGmid());
             map.put("language", "zh");
-            map.put("loginName", DataCenter.getInstance().getUserInfoBean().getUsername());
+            map.put("loginName", IMDataCenter.getInstance().getUserInfoBean().getUsername());
 //            mHomePresenter.loginGame(map, item.getChineseName());
         } else {
             Map<String, String> map = new HashMap<>();
@@ -200,7 +198,7 @@ public class NewHomeFragment extends BaseFragment {
             map.put("gameId", item.getGameId());
             map.put("gmid", item.getGmid());
             map.put("language", "zh");
-            map.put("loginName", DataCenter.getInstance().getUserInfoBean().getUsername());
+            map.put("loginName", IMDataCenter.getInstance().getUserInfoBean().getUsername());
 //            mHomePresenter.trialGame(map, item.getChineseName());
         }
     }
@@ -295,7 +293,7 @@ public class NewHomeFragment extends BaseFragment {
      */
     @Subscribe(tags = {@Tag(ConstantValue.LOG_OUT)})
     public void logOut(String string) {
-//        DataCenter.getInstance().getUserInfoCenter().clearUserInfoBean();
+//        IMDataCenter.getInstance().getUserInfoCenter().clearUserInfoBean();
 //        loginLayout.setVisibility(View.VISIBLE);
 //        ((MainActivity) getActivity()).switchTab(MainActivity.TAB_INDEX_HOME);
     }
@@ -311,7 +309,7 @@ public class NewHomeFragment extends BaseFragment {
      */
     @Subscribe(tags = {@Tag(ConstantValue.START_REQUEST)})
     public void startRequest(String type) {
-//        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+//        if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
 //            loginLayout.setVisibility(View.GONE);
 //        } else {
 //            loginLayout.setVisibility(View.VISIBLE);

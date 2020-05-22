@@ -46,7 +46,7 @@ import com.nwf.sports.utils.DoubleClickHelper;
 import com.nwf.sports.utils.GameShipHelper;
 import com.nwf.sports.utils.InputMethodUtils;
 import com.nwf.sports.utils.PNCheck;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 import com.nwf.sports.utils.textviewlink.TextViewLinkUtil;
 
 import java.util.ArrayList;
@@ -296,7 +296,7 @@ public class WithdrawalFragment extends BaseFragment implements BalanceView, Wit
     protected void loadData() {
         isUIVisible = true;
         isViewCreated = true;
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+        if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
             etWithdrawalMoney.setText("");
             errMoneyWithdraw.setVisibility(View.GONE);
             strBalance = "";

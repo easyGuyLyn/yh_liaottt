@@ -1,13 +1,13 @@
 package com.nwf.sports.ui.activity;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.dawoo.coretool.util.ToastUtil;
 import com.google.android.material.tabs.TabLayout;
 import com.nwf.sports.ConstantValue;
 import com.ivi.imsdk.R;
@@ -21,7 +21,7 @@ import com.nwf.sports.ui.dialogfragment.DialogFramentManager;
 import com.nwf.sports.ui.dialogfragment.LoginDialogFragment;
 import com.nwf.sports.ui.views.PNTitleBar;
 import com.nwf.sports.utils.SingleToast;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -146,7 +146,7 @@ public class RedpacketGameActivity extends BaseActivity {
                 holder.getConvertView().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (!DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+                        if (!IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
                             DialogFramentManager.getInstance().clearDialog();
                             LoginDialogFragment loginDialogFragment = LoginDialogFragment.getInstance("", "");
                             DialogFramentManager.getInstance().showDialog(getSupportFragmentManager(), loginDialogFragment);
@@ -170,6 +170,7 @@ public class RedpacketGameActivity extends BaseActivity {
                                 if (statusResult.isCanInGroup()) {
                                     UserViewModel userViewModel = ViewModelProviders.of(RedpacketGameActivity.this).get(UserViewModel.class);
                                     String userId = userViewModel.getUserId();
+                                    Log.e("ok ","groupViewModel.addGroupMember userId:" + userId);
                                     GroupInfo groupInfo = groupViewModel.getGroupInfo(item.getGroupId(), true);
 
                                     groupViewModel.addGroupMember(groupInfo, Collections.singletonList(userId)).observe(RedpacketGameActivity.this, new Observer<Boolean>() {

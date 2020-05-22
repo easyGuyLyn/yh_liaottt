@@ -12,7 +12,7 @@ import com.nwf.sports.ui.activity.BaseActivity;
 import com.nwf.sports.ui.views.PNTitleBar;
 import com.nwf.sports.utils.Constant;
 import com.nwf.sports.utils.GameWebSetting;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
@@ -80,7 +80,7 @@ public class OnlinePlayActivity extends BaseActivity {
         payString.append("product=").append(Constant.PRODUCT_ID).
                 append("&billno=").append(onlinePay.getBillno()).
                 append("&amount=").append(onlinePay.getAmount()).
-                append("&loginname=").append(DataCenter.getInstance().getUserInfoBean().username).
+                append("&loginname=").append(IMDataCenter.getInstance().getUserInfoBean().username).
                 append("&currency=").append(Constant.PRODUCT_CURRENCY).
                 append("&language=").append(Constant.PRODUCT_LANGUAGE).
                 append("&customerType=").append(1).

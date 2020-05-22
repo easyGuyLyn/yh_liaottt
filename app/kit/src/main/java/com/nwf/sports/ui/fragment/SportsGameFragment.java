@@ -9,7 +9,7 @@ import com.ivi.imsdk.R;
 import com.nwf.sports.mvp.presenter.SportsGamePresenter;
 import com.nwf.sports.mvp.view.GameView;
 import com.nwf.sports.ui.activity.webview.XPlayGameActivity;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,7 +46,7 @@ public class SportsGameFragment extends BaseFragment implements GameView {
 
     @OnClick(R.id.img_entrance)
     public void onViewClicked() {
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+        if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
             if (IMApplication.isChat) {
                 return;
             }
@@ -56,7 +56,7 @@ public class SportsGameFragment extends BaseFragment implements GameView {
             map.put("gameId", "");
             map.put("gmid", "E03083");
             map.put("language", "zh");
-            map.put("loginName", DataCenter.getInstance().getUserInfoBean().getUsername());
+            map.put("loginName", IMDataCenter.getInstance().getUserInfoBean().getUsername());
             mSportsGamePresenter.loginGame(map, "体育游戏");
         }
     }

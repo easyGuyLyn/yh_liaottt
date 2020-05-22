@@ -28,7 +28,7 @@ import com.nwf.sports.utils.Constant;
 import com.nwf.sports.utils.HideDataUtil;
 import com.nwf.sports.utils.InputMethodUtils;
 import com.nwf.sports.utils.Ticker;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -204,7 +204,7 @@ public class BindPhoneSecondActivity extends BaseActivity implements BindPhoneVi
             case R.id.btn_ok:
                 verify = edVerfifcationCode.getText().toString().trim();
                 if (isModification) {
-                    String oldphone = DataCenter.getInstance().getUserInfoBean().getPhone();
+                    String oldphone = IMDataCenter.getInstance().getUserInfoBean().getPhone();
                     mPhonePresenter.modifyPhone(oldphone, phone, verify);
                 } else {
                     mPhonePresenter.bindPhone(phone, verify);

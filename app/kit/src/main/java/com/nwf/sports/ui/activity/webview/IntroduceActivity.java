@@ -33,7 +33,7 @@ import com.nwf.sports.ui.views.PNTitleBar;
 import com.nwf.sports.utils.ActivityUtil;
 import com.nwf.sports.utils.BindBankFlowEnum;
 import com.nwf.sports.utils.BindPhoneFlowEnum;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
 import com.tencent.smtt.export.external.interfaces.SslError;
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler;
@@ -241,7 +241,7 @@ public class IntroduceActivity extends BaseActivity {
                 @Override
                 public void run() {
                     if (!Check.isNull(wvHomepageIntroduceContent)) {
-                        wvHomepageIntroduceContent.loadUrl("javascript:getLoginInfo('" + DataCenter.getInstance().getUserInfoBean().getToken() + "')");
+                        wvHomepageIntroduceContent.loadUrl("javascript:getLoginInfo('" + IMDataCenter.getInstance().getUserInfoBean().getToken() + "')");
                     }
                 }
             });
@@ -351,7 +351,7 @@ public class IntroduceActivity extends BaseActivity {
          */
         @JavascriptInterface
         public void toFillInfomation(final String actionName, final String param) {
-            String phone = DataCenter.getInstance().getUserInfoBean().getPhone();
+            String phone = IMDataCenter.getInstance().getUserInfoBean().getPhone();
             LogUtils.e("javascriptToJava (" + actionName + ", " + param + ", bindPhone " + phone + ")");
             wvHomepageIntroduceContent.post(new Runnable() {
                 @Override
@@ -396,7 +396,7 @@ public class IntroduceActivity extends BaseActivity {
             wvHomepageIntroduceContent.post(new Runnable() {
                 @Override
                 public void run() {
-                    HomeDiscountsResult homePage = DataCenter.getInstance().getMyLocalCenter().getHomePage();
+                    HomeDiscountsResult homePage = IMDataCenter.getInstance().getMyLocalCenter().getHomePage();
                     if (homePage == null || homePage.getPromotionsList() == null) {
                         ToastUtil.showToastLong("优惠活动为空");
                         return;

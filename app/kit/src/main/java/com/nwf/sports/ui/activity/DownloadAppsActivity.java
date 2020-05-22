@@ -22,7 +22,7 @@ import com.nwf.sports.adapter.ViewHolder;
 import com.nwf.sports.mvp.model.DownloadAppResult;
 import com.nwf.sports.ui.views.PNTitleBar;
 import com.nwf.sports.utils.UpdateTool;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -66,10 +66,10 @@ public class DownloadAppsActivity extends BaseActivity {
             if (null != appsBeans && appsBeans.size() != 0) {
                 assembleData(appsBeans);
             } else {
-                assembleData(DataCenter.getInstance().getMyLocalCenter().getDownloadApp());
+                assembleData(IMDataCenter.getInstance().getMyLocalCenter().getDownloadApp());
             }
         } else {
-            assembleData(DataCenter.getInstance().getMyLocalCenter().getDownloadApp());
+            assembleData(IMDataCenter.getInstance().getMyLocalCenter().getDownloadApp());
         }
         vTitle.setBackListener(new View.OnClickListener() {
             @Override
@@ -200,9 +200,9 @@ public class DownloadAppsActivity extends BaseActivity {
      */
     public void notifyData(int position, String condition) {
         mDownloadAppResults.get(position).setCondition(condition);
-        DataCenter.getInstance().getMyLocalCenter().saveDownloadApp(mDownloadAppResults);
+        IMDataCenter.getInstance().getMyLocalCenter().saveDownloadApp(mDownloadAppResults);
         mDownloadAppResults.clear();
-        mDownloadAppResults.addAll(DataCenter.getInstance().getMyLocalCenter().getDownloadApp());
+        mDownloadAppResults.addAll(IMDataCenter.getInstance().getMyLocalCenter().getDownloadApp());
         mDownloadAppCommonAdapter.notifyDataSetChanged();
     }
 
@@ -234,7 +234,7 @@ public class DownloadAppsActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        assembleData(DataCenter.getInstance().getMyLocalCenter().getDownloadApp());
+        assembleData(IMDataCenter.getInstance().getMyLocalCenter().getDownloadApp());
     }
 
     @Override
@@ -249,7 +249,7 @@ public class DownloadAppsActivity extends BaseActivity {
     public void assembleData(List<DownloadAppResult.AppsBean> mDownload) {
         mDownloadAppResults.clear();
         mDownloadAppResults.addAll(mDownload);
-        List<DownloadAppResult.AppsBean> downloadApp = DataCenter.getInstance().getMyLocalCenter().getDownloadApp();
+        List<DownloadAppResult.AppsBean> downloadApp = IMDataCenter.getInstance().getMyLocalCenter().getDownloadApp();
         if (downloadApp.size() != 0) {
             for (DownloadAppResult.AppsBean data : downloadApp) {
                 for (int i = 0; i < mDownloadAppResults.size(); i++) {
@@ -280,7 +280,7 @@ public class DownloadAppsActivity extends BaseActivity {
                 }
             }
         }
-        DataCenter.getInstance().getMyLocalCenter().saveDownloadApp(mDownloadAppResults);
+        IMDataCenter.getInstance().getMyLocalCenter().saveDownloadApp(mDownloadAppResults);
         if (mDownloadAppCommonAdapter!=null){
             mDownloadAppCommonAdapter.notifyDataSetChanged();
         }
@@ -292,6 +292,6 @@ public class DownloadAppsActivity extends BaseActivity {
      */
     @Subscribe(tags = {@Tag(ConstantValue.DOWNLOAD_APPS_SUCCEED)})
     public void refreshDownload(String type) {
-        assembleData(DataCenter.getInstance().getMyLocalCenter().getDownloadApp());
+        assembleData(IMDataCenter.getInstance().getMyLocalCenter().getDownloadApp());
     }
 }

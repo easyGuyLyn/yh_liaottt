@@ -20,7 +20,7 @@ import com.nwf.sports.net.request.AppTextMessageResponse;
 import com.nwf.sports.net.rx.ProgressSubscriber;
 import com.nwf.sports.net.rx.SubscriberOnNextListener;
 import com.nwf.sports.utils.PNCheck;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import rx.Subscription;
 
@@ -70,7 +70,7 @@ public class PhonePresenter<T extends IBaseView> extends BasePresenter {
 
                         boolean bindPhoneResult = response.getData().flag;
                         if (response.isSuccess() && bindPhoneResult) {
-                            DataCenter.getInstance().getMyLocalCenter().recordBoundPhoneEvent();
+                            IMDataCenter.getInstance().getMyLocalCenter().recordBoundPhoneEvent();
                             view.bindPhone();
                         } else {
                             if (Check.isEmpty(response.getMsg())) {

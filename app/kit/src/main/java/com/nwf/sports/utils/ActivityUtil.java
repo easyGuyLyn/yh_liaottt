@@ -8,7 +8,7 @@ import com.dawoo.coretool.util.LogUtils;
 import com.nwf.sports.mvp.model.OnlinePay;
 import com.nwf.sports.mvp.model.UserInfoBean;
 import com.nwf.sports.ui.activity.ServiceActivity;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 /**
  * 一些页面的跳转
@@ -42,7 +42,7 @@ public class ActivityUtil {
      * @param onlinePay
      */
     public static void skipBrowser(Context context, OnlinePay onlinePay) {
-        UserInfoBean localUserInfo = DataCenter.getInstance().getUserInfoBean();
+        UserInfoBean localUserInfo = IMDataCenter.getInstance().getUserInfoBean();
         StringBuilder payString = new StringBuilder();
 
         payString.append("product=").append(Constant.PRODUCT_ID).

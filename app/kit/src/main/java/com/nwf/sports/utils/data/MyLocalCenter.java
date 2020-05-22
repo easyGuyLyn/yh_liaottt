@@ -33,7 +33,7 @@ public class MyLocalCenter {
      * 手机号验证时间
      */
     public void recordBoundPhoneEvent() {
-        SPTool.put(DataCenter.getInstance().getUserInfoBean().username + ConstantValue.KEY_TIME_BOUND_PHONE, System.currentTimeMillis());
+        SPTool.put(IMDataCenter.getInstance().getUserInfoBean().username + ConstantValue.KEY_TIME_BOUND_PHONE, System.currentTimeMillis());
     }
 
     /**
@@ -43,7 +43,7 @@ public class MyLocalCenter {
      */
     public boolean boundPhoneRecently() {
         long curTime = System.currentTimeMillis();
-        long lasttime = (long) SPTool.get(DataCenter.getInstance().getUserInfoBean().username + ConstantValue.KEY_TIME_BOUND_PHONE, 0l);
+        long lasttime = (long) SPTool.get(IMDataCenter.getInstance().getUserInfoBean().username + ConstantValue.KEY_TIME_BOUND_PHONE, 0l);
         boolean recently = ((curTime - lasttime) <= INTERVAL_BOUND_PHONE);
         Timber.d("boundPhoneRecently %s cur:%d - last:%d = %d", String.valueOf(recently), curTime, lasttime, curTime - lasttime);
         return recently;
@@ -56,7 +56,7 @@ public class MyLocalCenter {
      */
     public void saveBalance(String balance) {
         Timber.d("保存余额:%s", balance);
-        SPTool.put(DataCenter.getInstance().getUserInfoBean().username + ConstantValue._BALANCE, balance);
+        SPTool.put(IMDataCenter.getInstance().getUserInfoBean().username + ConstantValue._BALANCE, balance);
     }
 
     /**
@@ -65,7 +65,7 @@ public class MyLocalCenter {
      * @return
      */
     public String getBalance() {
-        return (String) SPTool.get(DataCenter.getInstance().getUserInfoBean().username + ConstantValue._BALANCE, "0");
+        return (String) SPTool.get(IMDataCenter.getInstance().getUserInfoBean().username + ConstantValue._BALANCE, "0");
     }
 
     /**
@@ -130,7 +130,7 @@ public class MyLocalCenter {
      * @param name
      */
     public void saveServiceCallback(String name) {
-        SPTool.put(DataCenter.getInstance().getUserInfoBean().username + ConstantValue.SERVICE_CALLBACK, name);
+        SPTool.put(IMDataCenter.getInstance().getUserInfoBean().username + ConstantValue.SERVICE_CALLBACK, name);
     }
 
     /**
@@ -139,7 +139,7 @@ public class MyLocalCenter {
      * @return
      */
     public String getServiceCallback() {
-        return (String) SPTool.get(DataCenter.getInstance().getUserInfoBean().username + ConstantValue.SERVICE_CALLBACK, "");
+        return (String) SPTool.get(IMDataCenter.getInstance().getUserInfoBean().username + ConstantValue.SERVICE_CALLBACK, "");
     }
 
 

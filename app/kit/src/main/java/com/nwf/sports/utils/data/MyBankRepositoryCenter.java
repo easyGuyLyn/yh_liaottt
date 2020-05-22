@@ -122,7 +122,7 @@ public class MyBankRepositoryCenter {
      * @param number
      */
     public void saveBankNumber(int number) {
-        SPTool.put(DataCenter.getInstance().getUserInfoBean().username + ConstantValue.BANKNUMBER, number);
+        SPTool.put(IMDataCenter.getInstance().getUserInfoBean().username + ConstantValue.BANKNUMBER, number);
     }
 
     /**
@@ -131,7 +131,7 @@ public class MyBankRepositoryCenter {
      * @return
      */
     public int getBankNumber() {
-        return (int) SPTool.get(DataCenter.getInstance().getUserInfoBean().username + ConstantValue.BANKNUMBER, 0);
+        return (int) SPTool.get(IMDataCenter.getInstance().getUserInfoBean().username + ConstantValue.BANKNUMBER, 0);
     }
 
 }

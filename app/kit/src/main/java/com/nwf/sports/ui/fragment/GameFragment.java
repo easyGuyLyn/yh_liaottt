@@ -21,7 +21,7 @@ import com.nwf.sports.mvp.model.HomeGameResult;
 import com.nwf.sports.mvp.presenter.HomePresenter;
 import com.nwf.sports.mvp.view.HomeView;
 import com.nwf.sports.utils.GameWebSetting;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
 import com.tencent.smtt.export.external.interfaces.JsResult;
 import com.tencent.smtt.export.external.interfaces.SslError;
@@ -134,14 +134,14 @@ public class GameFragment extends BaseFragment implements HomeView {
     }
 
     public void loginGame() {
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+        if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
             Map<String, String> map = new HashMap<>();
             map.put("actype", "1");
             map.put("currency ", "CNY");
             map.put("gameId", "");
             map.put("gmid", "E03083");
             map.put("language", "zh");
-            map.put("loginName", DataCenter.getInstance().getUserInfoBean().getUsername());
+            map.put("loginName", IMDataCenter.getInstance().getUserInfoBean().getUsername());
             mHomePresenter.loginGame(map, "体育");
         }
     }

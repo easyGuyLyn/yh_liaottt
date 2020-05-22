@@ -9,10 +9,9 @@ import android.webkit.WebSettings;
 
 import com.dawoo.coretool.util.LogUtils;
 import com.nwf.sports.IMApplication;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 import com.nwf.sports.utils.ssl.SSLUtil;
 
-import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -26,9 +25,7 @@ import androidx.annotation.NonNull;
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
-import okio.Buffer;
 
 import static com.nwf.sports.net.RetrofitHelper.DEFAULT_READ_TIMEOUT_SECONDS;
 import static com.nwf.sports.net.RetrofitHelper.DEFAULT_TIMEOUT_SECONDS;
@@ -74,7 +71,7 @@ public class NetUtil {
     @NonNull
     public static Map<String, String> setHeaders() {
         Map<String, String> headers = new HashMap<>();
-        headers.put("token", DataCenter.getInstance().getUserInfoBean().token);
+        headers.put("token", IMDataCenter.getInstance().getUserInfoBean().token);
         return headers;
     }
 
@@ -83,10 +80,10 @@ public class NetUtil {
         String qid = UUID.randomUUID().toString();
         String sign = "";
         String timestamp = System.currentTimeMillis() + "";
-        String token = DataCenter.getInstance().getGame_token();
+        String token = IMDataCenter.getInstance().getGame_token();
 
 
-        sign = md5(stringSort(jsonData) + timestamp + DataCenter.getInstance().getGame_u2token());
+        sign = md5(stringSort(jsonData) + timestamp + IMDataCenter.getInstance().getGame_u2token());
 
 
         Map<String, String> headers = new HashMap<>();
@@ -139,7 +136,7 @@ public class NetUtil {
         for (String cookie : cookies) {
             if (cookie.contains("SID=") && cookie.length() > 80) {
                 LogUtils.e("登录后Cookie ==> " + cookie);
-                DataCenter.getInstance().setCookie(cookie);
+                IMDataCenter.getInstance().setCookie(cookie);
                 CookieManager.getInstance().setCookie(RetrofitHelper.baseUrl(), cookie);
             }
         }

@@ -6,7 +6,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.nwf.sports.net.request.AppTextMessageRequest;
 import com.nwf.sports.net.util.MacUtil;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -24,7 +24,7 @@ import okio.Buffer;
  */
 
 public class TokenInterceptor implements Interceptor {
-    private DataCenter dataCenter = DataCenter.getInstance();
+    private IMDataCenter dataCenter = IMDataCenter.getInstance();
     private ClientConfig config;
     public TokenInterceptor(ClientConfig config)
     {

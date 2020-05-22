@@ -17,7 +17,7 @@ import com.nwf.sports.net.request.AppTextMessageResponse;
 import com.nwf.sports.net.rx.ProgressSubscriber;
 import com.nwf.sports.net.rx.SubscriberOnNextListener;
 import com.nwf.sports.utils.AppStatus;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.util.Map;
 
@@ -52,7 +52,7 @@ public class SendSmsCodePresenter<T extends IBaseView> extends BasePresenter {
             mView.showMessage("发送短信验证码失败，请检查网络");
             return;
         }
-        UserInfoBean userInfoBean = DataCenter.getInstance().getUserInfoBean();
+        UserInfoBean userInfoBean = IMDataCenter.getInstance().getUserInfoBean();
         if (userInfoBean.isRealLogin()) {
             map.put("loginName", userInfoBean.getUsername());
         }
@@ -98,7 +98,7 @@ public class SendSmsCodePresenter<T extends IBaseView> extends BasePresenter {
                             return;
                         }
                         if (response.isSuccess()) {
-//                            DataCenter.getInstance().getMyLocalCenter().recordBoundPhoneEvent();
+//                            IMDataCenter.getInstance().getMyLocalCenter().recordBoundPhoneEvent();
                             view.verifyBoundPhoneSucceed();
                         } else {
                             if (Check.isEmpty(response.getMsg())) {

@@ -12,7 +12,7 @@ import com.nwf.sports.net.RxHelper;
 import com.nwf.sports.net.request.AppTextMessageResponse;
 import com.nwf.sports.net.rx.ProgressSubscriber;
 import com.nwf.sports.net.rx.SubscriberOnNextListener;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.util.Map;
 
@@ -49,7 +49,7 @@ public class RegisterPresenter<T extends IBaseView> extends BasePresenter {
                         if (null != view) {
                             if (loginResult.isSuccess()) {
                                 view.setData(loginResult.getData());
-                                DataCenter.getInstance().getMyLocalCenter().recordBoundPhoneEvent();
+                                IMDataCenter.getInstance().getMyLocalCenter().recordBoundPhoneEvent();
                             } else {
                                 view.showMessage(loginResult.getMsg());
                             }

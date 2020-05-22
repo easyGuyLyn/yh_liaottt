@@ -27,7 +27,7 @@ import com.nwf.sports.mvp.view.DepositPoinCardView;
 import com.nwf.sports.ui.dialogfragment.DepositPointCardTypeDialogFragment;
 import com.nwf.sports.ui.dialogfragment.DialogFramentManager;
 import com.nwf.sports.ui.views.PNTitleBar;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -277,7 +277,7 @@ public class DepositPointCardActivity extends BaseActivity implements DepositPoi
                 SPTool.put(ConstantValue.POINT_CARD_TYPE_NAME, mDepositPointCardTypeBeen.get(selectCard).getName());
                 PointCardVo pointCardVo = mDepositPointCardTypeBeen.get(selectCard);
                 Map<String,String> map=new HashMap<>();
-                map.put("accountname",DataCenter.getInstance().getUserInfoBean().username);
+                map.put("accountname", IMDataCenter.getInstance().getUserInfoBean().username);
                 map.put("cardAmt",mTvwPcAmount.getText().toString());
                 map.put("cardCode",pointCardVo.getCode());
                 map.put("cardNo", mEdtPcId.getText().toString());

@@ -15,7 +15,7 @@ import com.nwf.sports.adapter.ViewHolder;
 import com.nwf.sports.mvp.model.WithdrawalHistoryResult;
 import com.nwf.sports.mvp.presenter.HistoryPresenter;
 import com.nwf.sports.mvp.view.HistoryView;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 import com.nwf.sports.utils.historyutil.HistoryServiceEnum;
 import com.nwf.sports.utils.historyutil.HistoryUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -119,7 +119,7 @@ public class WithdrawalHistoryFragment extends BaseFragment implements HistoryVi
         map.put("endTime", presentData);
         map.put("pageNo", pageNo);
         map.put("pageSize", "15");
-        map.put("userName", DataCenter.getInstance().getUserInfoBean().getUsername());
+        map.put("userName", IMDataCenter.getInstance().getUserInfoBean().getUsername());
         map.put("withdrawalFlag", "");
         mHistoryPresenter.withdrawHistory(map);
     }

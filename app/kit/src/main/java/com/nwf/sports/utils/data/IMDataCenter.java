@@ -11,7 +11,7 @@ import com.nwf.sports.mvp.model.UserInfoBean;
  * <p>修改备注：
  **/
 
-public class DataCenter {
+public class IMDataCenter {
 
     private String game_token = "";
     private String game_u2token = "";
@@ -61,17 +61,17 @@ public class DataCenter {
         this.loginName = loginName;
     }
 
-    private static DataCenter instance;
+    private static IMDataCenter instance;
     private UserInfoCenter userInfoCenter = new UserInfoCenter(); //用户数据
     private MyBankRepositoryCenter repository = new MyBankRepositoryCenter(); //银行卡数据
     private MyLocalCenter mMyLocalCenter = new MyLocalCenter(); //本地数据
     private String Cookie;
 
-    public static DataCenter getInstance() {
+    public static IMDataCenter getInstance() {
         if (instance == null) {
-            synchronized (DataCenter.class) {
+            synchronized (IMDataCenter.class) {
                 if (instance == null) {
-                    instance = new DataCenter();
+                    instance = new IMDataCenter();
                 }
             }
         }

@@ -42,7 +42,7 @@ import com.nwf.sports.utils.ActivityUtil;
 import com.nwf.sports.utils.BalanceAnimationUtil;
 import com.nwf.sports.utils.BindPhoneFlowEnum;
 import com.nwf.sports.utils.GameShipHelper;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.util.ArrayList;
 
@@ -124,7 +124,7 @@ public class MineFragment extends BaseFragment implements BalanceView, PersonalI
         mBalancePresenter = new BalancePresenter(getActivity(), this);
         mPersonalInfoPresenter = new PersonalInfoPresenter(getActivity(), this);
         userViewModel = ViewModelProviders.of(this).get(UserViewModel.class);
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin && IMApplication.isGain) {
+        if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin && IMApplication.isGain) {
             mPersonalInfoPresenter.getPersonalInfo();
         }
     }
@@ -133,7 +133,7 @@ public class MineFragment extends BaseFragment implements BalanceView, PersonalI
     protected void loadData() {
         isUIVisible = true;
         isViewCreated = true;
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+        if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
             mPersonalInfoPresenter.getPersonalInfo();
         }
     }
@@ -158,7 +158,7 @@ public class MineFragment extends BaseFragment implements BalanceView, PersonalI
                 if (IMApplication.isChat) {
                     return;
                 }
-                if (TextUtils.isEmpty(DataCenter.getInstance().getUserInfoBean().getPhone())) {
+                if (TextUtils.isEmpty(IMDataCenter.getInstance().getUserInfoBean().getPhone())) {
                     Bundle mbundle = new Bundle();
                     mbundle.putString(ConstantValue.BIND_PHONE_FLOW, BindPhoneFlowEnum.TOMAIN.getServicename());
                     startActivity(new Intent(getActivity(), BindPhoneActivity.class).putExtras(mbundle));
@@ -285,13 +285,13 @@ public class MineFragment extends BaseFragment implements BalanceView, PersonalI
 
     @Override
     public void PersonalInfoSucceed(PersonalInfoResult result) {
-        UserInfoBean userInfoBean = DataCenter.getInstance().getUserInfoBean();
+        UserInfoBean userInfoBean = IMDataCenter.getInstance().getUserInfoBean();
         userInfoBean.setUsername(result.getUserName());
         userInfoBean.setPhone(result.getMobile());
         userInfoBean.setRealName(result.getRealName());
         userInfoBean.setDepositLevel(result.getLevelNum());
         userInfoBean.setLocalBalance(result.getLocalBalance());
-        DataCenter.getInstance().setUserInfoBean(userInfoBean);
+        IMDataCenter.getInstance().setUserInfoBean(userInfoBean);
         setMoney(result.getLocalBalance() + "");
         sbvStarbar.setStarRating(result.getLevelNum());
         imUserInfo();
@@ -343,7 +343,7 @@ public class MineFragment extends BaseFragment implements BalanceView, PersonalI
         }
         mBalancePresenter = new BalancePresenter(getActivity(), this);
         mPersonalInfoPresenter = new PersonalInfoPresenter(getActivity(), this);
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin && IMApplication.isGain) {
+        if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin && IMApplication.isGain) {
             mPersonalInfoPresenter.getPersonalInfo();
         }
     }

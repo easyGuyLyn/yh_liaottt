@@ -2,8 +2,7 @@ package cn.wildfire.chat.kit.net;
 
 import android.text.TextUtils;
 
-import com.nwf.sports.net.NetUtil;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -46,7 +45,7 @@ public class IMLoggingInterceptor implements Interceptor {
         String qid = UUID.randomUUID().toString();
         String sign = "";
         String timestamp = System.currentTimeMillis() + "";
-        String token = DataCenter.getInstance().getGame_token();
+        String token = IMDataCenter.getInstance().getGame_token();
 
         RequestBody requestBody = request.body();
 
@@ -57,7 +56,7 @@ public class IMLoggingInterceptor implements Interceptor {
             Buffer buffer = new Buffer();
             requestBody.writeTo(buffer);
 
-            sign = md5(stringSort(buffer.readUtf8()) + timestamp + DataCenter.getInstance().getGame_u2token());
+            sign = md5(stringSort(buffer.readUtf8()) + timestamp + IMDataCenter.getInstance().getGame_u2token());
 
         }
 

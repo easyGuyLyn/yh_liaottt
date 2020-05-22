@@ -11,7 +11,7 @@ import android.widget.Toast;
 import com.dawoo.coretool.util.SPTool;
 import com.nwf.sports.ConstantValue;
 import com.ivi.imsdk.R;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.util.Collections;
 
@@ -123,7 +123,7 @@ public class ModificationNameDialogFragment extends BaseDialogFragment {
             public void onChanged(@Nullable OperateResult<Boolean> booleanOperateResult) {
                 if (booleanOperateResult.isSuccess()) {
                     Toast.makeText(getActivity(), "修改成功", Toast.LENGTH_SHORT).show();
-                    SPTool.put(DataCenter.getInstance().getUserInfoBean().username + ConstantValue.MODIFICATION_NAME, true);
+                    SPTool.put(IMDataCenter.getInstance().getUserInfoBean().username + ConstantValue.MODIFICATION_NAME, true);
                     if (mSucceedListener != null) {
                         mSucceedListener.succeed();
                     }

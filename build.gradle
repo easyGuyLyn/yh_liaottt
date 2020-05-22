@@ -23,10 +23,12 @@ allprojects {
         maven { url "http://10.66.72.173:8082/nexus/repository/maven-central/" }
         maven { url "http://10.66.72.173:8082/nexus/repository/maven-releases/" }
         maven { url "http://10.66.72.173:8082/nexus/repository/jitpack.io/" }
+        maven { url "http://10.66.72.173:8082/nexus/repository/IM-HUAWEI/" }
+
         google()
-        maven {
-            url "http://developer.huawei.com/repo/"
-        }
+//        maven {
+//            url "http://developer.huawei.com/repo/"
+//        }
     }
 }
 

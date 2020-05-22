@@ -58,7 +58,7 @@ public class LauncherActivity extends BaseActivity {
 
     public void enterMain() {
         handler.removeCallbacks(task);
-//        if (!DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+//        if (!IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
 //            Intent intent = new Intent(this, LoginActivity.class);
 //            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //            startActivity(intent);

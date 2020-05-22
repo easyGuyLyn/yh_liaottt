@@ -15,7 +15,7 @@ import com.nwf.sports.net.RxHelper;
 import com.nwf.sports.net.request.AppTextMessageResponse;
 import com.nwf.sports.net.rx.ProgressSubscriber;
 import com.nwf.sports.net.rx.SubscriberOnNextListener;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import rx.Subscription;
 
@@ -47,7 +47,7 @@ public class ModificationPasswordPresenter<T extends IBaseView> extends BasePres
         if (null == mView) {
             return;
         }
-        UserInfoBean userInfoBean = DataCenter.getInstance().getUserInfoBean();
+        UserInfoBean userInfoBean = IMDataCenter.getInstance().getUserInfoBean();
         Subscription subscription = RxHelper.toSubscribe(api.modifyPwd(userInfoBean.username, password, newpwd),
                 new ProgressSubscriber<>(new SubscriberOnNextListener<AppTextMessageResponse<CommunalResult>>() {
                     @Override
@@ -56,7 +56,7 @@ public class ModificationPasswordPresenter<T extends IBaseView> extends BasePres
                             return;
                         }
                         if (response.isSuccess()) {
-//                            DataCenter.getInstance().getUserInfoBean().setPassword(response.getData().password);
+//                            IMDataCenter.getInstance().getUserInfoBean().setPassword(response.getData().password);
                             mView.showMessage(ResHelper.getString(R.string.str_success_modify_loginpwd));
                             mView.modifyPwdSucceed();
                         } else {

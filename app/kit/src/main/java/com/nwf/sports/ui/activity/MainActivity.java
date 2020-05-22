@@ -1,9 +1,7 @@
 package com.nwf.sports.ui.activity;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.util.Log;
@@ -16,8 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.dawoo.coretool.util.LogUtils;
-import com.dawoo.coretool.util.NetworkUtils;
 import com.dawoo.coretool.util.SPTool;
 import com.dawoo.coretool.util.activity.ActivityStackManager;
 import com.google.android.material.tabs.TabLayout;
@@ -25,7 +21,6 @@ import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
 import com.king.zxing.Intents;
-import com.nwf.sports.IMApplication;
 import com.nwf.sports.ConstantValue;
 import com.ivi.imsdk.R;
 import com.nwf.sports.adapter.AdapterFragment;
@@ -38,23 +33,16 @@ import com.nwf.sports.mvp.presenter.LimitTransferPresenter;
 import com.nwf.sports.mvp.presenter.UpdatePresenter;
 import com.nwf.sports.mvp.view.LimitTransferView;
 import com.nwf.sports.mvp.view.UpdateView;
-import com.nwf.sports.net.RetrofitHelper;
 import com.nwf.sports.ui.dialogfragment.DialogFramentManager;
 import com.nwf.sports.ui.dialogfragment.LineHelpErreDialogFragment;
 import com.nwf.sports.ui.dialogfragment.LoadingDialogFragment;
-import com.nwf.sports.ui.dialogfragment.LoginDialogFragment;
 import com.nwf.sports.ui.dialogfragment.ModificationNameDialogFragment;
-import com.nwf.sports.ui.dialogfragment.RegisterDialogFragment;
 import com.nwf.sports.ui.dialogfragment.RemindCommonDialogFragment;
 import com.nwf.sports.ui.dialogfragment.UpdateDialogFragment;
-import com.nwf.sports.ui.fragment.DepositFragment;
-import com.nwf.sports.ui.fragment.MineFragment;
 import com.nwf.sports.ui.fragment.NewHomeFragment;
 import com.nwf.sports.ui.views.CustomViewPager;
 import com.nwf.sports.utils.SingleToast;
-import com.nwf.sports.utils.data.DataCenter;
-import com.nwf.sports.utils.line.LineErrorDialogBean;
-import com.nwf.sports.utils.line.LineHelperService;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -69,7 +57,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.wildfire.chat.kit.ChatManagerHolder;
 import cn.wildfire.chat.kit.IMConnectionStatusViewModel;
 import cn.wildfire.chat.kit.IMServiceStatusViewModel;
 import cn.wildfire.chat.kit.WfcScheme;
@@ -238,7 +225,6 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
                 RxBus.get().post(ConstantValue.LOG_OUT, "LOG_OUT");
             } else if (status == ConnectionStatus.ConnectionStatusConnected) {
                 SingleToast.showLongMsg("聊天已连接 ");
-
             }
         });
 
@@ -321,7 +307,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
                 changeTabState(index);
                 break;
 //            case TAB_INDEX_DEPOSIT:
-//                if (!DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+//                if (!IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
 //                    skipLogin(new SkipLoginBean("", ""));
 //                    return;
 //                }
@@ -330,7 +316,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 //                break;
             case TAB_INDEX_CHAT:
 //                refreshRedOacketLimit("");
-//                if (!DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+//                if (!IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
 //                    skipLogin(new SkipLoginBean("", ""));
 //                    return;
 //                }
@@ -340,7 +326,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
                 changeTabState(index);
                 break;
 //            case TAB_INDEX_WITHDRAWAL:
-//                if (!DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+//                if (!IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
 //                    skipLogin(new SkipLoginBean("", ""));
 //                    return;
 //                }
@@ -348,7 +334,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
 //                changeTabState(index);
 //                break;
 //            case TAB_INDEX_MINE:
-//                if (!DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+//                if (!IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
 //                    skipLogin(new SkipLoginBean("", ""));
 //                    return;
 //                }
@@ -522,8 +508,8 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
     }
 
     public void queryChangenameFlag() {
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
-            boolean type = (boolean) SPTool.get(DataCenter.getInstance().getUserInfoBean().username + ConstantValue.MODIFICATION_NAME, false);
+        if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
+            boolean type = (boolean) SPTool.get(IMDataCenter.getInstance().getUserInfoBean().username + ConstantValue.MODIFICATION_NAME, false);
             if (type) {
                 return;
             }
@@ -549,33 +535,29 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
      */
     @Subscribe(tags = {@Tag(ConstantValue.REFRESH_RED_OACKET_LIMIT)})
     public void refreshRedOacketLimit(String type) {
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+        if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
             Map<String, String> map = new HashMap<>();
             map.put("actype", "1");
             map.put("currency ", "CNY");
             map.put("gameId", "");
             map.put("gmid", "E03085");
             map.put("language", "zh");
-            map.put("loginName", DataCenter.getInstance().getUserInfoBean().getUsername());
+            map.put("loginName", IMDataCenter.getInstance().getUserInfoBean().getUsername());
             mLimitTransferPresenter.transferTargetGame(map);
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        closeApp();
-    }
 
-    private void closeApp() {
-        // 判断时间间隔
-        if (System.currentTimeMillis() - currentBackPressedTime > BACK_PRESSED_INTERVAL) {
-            currentBackPressedTime = System.currentTimeMillis();
-            Toast.makeText(this, "再按一次返回键退出程序", Toast.LENGTH_SHORT).show();
-        } else {
-            // 退出
-            ActivityStackManager.getInstance().finishAllActivity();
-        }
-    }
+//    private void closeApp() {
+//        // 判断时间间隔
+//        if (System.currentTimeMillis() - currentBackPressedTime > BACK_PRESSED_INTERVAL) {
+//            currentBackPressedTime = System.currentTimeMillis();
+//            Toast.makeText(this, "再按一次返回键退出程序", Toast.LENGTH_SHORT).show();
+//        } else {
+//            // 退出
+//            ActivityStackManager.getInstance().finishAllActivity();
+//        }
+//    }
 
     @Override
     public void checkupgrade(CheckupgradeResult checkupgradeResult) {
@@ -664,7 +646,7 @@ public class MainActivity extends BaseActivity implements TabLayout.OnTabSelecte
      */
     @Subscribe(tags = {@Tag(ConstantValue.LOG_OUT)})
     public void logOut(String string) {
-//        DataCenter.getInstance().getUserInfoCenter().clearUserInfoBean();
+//        IMDataCenter.getInstance().getUserInfoCenter().clearUserInfoBean();
 //
 //        ChatManagerHolder.gChatManager.disconnect(true);
 //        SharedPreferences sp = getSharedPreferences("config", Context.MODE_PRIVATE);

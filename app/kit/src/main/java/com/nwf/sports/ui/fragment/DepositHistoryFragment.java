@@ -16,7 +16,7 @@ import com.nwf.sports.adapter.ViewHolder;
 import com.nwf.sports.mvp.model.DepositHistoryResult;
 import com.nwf.sports.mvp.presenter.HistoryPresenter;
 import com.nwf.sports.mvp.view.DepositHistoryView;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 import com.nwf.sports.utils.historyutil.HistoryServiceEnum;
 import com.nwf.sports.utils.historyutil.HistoryUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -128,7 +128,7 @@ public class DepositHistoryFragment extends BaseFragment implements DepositHisto
         map.put("endTime", presentData);
         map.put("pageNo", pageNo + "");
         map.put("pageSize", "15");
-        map.put("userName", DataCenter.getInstance().getUserInfoBean().username);
+        map.put("userName", IMDataCenter.getInstance().getUserInfoBean().username);
         mHistoryPresenter.depositHistory(map);
     }
 

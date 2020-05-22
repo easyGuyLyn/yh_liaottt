@@ -22,7 +22,7 @@ import com.nwf.sports.mvp.model.DepositTransferBean;
 import com.nwf.sports.ui.views.PNTitleBar;
 import com.nwf.sports.utils.BankDrawableUtil;
 import com.nwf.sports.utils.LimitInputTextWatcher;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 import com.nwf.sports.utils.data.MyLocalCenter;
 
 import java.util.ArrayList;
@@ -104,7 +104,7 @@ public class DepositTransferActivity extends BaseActivity {
                     if (position == 0) {
                         holder.getConvertView().setSelected(true);
                         mBankVo = item.bankAccountCode;
-                        DataCenter.getInstance().getMyLocalCenter().saveDepositTransferBank(item.bankAccountCode, mTransferTypeVoList.get(selectPosition).getDesc());
+                        IMDataCenter.getInstance().getMyLocalCenter().saveDepositTransferBank(item.bankAccountCode, mTransferTypeVoList.get(selectPosition).getDesc());
                         setButtonEnable();
                     }
                 } else {
@@ -124,7 +124,7 @@ public class DepositTransferActivity extends BaseActivity {
                         mBankVo = item.bankAccountCode;
                         mBankVosAdapter.notifyDataSetChanged();
 //                            mTransferTypeVoList.get(selectPosition).typeBank = item.bankAccountCode;
-                        DataCenter.getInstance().getMyLocalCenter().saveDepositTransferBank(item.bankAccountCode, mTransferTypeVoList.get(selectPosition).getDesc());
+                        IMDataCenter.getInstance().getMyLocalCenter().saveDepositTransferBank(item.bankAccountCode, mTransferTypeVoList.get(selectPosition).getDesc());
 //                        }
                         setButtonEnable();
                     }
@@ -172,7 +172,7 @@ public class DepositTransferActivity extends BaseActivity {
                             mBankVosList.clear();
                             mBankVosList.addAll(item.getExtra());
                             mBankVosAdapter.notifyDataSetChanged();
-                            DataCenter.getInstance().getMyLocalCenter().saveDepositTransferType(mTransferTypeVo);
+                            IMDataCenter.getInstance().getMyLocalCenter().saveDepositTransferType(mTransferTypeVo);
                         }
                         setButtonEnable();
                     }
@@ -201,7 +201,7 @@ public class DepositTransferActivity extends BaseActivity {
     }
 
     public void isExist() {
-        MyLocalCenter myLocalCenterCenter = DataCenter.getInstance().getMyLocalCenter();
+        MyLocalCenter myLocalCenterCenter = IMDataCenter.getInstance().getMyLocalCenter();
         edtDepName.setText(myLocalCenterCenter.getDepositTransferName());
         mTransferTypeVo = myLocalCenterCenter.getDepositTransferType();
 
@@ -236,7 +236,7 @@ public class DepositTransferActivity extends BaseActivity {
                     showMessage(getString(R.string.str_dep_name_not_rule));
                     return;
                 }
-                MyLocalCenter myLocalCenterCenter = DataCenter.getInstance().getMyLocalCenter();
+                MyLocalCenter myLocalCenterCenter = IMDataCenter.getInstance().getMyLocalCenter();
                 myLocalCenterCenter.saveDepositTransferName(name);
 
                 DepositTransferBean depositTransferBean = new DepositTransferBean(name, mBankVo, mTransferTypeVo);

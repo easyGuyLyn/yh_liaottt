@@ -36,7 +36,7 @@ import com.nwf.sports.utils.AssetsUtils;
 import com.nwf.sports.utils.BindBankFlowEnum;
 import com.nwf.sports.utils.InputMethodUtils;
 import com.nwf.sports.utils.PNCheck;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -175,11 +175,11 @@ public class AddBankActivity extends BaseActivity implements AddBankView {
 
     @Override
     protected void initData() {
-//        if (TextUtils.isEmpty(DataCenter.getInstance().getUserInfoBean().getPhone())) {
+//        if (TextUtils.isEmpty(IMDataCenter.getInstance().getUserInfoBean().getPhone())) {
 //            ToastUtil.showToastLong("未绑定手机号");
 //            return;
 //        }
-        boolean b = DataCenter.getInstance().getMyLocalCenter().boundPhoneRecently();
+        boolean b = IMDataCenter.getInstance().getMyLocalCenter().boundPhoneRecently();
         if (!b) {  //绑定手机10分钟后是不需要验证
             mSafetyVerificationDialogFragment = new SafetyVerificationDialogFragment()
                     .setOnLeftButtonListener(new View.OnClickListener() {
@@ -362,7 +362,7 @@ public class AddBankActivity extends BaseActivity implements AddBankView {
         mBankInfos.clear();
         mBankInfos.addAll(bankInfos);
         if (Check.isNull(mMyBankItemResult)) {
-//            String realName = DataCenter.getInstance().getUserInfoBean().getRealName();
+//            String realName = IMDataCenter.getInstance().getUserInfoBean().getRealName();
             if (!TextUtils.isEmpty(name)) {
                 edAddbankName.setText(name);
                 edAddbankName.setSelection(name.length());

@@ -183,7 +183,7 @@ public class SweepRedPacketMessageContentViewHolder extends NormalMessageContent
 //                        RedPackNotification redPackNotification = new RedPackNotification();
 //                        redPackNotification.redPacketName = redPacketMessageContent.redPacketName;
 //                        redPackNotification.redBagCreatorId = message.message.sender;
-//                        UserInfoBean userInfoBean = DataCenter.getInstance().getUserInfoBean();
+//                        UserInfoBean userInfoBean = IMDataCenter.getInstance().getUserInfoBean();
 //                        redPackNotification.recipientsId = userInfoBean.getSportUserId();
 //                        redPackNotification.loginName = userInfoBean.getUsername();
 //                        redPackNotification.redPacketId = redPacketMessageContent.redPacketId;

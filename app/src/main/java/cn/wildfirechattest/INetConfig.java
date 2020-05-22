@@ -42,7 +42,7 @@ public class INetConfig extends NetConfig {
 
     @Override
     public String loginName() {
-        return "gmob382";
+        return "gmob386";
     }
 
     @Override
@@ -52,7 +52,7 @@ public class INetConfig extends NetConfig {
 
     @Override
     public String getUserToken() {
-        return "d2149c41025c4f2a97af4e125b2e65cb";
+        return "2a7a3f7e54354e16aa335717530667f6";
     }
 
     @Override

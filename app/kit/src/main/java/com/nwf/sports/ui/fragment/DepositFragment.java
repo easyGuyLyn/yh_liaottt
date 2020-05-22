@@ -46,7 +46,7 @@ import com.nwf.sports.utils.BalanceAnimationUtil;
 import com.nwf.sports.utils.DoubleClickHelper;
 import com.nwf.sports.utils.GameShipHelper;
 import com.nwf.sports.utils.InputMethodUtils;
-import com.nwf.sports.utils.data.DataCenter;
+import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -138,7 +138,7 @@ public class DepositFragment extends BaseFragment implements DepositView, Balanc
         etDepositMoney.addTextChangedListener(moneyWatcher);
         setAdapter();
         //缓存
-        mDepositMannersVo = DataCenter.getInstance().getMyLocalCenter().getDepositManners();
+        mDepositMannersVo = IMDataCenter.getInstance().getMyLocalCenter().getDepositManners();
         if (null != mDepositMannersVo) {
             setDepositList(mDepositMannersVo);
         }
@@ -497,7 +497,7 @@ public class DepositFragment extends BaseFragment implements DepositView, Balanc
     protected void loadData() {
         isUIVisible = true;
         isViewCreated = true;
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+        if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
             mDepositPresenter.payChannel();
             mBalancePresenter.getBalance();
         }
@@ -533,7 +533,7 @@ public class DepositFragment extends BaseFragment implements DepositView, Balanc
 
     public void toPay() {
         money = etDepositMoney.getText().toString();
-        DataCenter.getInstance().getMyLocalCenter().saveDepositMount(money);
+        IMDataCenter.getInstance().getMyLocalCenter().saveDepositMount(money);
         LogUtils.e("paymannerid: " + paymentListBean.paymannerid + ", money: " + money);
         if (Check.isNull(paymentListBean.paymannerid) && !btnDepToPay.isClickable()) {
             return;
@@ -547,7 +547,7 @@ public class DepositFragment extends BaseFragment implements DepositView, Balanc
                 LogUtils.e("Deposit, NOT USE...");
                 break;
             case "BQ"://转账汇款
-                String bindPhone = DataCenter.getInstance().getUserInfoBean().getPhone();
+                String bindPhone = IMDataCenter.getInstance().getUserInfoBean().getPhone();
                 if (!TextUtils.isEmpty(bindPhone)) {
                     Bundle mbundle = new Bundle();
                     mbundle.putParcelableArrayList(ConstantValue.ARG_PARAM1, paymentListBean.transferTypeList);
@@ -614,7 +614,7 @@ public class DepositFragment extends BaseFragment implements DepositView, Balanc
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == ConstantValue.DEPOSIT_BQ) {
             mDepositTransferBean = (DepositTransferBean) data.getSerializableExtra(ConstantValue.ARG_PARAM1);
-            mDepositPresenter.onQueryFasterPay(DataCenter.getInstance().getUserInfoBean().username, money, mDepositTransferBean.getBankAccountCode(), mDepositTransferBean.getBqpaytypeCode(), mDepositTransferBean.getAccountName(), paymentListBean.paymannerid);
+            mDepositPresenter.onQueryFasterPay(IMDataCenter.getInstance().getUserInfoBean().username, money, mDepositTransferBean.getBankAccountCode(), mDepositTransferBean.getBqpaytypeCode(), mDepositTransferBean.getAccountName(), paymentListBean.paymannerid);
         }
         if (resultCode == ConstantValue.DEPOSIT_POINT_CARD) {
             String title = data.getStringExtra(ConstantValue.ARG_PARAM1);
@@ -625,7 +625,7 @@ public class DepositFragment extends BaseFragment implements DepositView, Balanc
     @Override
     public void setDepositList(DepositMannersVo depositList) {
         mDepositMannersVo = depositList;
-        DataCenter.getInstance().getMyLocalCenter().saveDeposit(depositList);
+        IMDataCenter.getInstance().getMyLocalCenter().saveDeposit(depositList);
         if (null == mDepositMannersVo || mDepositMannersVo.newPayList.size() == 0) {
             etDepositMoney.setEnabled(false);
             //处理没有存款方式
@@ -660,7 +660,7 @@ public class DepositFragment extends BaseFragment implements DepositView, Balanc
         mPayTypeList.clear();
         mPayTypeList.addAll(mDepositMannersVo.newPayList);
         rvDepManners.setVisibility(View.VISIBLE);
-        etDepositMoney.setText(DataCenter.getInstance().getMyLocalCenter().getDepositMount());
+        etDepositMoney.setText(IMDataCenter.getInstance().getMyLocalCenter().getDepositMount());
         etDepositMoney.setEnabled(true);
     }
 
