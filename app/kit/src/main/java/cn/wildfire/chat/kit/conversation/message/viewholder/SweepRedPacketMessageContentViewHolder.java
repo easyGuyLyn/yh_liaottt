@@ -31,6 +31,7 @@ import cn.wildfire.chat.kit.annotation.ReceiveLayoutRes;
 import cn.wildfire.chat.kit.annotation.SendLayoutRes;
 import cn.wildfire.chat.kit.conversation.ConversationFragment;
 import cn.wildfire.chat.kit.conversation.message.model.UiMessage;
+import cn.wildfire.chat.kit.net.IMErrorCodeEnum;
 import cn.wildfire.chat.kit.third.utils.UIUtils;
 import cn.wildfirechat.message.RedPack;
 import cn.wildfirechat.message.SweepRedPacketMessageContent;
@@ -147,7 +148,7 @@ public class SweepRedPacketMessageContentViewHolder extends NormalMessageContent
                         ToastUtil.showToastLong("查询红包状态异常");
                         break;
                 }
-                ToastUtil.showToastLong("查询红包状态异常");
+              //  ToastUtil.showToastLong("查询红包状态异常");
 //                dismissAllowingStateLoss();
             }
         });
@@ -198,7 +199,8 @@ public class SweepRedPacketMessageContentViewHolder extends NormalMessageContent
 
                     @Override
                     public void onFailure(int code, String msg) {
-                        if (code == 359) { //已领取过红包
+                        if (code == IMErrorCodeEnum.ERROR_CODE_PACKET_RECEIVED.getCode()
+                                || code == IMErrorCodeEnum.ERROR_CODE_PACKET_RECEIVED.getCode()) { //已领取过红包
                             redPacketMessageContent.statues = "1";
                             ChatManager.Instance().updateMessage(message.message.messageId, redPacketMessageContent);
 
@@ -215,7 +217,8 @@ public class SweepRedPacketMessageContentViewHolder extends NormalMessageContent
                             activity.startActivity(intent);
 
 
-                        } else if (code == 361) {
+                        } else if (code == IMErrorCodeEnum.ERROR_CODE_PACKET_FINSH_.getCode()
+                                || code == IMErrorCodeEnum.ERROR_CODE_PACKET_GRAB_ISOVER.getCode()) {
                             redPacketMessageContent.statues = "3";
                             DialogFramentManager.getInstance().showDialog(activity.getSupportFragmentManager(), RobRedPacketOverDialogFragment.getInstance(redPack, userInfo.displayName));
                             ChatManager.Instance().updateMessage(message.message.messageId, redPacketMessageContent);

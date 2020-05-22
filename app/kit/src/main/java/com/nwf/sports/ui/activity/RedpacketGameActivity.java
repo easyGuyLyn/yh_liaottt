@@ -20,6 +20,7 @@ import com.nwf.sports.mvp.model.RedPacketGameListResult;
 import com.nwf.sports.ui.dialogfragment.DialogFramentManager;
 import com.nwf.sports.ui.dialogfragment.LoginDialogFragment;
 import com.nwf.sports.ui.views.PNTitleBar;
+import com.nwf.sports.utils.SingleToast;
 import com.nwf.sports.utils.data.DataCenter;
 
 import java.util.ArrayList;
@@ -183,13 +184,15 @@ public class RedpacketGameActivity extends BaseActivity {
                                             }
                                         }
                                     });
+                                } else {
+                                    SingleToast.showLongMsg("暂时无法加入该群");
                                 }
 
                             }
 
                             @Override
                             public void onFailure(int code, String msg) {
-                                showMessage(msg);
+                                //showMessage(msg);
                             }
                         });
 
@@ -208,8 +211,8 @@ public class RedpacketGameActivity extends BaseActivity {
     public void getRedPacket() {
         AppService.Instance().QueryRedpacketGroup(mViewPagerNum, new AppService.QueryRedpacketGroupCallback() {
             @Override
-            public void onSuccess(RedPacketGameListResult statusResult) {
-                List<RedPacketGameListResult.RedPacketGroupVoListBean> redPacketGroupVoList = statusResult.getRedPacketGroupVoList();
+            public void onSuccess(List<RedPacketGameListResult.RedPacketGroupVoListBean> statusResult) {
+                List<RedPacketGameListResult.RedPacketGroupVoListBean> redPacketGroupVoList = statusResult;
                 mRedPacketList.clear();
                 mRedPacketList.addAll(redPacketGroupVoList);
                 mRedPacketAdapter.notifyDataSetChanged();
@@ -217,7 +220,7 @@ public class RedpacketGameActivity extends BaseActivity {
 
             @Override
             public void onFailure(int code, String msg) {
-                ToastUtil.showToastLong(msg);
+              //  ToastUtil.showToastLong(msg);
             }
         });
 

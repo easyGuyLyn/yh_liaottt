@@ -16,6 +16,7 @@ import com.nwf.sports.utils.MD5Util;
 import com.nwf.sports.utils.data.DataCenter;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -313,7 +314,7 @@ public class AppService implements AppServiceProvider {
     }
 
     public interface QueryRedpacketGroupCallback {
-        void onSuccess(RedPacketGameListResult statusResult);
+        void onSuccess(List<RedPacketGameListResult.RedPacketGroupVoListBean>  statusResult);
 
         void onFailure(int code, String msg);
     }
@@ -325,16 +326,16 @@ public class AppService implements AppServiceProvider {
      */
     public void QueryRedpacketGroup(int groupType, QueryRedpacketGroupCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/game/api/packet/query_redpacket_group";
+        String url = RetrofitHelper.imUrl() + "/game/api/packet/query-redpacket-group";
         Map<String, Object> params = new HashMap<>();
         String username = DataCenter.getInstance().getLoginName();
         params.put("userName", username);
         params.put("productId", DataCenter.getInstance().getProductId());
         params.put("groupType", groupType);
 
-        OKHttpHelper.post(url, params, new SimpleCallback<RedPacketGameListResult>() {
+        OKHttpHelper.post(url, params, new SimpleCallback<List<RedPacketGameListResult.RedPacketGroupVoListBean>>() {
             @Override
-            public void onUiSuccess(RedPacketGameListResult statusResult) {
+            public void onUiSuccess(List<RedPacketGameListResult.RedPacketGroupVoListBean>  statusResult) {
                 callback.onSuccess(statusResult);
             }
 
@@ -359,13 +360,13 @@ public class AppService implements AppServiceProvider {
      */
     public void QueryGroupJoinInfo(String groupId, QueryGroupJoinInfoCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/game/api/packet/query_group_join_info";
+        String url = RetrofitHelper.imUrl() + "/game/api/packet/query-group-join-info";
         Map<String, Object> params = new HashMap<>();
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
-            String sportUserId = DataCenter.getInstance().getUserInfoBean().getSportUserId();
-            params.put("userId", sportUserId);
-        }
+
+        String username = DataCenter.getInstance().getLoginName();
+        params.put("userName", username);
         params.put("groupId", groupId);
+        params.put("productId", DataCenter.getInstance().getProductId());
 
         OKHttpHelper.post(url, params, new SimpleCallback<RedPacketGameListDetailsResult>() {
             @Override
@@ -394,7 +395,7 @@ public class AppService implements AppServiceProvider {
      */
     public void QueryRedPacketRecord(String type, int pageNo, QueryRedPacketRecordCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/game/api/packet/query_my_packet_list";
+        String url = RetrofitHelper.imUrl() + "/game/api/packet/query-my-packet-list";
         Map<String, Object> params = new HashMap<>();
         params.put("userName", DataCenter.getInstance().getLoginName());
         params.put("type", type);
@@ -429,12 +430,12 @@ public class AppService implements AppServiceProvider {
      */
     public void queryChangenameFlag(QueryChangenameFlagCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/game/api/packet/query_changename_flag";
+        String url = RetrofitHelper.imUrl() + "/game/api/packet/query-changename-flag";
         Map<String, Object> params = new HashMap<>();
-        if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
-            String username = DataCenter.getInstance().getUserInfoBean().getUsername();
+      //  if (DataCenter.getInstance().getUserInfoBean().isRealLogin) {
+            String username = DataCenter.getInstance().getLoginName();
             params.put("userName", username);
-        }
+       // }
         params.put("productId", Constant.PRODUCT_ID);
 
         OKHttpHelper.post(url, params, new SimpleCallback<Boolean>() {
@@ -510,7 +511,7 @@ public class AppService implements AppServiceProvider {
     @Override
     public void getGroupAnnouncement(String groupId, AppServiceProvider.GetGroupAnnouncementCallback callback) {
         //从SP中获取到历史数据callback回去，然后再从网络刷新
-        String url = RetrofitHelper.imUrl() + "/get_group_announcement";
+        String url = RetrofitHelper.imUrl() + "/get-group-announcement";
 
         Map<String, Object> params = new HashMap<>(2);
         params.put("groupId", groupId);
@@ -531,7 +532,7 @@ public class AppService implements AppServiceProvider {
     @Override
     public void updateGroupAnnouncement(String groupId, String announcement, AppServiceProvider.UpdateGroupAnnouncementCallback callback) {
         //更新到应用服务，再保存到本地SP中
-        String url = RetrofitHelper.imUrl() + "/put_group_announcement";
+        String url = RetrofitHelper.imUrl() + "/put-group-announcement";
 
         Map<String, Object> params = new HashMap<>(2);
         params.put("groupId", groupId);

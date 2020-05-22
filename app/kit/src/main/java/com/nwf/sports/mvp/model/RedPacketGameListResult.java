@@ -1,5 +1,6 @@
 package com.nwf.sports.mvp.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,7 +11,7 @@ import java.util.List;
  * <p>修改时间：2020-01-28
  * <p>修改备注：
  **/
-public class RedPacketGameListResult {
+public class RedPacketGameListResult implements Serializable {
 
 
     /**
@@ -57,7 +58,7 @@ public class RedPacketGameListResult {
         this.redPacketGroupVoList = redPacketGroupVoList;
     }
 
-    public static class RedPacketGroupVoListBean {
+    public static class RedPacketGroupVoListBean implements Serializable {
         /**
          * id : djeifjewfsfdsf
          * productId : E03

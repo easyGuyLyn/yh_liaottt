@@ -76,7 +76,7 @@ public class RetrofitHelper {
      * @return
      */
     public static String imUrl() {
-        APP_SERVER_ADDRESS = "http://" + IM_SERVER_HOST + ":1883";
+        APP_SERVER_ADDRESS = "http://www.pt-gateway.com/redenvelope" ;
         return APP_SERVER_ADDRESS;
     }
 

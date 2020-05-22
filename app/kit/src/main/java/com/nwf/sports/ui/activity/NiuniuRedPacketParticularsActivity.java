@@ -135,7 +135,7 @@ public class NiuniuRedPacketParticularsActivity extends BaseActivity {
 
             @Override
             public void onFailure(int code, String msg) {
-                ToastUtil.showToastLong(msg);
+                //ToastUtil.showToastLong(msg);
             }
         });
 

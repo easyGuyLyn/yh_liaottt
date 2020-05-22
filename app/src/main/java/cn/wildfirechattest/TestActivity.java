@@ -53,14 +53,14 @@ public class TestActivity extends AppCompatActivity {
 
                         ChatManagerHolder.gChatManager.connect(loginResult.getUserId(), loginResult.getToken());
 
-                SharedPreferences sp = getSharedPreferences("config", Context.MODE_PRIVATE);
-                sp.edit()
-                        .putString("id", loginResult.getUserId())
-                        .putString("token", loginResult.getToken())
-                        .apply();
+                        SharedPreferences sp = getSharedPreferences("config", Context.MODE_PRIVATE);
+                        sp.edit()
+                                .putString("id", loginResult.getUserId())
+                                .putString("token", loginResult.getToken())
+                                .apply();
 
-                        Intent intent =new Intent(TestActivity.this, MainActivity.class);
-                                startActivity(intent);
+                        Intent intent = new Intent(TestActivity.this, MainActivity.class);
+                        startActivity(intent);
 
                         RxBus.get().post(ConstantValue.EVENT_TYPE_LOGIN, "login");
 
@@ -71,17 +71,12 @@ public class TestActivity extends AppCompatActivity {
                         super.onGatewayError(exception);
 
 
-
                     }
                 });
 
 
-
-
-
             }
         });
-
 
 
     }

@@ -140,7 +140,7 @@ public class GeneralRedPacketHistoryFragment extends BaseFragment implements OnR
             public void onFailure(int code, String msg) {
                 refreshLayout.finishLoadMore();
                 refreshLayout.finishRefresh();
-                showMessage(msg);
+              //  showMessage(msg);
             }
         });
     }

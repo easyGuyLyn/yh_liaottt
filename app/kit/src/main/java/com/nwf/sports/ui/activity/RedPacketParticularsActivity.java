@@ -106,7 +106,7 @@ public class RedPacketParticularsActivity extends BaseActivity {
 
             @Override
             public void onFailure(int code, String msg) {
-                ToastUtil.showToastLong(msg);
+               // ToastUtil.showToastLong(msg);
             }
         });
 

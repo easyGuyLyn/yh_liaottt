@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.nwf.sports.net.MyHttpLoggingInterceptor;
 import com.nwf.sports.net.NetUtil;
+import com.nwf.sports.utils.SingleToast;
 
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
@@ -31,7 +32,7 @@ public class OKHttpHelper {
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)
             .addInterceptor(new MyHttpLoggingInterceptor())
-        //    .addInterceptor(new IMLoggingInterceptor())
+            //    .addInterceptor(new IMLoggingInterceptor())
             .build();
 
     private static Gson gson = new Gson();
@@ -124,6 +125,9 @@ public class OKHttpHelper {
 
         if (callback != null) {
             if (!response.isSuccessful()) {
+
+                SingleToast.showLongMsg(response.message() + "");
+
                 callback.onFailure(response.code(), response.message());
                 return;
             }
@@ -154,18 +158,20 @@ public class OKHttpHelper {
                     if (statusResult.getHead().getErrCode().equals("0000")) {
                         callback.onSuccess((T) statusResult);
                     } else {
-                        callback.onFailure(0, statusResult.getHead().getErrMsg());
+                        SingleToast.showLongMsg(statusResult.getHead().getErrMsg());
+                        callback.onFailure(Integer.parseInt(statusResult.getHead().getErrCode()), statusResult.getHead().getErrMsg());
                     }
                 } else {
                     ResultWrapper<T> wrapper = gson.fromJson(response.body().string(), new ResultType(type));
                     if (wrapper == null) {
-                        callback.onFailure(-1, "response is null");
+                        callback.onFailure(-1, "response is null , 接口返回数据异常");
                         return;
                     }
                     if (wrapper.getHead().getErrCode().equals("0000") && wrapper.getResult() != null) {
                         callback.onSuccess(wrapper.getResult());
                     } else {
-                        callback.onFailure(0, wrapper.getHead().getErrMsg());
+                        SingleToast.showLongMsg(wrapper.getHead().getErrMsg());
+                        callback.onFailure(Integer.parseInt(wrapper.getHead().getErrCode()), wrapper.getHead().getErrMsg());
                     }
                 }
             } catch (JsonSyntaxException e) {
