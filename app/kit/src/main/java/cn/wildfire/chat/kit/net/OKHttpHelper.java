@@ -1,5 +1,8 @@
 package cn.wildfire.chat.kit.net;
 
+import android.text.TextUtils;
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.nwf.sports.net.MyHttpLoggingInterceptor;
@@ -70,6 +73,13 @@ public class OKHttpHelper {
     }
 
     public static <T> void post(final String url, Map<String, Object> param, final Callback<T> callback) {
+
+
+        if (!url.startsWith("http") && !url.startsWith("https")) {
+            Log.e("okh", "url 不合法");
+            return;
+        }
+
 
         String jsonData = gson.toJson(param);
 
@@ -158,8 +168,15 @@ public class OKHttpHelper {
                     if (statusResult.getHead().getErrCode().equals("0000")) {
                         callback.onSuccess((T) statusResult);
                     } else {
-                        SingleToast.showLongMsg(statusResult.getHead().getErrMsg());
-                        callback.onFailure(Integer.parseInt(statusResult.getHead().getErrCode()), statusResult.getHead().getErrMsg());
+
+                        String errMsg = statusResult.getHead().getErrMsg();
+
+                        if (!TextUtils.isEmpty(IMErrorCodeEnum.getCodeNameByCode(Integer.parseInt(statusResult.getHead().getErrCode())))) {
+                            errMsg = IMErrorCodeEnum.getCodeNameByCode(Integer.parseInt(statusResult.getHead().getErrCode()));
+                        }
+
+                        SingleToast.showLongMsg(errMsg);
+                        callback.onFailure(Integer.parseInt(statusResult.getHead().getErrCode()), errMsg);
                     }
                 } else {
                     ResultWrapper<T> wrapper = gson.fromJson(response.body().string(), new ResultType(type));
@@ -170,8 +187,15 @@ public class OKHttpHelper {
                     if (wrapper.getHead().getErrCode().equals("0000") && wrapper.getResult() != null) {
                         callback.onSuccess(wrapper.getResult());
                     } else {
-                        SingleToast.showLongMsg(wrapper.getHead().getErrMsg());
-                        callback.onFailure(Integer.parseInt(wrapper.getHead().getErrCode()), wrapper.getHead().getErrMsg());
+
+                        String errMsg = wrapper.getHead().getErrMsg();
+
+                        if (!TextUtils.isEmpty(IMErrorCodeEnum.getCodeNameByCode(Integer.parseInt(wrapper.getHead().getErrCode())))) {
+                            errMsg = IMErrorCodeEnum.getCodeNameByCode(Integer.parseInt(wrapper.getHead().getErrCode()));
+                        }
+
+                        SingleToast.showLongMsg(errMsg);
+                        callback.onFailure(Integer.parseInt(wrapper.getHead().getErrCode()), errMsg);
                     }
                 }
             } catch (JsonSyntaxException e) {

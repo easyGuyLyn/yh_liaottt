@@ -15,9 +15,8 @@ public class IMDataCenter {
 
     private String game_token = "";
     private String game_u2token = "";
-    private String loginName ="";
-    private  String productId="";
-    private String UserToken="";
+    private String loginName = "";
+    private String productId = "";
 
 
     public String getGame_token() {
@@ -45,13 +44,6 @@ public class IMDataCenter {
         this.productId = productId;
     }
 
-    public String getUserToken() {
-        return UserToken;
-    }
-
-    public void setUserToken(String userToken) {
-        UserToken = userToken;
-    }
 
     public String getLoginName() {
         return loginName;
@@ -65,7 +57,6 @@ public class IMDataCenter {
     private UserInfoCenter userInfoCenter = new UserInfoCenter(); //用户数据
     private MyBankRepositoryCenter repository = new MyBankRepositoryCenter(); //银行卡数据
     private MyLocalCenter mMyLocalCenter = new MyLocalCenter(); //本地数据
-    private String Cookie;
 
     public static IMDataCenter getInstance() {
         if (instance == null) {
@@ -98,12 +89,5 @@ public class IMDataCenter {
         userInfoCenter.setUserInfoBean(userInfoBean);
     }
 
-    public String getCookie() {
-        return Cookie;
-    }
-
-    public void setCookie(String cookie) {
-        Cookie = cookie;
-    }
 
 }

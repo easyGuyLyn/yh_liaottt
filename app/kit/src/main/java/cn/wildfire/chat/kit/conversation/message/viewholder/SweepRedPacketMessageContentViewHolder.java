@@ -235,7 +235,7 @@ public class SweepRedPacketMessageContentViewHolder extends NormalMessageContent
                             intent.putExtra(ConstantValue.ARG_PARAM2, true);
                             activity.startActivity(intent);
                         }
-                        ToastUtil.showToastLong(msg);
+                     //   ToastUtil.showToastLong(msg);
                         robRedPacketDialogFragment.dismissAllowingStateLoss();
                     }
                 });

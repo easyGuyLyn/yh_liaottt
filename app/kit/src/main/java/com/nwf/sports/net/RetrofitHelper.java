@@ -1,6 +1,7 @@
 package com.nwf.sports.net;
 
 import com.dawoo.coretool.util.LogUtils;
+import com.nwf.sports.IMServicesManger;
 import com.nwf.sports.utils.NullOnEmptyConverterFactory;
 import com.nwf.sports.utils.ssl.SSLSocketFactoryCompat;
 
@@ -25,7 +26,10 @@ public class RetrofitHelper {
     private static ProxyCallFactory proxyCallFactory;
     private static String domainUrl = "https://gwapi.czsjnp.com";
     private static String IM_SERVER_HOST = "10.66.72.55";
-    private static String APP_SERVER_ADDRESS = "http://10.66.72.55:1883";
+    public static String APP_SERVER_ADDRESS;
+
+
+
 
     /**
      * 应该在Application onCreate中实例
@@ -76,7 +80,7 @@ public class RetrofitHelper {
      * @return
      */
     public static String imUrl() {
-        APP_SERVER_ADDRESS = "http://www.pt-gateway.com/redenvelope" ;
+        // APP_SERVER_ADDRESS = "http://www.pt-gateway.com/redenvelope" ;
         return APP_SERVER_ADDRESS;
     }
 

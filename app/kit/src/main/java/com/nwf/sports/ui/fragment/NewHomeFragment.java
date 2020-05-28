@@ -1,6 +1,8 @@
 package com.nwf.sports.ui.fragment;
 
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Base64;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -8,6 +10,7 @@ import android.widget.TextView;
 
 import com.dawoo.coretool.util.ToastUtil;
 import com.google.android.material.tabs.TabLayout;
+import com.google.gson.Gson;
 import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
@@ -16,6 +19,8 @@ import com.nwf.sports.ConstantValue;
 import com.ivi.imsdk.R;
 import com.nwf.sports.adapter.AdapterFragment;
 import com.nwf.sports.adapter.BannerPaddingViewHolder;
+import com.nwf.sports.chat.login.model.GameTokenBean;
+import com.nwf.sports.chat.login.model.InGameResult;
 import com.nwf.sports.mvp.model.HomeDiscountsResult;
 import com.nwf.sports.mvp.model.HomeGameBean;
 import com.nwf.sports.mvp.model.HomeGameResult;
@@ -30,6 +35,7 @@ import com.nwf.sports.utils.data.IMDataCenter;
 import com.zhouwei.mzbanner.MZBannerView;
 import com.zhouwei.mzbanner.holder.MZHolderCreator;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,6 +46,10 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.wildfirechattest.TestActivity;
+import ivi.net.base.netlibrary.callback.RequestCallBack;
+import ivi.net.base.netlibrary.model.ResponseModel;
+import ivi.net.base.netlibrary.request.Request;
 
 /**
  * <p>类描述： 首页
@@ -158,6 +168,8 @@ public class NewHomeFragment extends BaseFragment {
 //            }
 //        });
 
+        inGame();
+
     }
 
 
@@ -239,6 +251,67 @@ public class NewHomeFragment extends BaseFragment {
      //   mBannerIndicator.bindWithViewPager(mNormalBanner.getViewPager(), mBannerLists.size());
         //mNormalBanner.start();
     }
+
+
+
+
+
+    public static void inGame() {
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("gameCode", "A01095");
+        params.put("gameKind", 13);
+        params.put("incILog", 1);
+        params.put("isWithTransfer", 1);
+        params.put("incILog", 1);
+        params.put("productId", IMDataCenter.getInstance().getProductId());
+        params.put("verticalApp", 1);
+        params.put("loginName", IMDataCenter.getInstance().getLoginName());
+
+        Request.with(IMApplication.getContext()).post("/game/inGame", params, new RequestCallBack<InGameResult>() {
+            @Override
+            public void onGatewaySuccess(@Nullable InGameResult loginResult, ResponseModel.Head head) {
+
+                if (loginResult != null && !TextUtils.isEmpty(loginResult.getUrl())) {
+
+                    String data = decodeToString(loginResult.getUrl());
+
+                    GameTokenBean gameTokenBean = new Gson().fromJson(data,GameTokenBean.class);
+
+                    IMDataCenter.getInstance().setGame_u2token(gameTokenBean.getGame_u2token());
+                    IMDataCenter.getInstance().setGame_token(gameTokenBean.getGame_token());
+
+
+                }
+
+
+            }
+
+            @Override
+            public void onGatewayError(Throwable exception) {
+                super.onGatewayError(exception);
+
+
+            }
+        });
+
+
+    }
+
+
+
+    public static String decodeToString(String str) {
+        try {
+            return new String(Base64.decode(str.getBytes("UTF-8"), Base64.DEFAULT));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+
+
+
 
     @Override
     public void onPause() {

@@ -136,7 +136,7 @@ public class NetUtil {
         for (String cookie : cookies) {
             if (cookie.contains("SID=") && cookie.length() > 80) {
                 LogUtils.e("登录后Cookie ==> " + cookie);
-                IMDataCenter.getInstance().setCookie(cookie);
+               // IMDataCenter.getInstance().setCookie(cookie);
                 CookieManager.getInstance().setCookie(RetrofitHelper.baseUrl(), cookie);
             }
         }

@@ -1,6 +1,7 @@
 package com.nwf.sports.ui.activity;
 
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,8 +10,10 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
+import com.ivi.imsdk.BuildConfig;
 import com.nwf.sports.ConstantValue;
 import com.ivi.imsdk.R;
+import com.nwf.sports.IMServicesManger;
 import com.nwf.sports.adapter.CommonAdapter;
 import com.nwf.sports.adapter.ViewHolder;
 import com.nwf.sports.chat.AppService;
@@ -38,6 +41,11 @@ import cn.wildfire.chat.kit.group.GroupViewModel;
 import cn.wildfire.chat.kit.user.UserViewModel;
 import cn.wildfirechat.model.Conversation;
 import cn.wildfirechat.model.GroupInfo;
+import cn.wildfirechattest.INetConfig;
+import ivi.net.base.netlibrary.config.NetConfig;
+import ivi.net.base.netlibrary.request.Request;
+
+import static com.nwf.sports.ui.fragment.NewHomeFragment.inGame;
 
 /**
  * <p>类描述：
@@ -146,12 +154,22 @@ public class RedpacketGameActivity extends BaseActivity {
                 holder.getConvertView().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (!IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
-                            DialogFramentManager.getInstance().clearDialog();
-                            LoginDialogFragment loginDialogFragment = LoginDialogFragment.getInstance("", "");
-                            DialogFramentManager.getInstance().showDialog(getSupportFragmentManager(), loginDialogFragment);
-                            return;
+//                        if (!IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
+//                            DialogFramentManager.getInstance().clearDialog();
+//                            LoginDialogFragment loginDialogFragment = LoginDialogFragment.getInstance("", "");
+//                            DialogFramentManager.getInstance().showDialog(getSupportFragmentManager(), loginDialogFragment);
+//                            return;
+//                        }
+
+                        if (TextUtils.isEmpty(IMDataCenter.getInstance().getGame_token())
+                                || TextUtils.isEmpty(IMDataCenter.getInstance().getGame_u2token())) {
+                            if (!IMServicesManger.isLocalEnvironment()) {
+                                SingleToast.showLongMsg("红包签名参数异常，请稍后再试");
+                                inGame();
+                                return;
+                            }
                         }
+
 
                         if (item.isInGroup()) {
                             Intent intent = ConversationActivity.buildConversationIntent(RedpacketGameActivity.this, Conversation.ConversationType.Group, item.getGroupId(), 0);
@@ -170,7 +188,7 @@ public class RedpacketGameActivity extends BaseActivity {
                                 if (statusResult.isCanInGroup()) {
                                     UserViewModel userViewModel = ViewModelProviders.of(RedpacketGameActivity.this).get(UserViewModel.class);
                                     String userId = userViewModel.getUserId();
-                                    Log.e("ok ","groupViewModel.addGroupMember userId:" + userId);
+                                    Log.e("ok ", "groupViewModel.addGroupMember userId:" + userId);
                                     GroupInfo groupInfo = groupViewModel.getGroupInfo(item.getGroupId(), true);
 
                                     groupViewModel.addGroupMember(groupInfo, Collections.singletonList(userId)).observe(RedpacketGameActivity.this, new Observer<Boolean>() {
@@ -221,7 +239,7 @@ public class RedpacketGameActivity extends BaseActivity {
 
             @Override
             public void onFailure(int code, String msg) {
-              //  ToastUtil.showToastLong(msg);
+                //  ToastUtil.showToastLong(msg);
             }
         });
 

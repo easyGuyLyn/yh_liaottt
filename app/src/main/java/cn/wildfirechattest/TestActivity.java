@@ -4,28 +4,44 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 
+import com.google.gson.Gson;
 import com.hwangjr.rxbus.RxBus;
 import com.ivi.imsdk.R;
 import com.nwf.sports.ConstantValue;
+import com.nwf.sports.IMServicesManger;
+import com.nwf.sports.chat.login.model.GameTokenBean;
 import com.nwf.sports.chat.login.model.InGameResult;
 import com.nwf.sports.chat.login.model.LoginResult;
 import com.nwf.sports.ui.activity.MainActivity;
 import com.nwf.sports.utils.data.IMDataCenter;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import cn.wildfire.chat.kit.ChatManagerHolder;
-import ivi.net.base.netlibrary.NetLibrary;
 import ivi.net.base.netlibrary.callback.RequestCallBack;
 import ivi.net.base.netlibrary.model.ResponseModel;
 import ivi.net.base.netlibrary.request.Request;
 
 public class TestActivity extends AppCompatActivity {
+
+
+    public static String decodeToString(String str) {
+        try {
+            return new String(Base64.decode(str.getBytes("UTF-8"), Base64.DEFAULT));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 
 
     @Override
@@ -34,14 +50,14 @@ public class TestActivity extends AppCompatActivity {
 
         setContentView(R.layout.layout_test);
 
-        IMDataCenter.getInstance().setLoginName("gmob386");
-        IMDataCenter.getInstance().setProductId("A01");
+//        IMDataCenter.getInstance().setLoginName("gmob386");
+//        IMDataCenter.getInstance().setProductId("A01");
 
 
         findViewById(R.id.b_tt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              startImService();
+                IMServicesManger.startImService(TestActivity.this,"gmob386");
             }
         });
 
@@ -49,10 +65,7 @@ public class TestActivity extends AppCompatActivity {
     }
 
 
-
-    private void inGame(){
-
-
+    private void inGame() {
 
 
         Map<String, Object> params = new HashMap<>();
@@ -65,13 +78,21 @@ public class TestActivity extends AppCompatActivity {
         params.put("verticalApp", 1);
         params.put("loginName", "gmob386");
 
-        Request.with(TestActivity.this).loading().post("http://www.pt-gateway.com/_glaxy_a01_/game/inGame", params, new RequestCallBack<InGameResult>() {
+        Request.with(TestActivity.this).loading().post("/game/inGame", params, new RequestCallBack<InGameResult>() {
             @Override
             public void onGatewaySuccess(@Nullable InGameResult loginResult, ResponseModel.Head head) {
 
+                if (loginResult != null && !TextUtils.isEmpty(loginResult.getUrl())) {
+
+                    String data = decodeToString(loginResult.getUrl());
+
+                    GameTokenBean gameTokenBean = new Gson().fromJson(data,GameTokenBean.class);
+
+                    IMDataCenter.getInstance().setGame_u2token(gameTokenBean.getGame_u2token());
+                    IMDataCenter.getInstance().setGame_token(gameTokenBean.getGame_token());
 
 
-
+                }
 
 
             }
@@ -84,12 +105,11 @@ public class TestActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
 
-
-
-    private void startImService(){
+    private void startImService() {
         //自己主app 必须是登录状态
         Map<String, Object> params = new HashMap<>();
         params.put("clientId", ChatManagerHolder.gChatManager.getClientId());
@@ -97,7 +117,7 @@ public class TestActivity extends AppCompatActivity {
         params.put("productId", "A01");
         params.put("loginName", "gmob386");
 
-        Request.with(TestActivity.this).loading().post("http://www.pt-gateway.com/_glaxy_a01_/im/login", params, new RequestCallBack<LoginResult>() {
+        Request.with(TestActivity.this).loading().post("/im/login", params, new RequestCallBack<LoginResult>() {
             @Override
             public void onGatewaySuccess(@Nullable LoginResult loginResult, ResponseModel.Head head) {
 
@@ -124,13 +144,6 @@ public class TestActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
-
-
-
-
 
 
 }

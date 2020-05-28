@@ -2,6 +2,7 @@ package cn.wildfirechattest;
 
 
 import com.ivi.imsdk.BuildConfig;
+import com.nwf.sports.IMServicesManger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,15 +22,25 @@ public class INetConfig extends NetConfig {
 
     @Override
     public boolean isLocalEnvironment() {
-        return  true;
+
+    //    IMServicesManger.getInstance().setLocalEnvironment(true);
+
+        return true;
     }
 
     @Override
     public List<GatewaysModel> gatewayUrls() {
         //配置网关接口，支持多网关配置，请求失败会自动切换到下一个网关
         List<GatewaysModel> list = new ArrayList<>();
+
+        List<String> java_gateway = new ArrayList<>();
+        java_gateway.add("http://www.pt-gateway.com/_glaxy_a01_");
+
         //配置产品网关地址
-        list.add(new GatewaysModel("A01", "http://www.pt-gateway.com/_glaxy_a01_"));
+        list.add(new GatewaysModel(java_gateway));
+
+
+        //IMServicesManger.getInstance().setAppServerHost("http://www.pt-gateway.com");
 
         return list;
 

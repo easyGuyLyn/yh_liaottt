@@ -27,6 +27,7 @@ import cn.wildfire.chat.kit.net.OKHttpHelper;
 import cn.wildfire.chat.kit.net.SimpleCallback;
 import cn.wildfire.chat.kit.net.base.StatusResult;
 
+//红包游戏的接口
 public class AppService implements AppServiceProvider {
     private static AppService Instance = new AppService();
 
