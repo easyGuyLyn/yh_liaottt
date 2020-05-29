@@ -62,14 +62,14 @@
             android:name="android.webkit.WebView.EnableSafeBrowsing"
             android:value="true" />
 
-        <!--地图-->
-        <meta-data
-            android:name="TencentMapSDK"
-            android:value="TOEBZ-67IR4-ZDHUV-DSDXX-TJZU7-UYFE7" />
-        <!-- 百度定位 -->
-        <meta-data
-            android:name="com.baidu.lbsapi.API_KEY"
-            android:value="HSSfBGPKP3rC1HNZdGGQa2FCzfGOG2ki" />
+<!--        &lt;!&ndash;地图&ndash;&gt;-->
+<!--        <meta-data-->
+<!--            android:name="TencentMapSDK"-->
+<!--            android:value="TOEBZ-67IR4-ZDHUV-DSDXX-TJZU7-UYFE7" />-->
+<!--        &lt;!&ndash; 百度定位 &ndash;&gt;-->
+<!--        <meta-data-->
+<!--            android:name="com.baidu.lbsapi.API_KEY"-->
+<!--            android:value="HSSfBGPKP3rC1HNZdGGQa2FCzfGOG2ki" />-->
 
         <activity
             android:name="com.nwf.sports.ui.activity.LauncherActivity"

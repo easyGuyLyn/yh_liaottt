@@ -27,6 +27,7 @@ import com.ivi.imsdk.R;
 import com.nwf.sports.mvp.model.ExtraBean;
 import com.nwf.sports.ui.activity.MainActivity;
 import com.nwf.sports.ui.activity.RedPacketRegulationActivity;
+import com.nwf.sports.ui.activity.RedpacketGameActivity;
 
 import java.util.List;
 import java.util.Map;
@@ -538,7 +539,7 @@ public class ConversationFragment extends Fragment implements
                             case 2:
                             case 4:
                                 floatingWindow.setVisibility(View.VISIBLE);
-                                imgRecharge.setVisibility(View.VISIBLE);
+                                imgRecharge.setVisibility(View.GONE);
                                 imgPlaying.setVisibility(View.VISIBLE);
                                 imgJoinin.setVisibility(View.GONE);
                                 imgLiveStreaming.setVisibility(View.GONE);
@@ -881,7 +882,7 @@ public class ConversationFragment extends Fragment implements
         switch (view.getId()) {
             case R.id.img_recharge: //充值
                 RxBus.get().post(ConstantValue.MAINACTIVITY_SWITCHOVER, MainActivity.TAB_INDEX_DEPOSIT);
-                ActivityStackManager.getInstance().finishToActivity(MainActivity.class, true);
+                ActivityStackManager.getInstance().finishToActivity(RedpacketGameActivity.class, false);
                 break;
             case R.id.img_live_streaming: //直播
                 break;

@@ -30,11 +30,11 @@ public class ConversationExtManager {
      */
     private void init() {
         registerExt(RedPacketExt.class);
-        registerExt(RechargeExt.class);
+      //  registerExt(RechargeExt.class);
         registerExt(ImageExt.class);
         registerExt(ShootExt.class);
-        registerExt(JoinInExt.class);
-        registerExt(ServiceExt.class);
+       // registerExt(JoinInExt.class);
+      //  registerExt(ServiceExt.class);
 
 //        registerExt(VoipExt.class);
 //        registerExt(FileExt.class);
