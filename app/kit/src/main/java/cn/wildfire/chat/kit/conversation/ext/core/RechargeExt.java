@@ -5,12 +5,7 @@ import android.content.Intent;
 import android.view.View;
 
 import com.dawoo.coretool.util.ToastUtil;
-import com.dawoo.coretool.util.activity.ActivityStackManager;
-import com.hwangjr.rxbus.RxBus;
 import com.ivi.imsdk.R;
-import com.nwf.sports.ConstantValue;
-import com.nwf.sports.ui.activity.MainActivity;
-import com.nwf.sports.ui.activity.RedpacketGameActivity;
 
 import cn.wildfire.chat.kit.annotation.ExtContextMenuItem;
 import cn.wildfirechat.model.Conversation;
@@ -24,8 +19,8 @@ public class RechargeExt extends ConversationExt {
     @ExtContextMenuItem(title = "充值")
     public void pickImage(View containerView, Conversation conversation) {
         ToastUtil.showToastLong("充值");
-        RxBus.get().post(ConstantValue.MAINACTIVITY_SWITCHOVER, MainActivity.TAB_INDEX_DEPOSIT);
-        ActivityStackManager.getInstance().finishToActivity(RedpacketGameActivity.class, false);
+//        RxBus.get().post(ConstantValue.MAINACTIVITY_SWITCHOVER, MainActivity.TAB_INDEX_DEPOSIT);
+//        ActivityStackManager.getInstance().finishToActivity(RedpacketGameActivity.class, false);
 
     }
 

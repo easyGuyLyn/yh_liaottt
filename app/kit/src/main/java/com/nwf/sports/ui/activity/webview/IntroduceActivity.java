@@ -1,7 +1,6 @@
 package com.nwf.sports.ui.activity.webview;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -9,31 +8,17 @@ import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
-import android.webkit.JavascriptInterface;
 import android.widget.FrameLayout;
 
-import com.dawoo.coretool.util.Check;
 import com.dawoo.coretool.util.LogUtils;
-import com.dawoo.coretool.util.ToastUtil;
 import com.hwangjr.rxbus.RxBus;
 import com.hwangjr.rxbus.annotation.Subscribe;
 import com.hwangjr.rxbus.annotation.Tag;
 import com.nwf.sports.ConstantValue;
 import com.ivi.imsdk.R;
-import com.nwf.sports.mvp.model.HomeDiscountsResult;
-import com.nwf.sports.ui.activity.AddBankActivity;
 import com.nwf.sports.ui.activity.BaseActivity;
-import com.nwf.sports.ui.activity.BindPhoneActivity;
-import com.nwf.sports.ui.activity.DiscountsActivity;
-import com.nwf.sports.ui.activity.MainActivity;
 import com.nwf.sports.ui.views.PNTitleBar;
-import com.nwf.sports.utils.ActivityUtil;
-import com.nwf.sports.utils.BindBankFlowEnum;
-import com.nwf.sports.utils.BindPhoneFlowEnum;
-import com.nwf.sports.utils.data.IMDataCenter;
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
 import com.tencent.smtt.export.external.interfaces.SslError;
 import com.tencent.smtt.export.external.interfaces.SslErrorHandler;
@@ -41,8 +26,6 @@ import com.tencent.smtt.sdk.ValueCallback;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 
@@ -146,273 +129,6 @@ public class IntroduceActivity extends BaseActivity {
             this.mContext = mContext;
         }
 
-        @JavascriptInterface
-        public void goGamesList() {
-            LogUtils.e("javascriptToJava( )");
-            goGamesList("", "");
-        }
-
-        @JavascriptInterface
-        public void goGamesList(String actionName, String param) {
-            LogUtils.e("javascriptToJava( )");
-            wvHomepageIntroduceContent.post(new Runnable() {
-                @Override
-                public void run() {
-                    finish();
-                }
-            });
-        }
-
-        /**
-         * 跳转到优惠记录列表
-         */
-        @JavascriptInterface
-        public void goSpecialOffer() {
-            LogUtils.e("javascriptToJava( )");
-            startActivity(new Intent(IntroduceActivity.this, DiscountsActivity.class));
-            finish();
-        }
-
-        /**
-         * 在线客服
-         */
-        @JavascriptInterface
-        public void goOnlineService() {
-            LogUtils.e("javascriptToJava( )");
-            wvHomepageIntroduceContent.post(new Runnable() {
-                @Override
-                public void run() {
-                    ActivityUtil.skipToService(IntroduceActivity.this);
-                    finish();
-                }
-            });
-        }
-
-        @JavascriptInterface
-        public void goRegister() {
-            LogUtils.e("javascriptToJava( )");
-            goRegister("", "");
-        }
-
-        @JavascriptInterface
-        public void goRegister(String actionName, String param) {
-            LogUtils.e("javascriptToJava( )");
-            wvHomepageIntroduceContent.post(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(IntroduceActivity.this, MainActivity.class);
-                    intent.putExtra(ConstantValue.SKIP_MIAN_TYPE, MainActivity.TAB_INDEX_HOME);
-                    intent.putExtra(ConstantValue.MAIN_OPEN_TYPE, ConstantValue.SKIP_REGISTER);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                }
-            });
-        }
-
-        @JavascriptInterface
-        public void goLogin() {
-            LogUtils.e("javascriptToJava( )");
-            goLogin("", "");
-        }
-
-        @JavascriptInterface
-        public void goLogin(String actionName, String param) {
-            LogUtils.e("javascriptToJava( " + actionName + ", " + param + " )");
-            wvHomepageIntroduceContent.post(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(IntroduceActivity.this, MainActivity.class);
-                    intent.putExtra(ConstantValue.SKIP_MIAN_TYPE, MainActivity.TAB_INDEX_HOME);
-                    intent.putExtra(ConstantValue.MAIN_OPEN_TYPE, ConstantValue.SKIP_LOGIN);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                }
-            });
-        }
-
-        /**
-         * 给H5 端 用户Token
-         */
-        @JavascriptInterface
-        public void getLoginInfo() {
-            LogUtils.e("javascriptToJava( )");
-            //必须开启线程进行JS调用
-            wvHomepageIntroduceContent.post(new Runnable() {
-                @Override
-                public void run() {
-                    if (!Check.isNull(wvHomepageIntroduceContent)) {
-                        wvHomepageIntroduceContent.loadUrl("javascript:getLoginInfo('" + IMDataCenter.getInstance().getUserInfoBean().getToken() + "')");
-                    }
-                }
-            });
-
-        }
-
-        /**
-         * 跳转到存款界面
-         */
-        @JavascriptInterface
-        public void goDeposit() {
-            LogUtils.e("javascriptToJava( )");
-            goDeposit("", "");
-        }
-
-        /**
-         * 跳转到存款界面
-         */
-        @JavascriptInterface
-        public void goDeposit(String actionName, String param) {
-            LogUtils.e("javascriptToJava( " + actionName + "," + param + " )");
-            Intent intent = new Intent(IntroduceActivity.this, MainActivity.class);
-            intent.putExtra(ConstantValue.SKIP_MIAN_TYPE, MainActivity.TAB_INDEX_DEPOSIT);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
-        }
-
-        /**
-         * 跳转到活动详情
-         *
-         * @param actionName URL
-         * @param param      title
-         */
-        @JavascriptInterface
-        public void actDetail(String actionName, String param) {
-            LogUtils.e("javascriptToJava(" + actionName + ", " + param + ")");
-            Bundle mbundle = new Bundle();
-            mbundle.putString(ConstantValue.ARG_PARAM1, param);
-            mbundle.putString(ConstantValue.ARG_PARAM2, actionName);
-            startActivity(new Intent(IntroduceActivity.this, IntroduceActivity.class).putExtras(mbundle));
-            finish();
-        }
-
-        /**
-         * 关闭窗体, 关闭当前界面
-         */
-        @JavascriptInterface
-        public void onCloseFromJS() {
-            LogUtils.e("-----------onCloseFromJS()------------");
-            wvHomepageIntroduceContent.post(new Runnable() {
-                @Override
-                public void run() {
-                    finish();
-                }
-            });
-        }
-
-        /**
-         * 关闭窗体, 关闭当前界面, 并通知上个页面刷新
-         */
-        @JavascriptInterface
-        public void closeAndReloadLastPage() {
-            LogUtils.e("javascriptToJava( )");
-            wvHomepageIntroduceContent.post(new Runnable() {
-                @Override
-                public void run() {
-                    finish();
-                    RxBus.get().post(ConstantValue.INTRODUCE_RELOAD, "reload");
-                }
-            });
-
-        }
-
-        @JavascriptInterface
-        public void openNewWebView() {
-            LogUtils.e("javascriptToJava( )");
-            openNewWebView("", "");
-        }
-
-        /**
-         * 跳转新的活动页
-         *
-         * @param actionName URL
-         * @param param      title
-         */
-        @JavascriptInterface
-        public void openNewWebView(String actionName, String param) {
-            LogUtils.e("javascriptToJava (" + actionName + ", " + url + ")");
-            Bundle mbundle = new Bundle();
-            mbundle.putString(ConstantValue.ARG_PARAM1, param);
-            mbundle.putString(ConstantValue.ARG_PARAM2, actionName);
-            startActivity(new Intent(IntroduceActivity.this, IntroduceActivity.class).putExtras(mbundle));
-
-        }
-
-        @JavascriptInterface
-        public void toFillInfomation() {
-            LogUtils.e("javascriptToJava( )");
-            toFillInfomation("", "");
-        }
-
-        /**
-         * 完善资料
-         *
-         * @param actionName URL
-         * @param param      title
-         */
-        @JavascriptInterface
-        public void toFillInfomation(final String actionName, final String param) {
-            String phone = IMDataCenter.getInstance().getUserInfoBean().getPhone();
-            LogUtils.e("javascriptToJava (" + actionName + ", " + param + ", bindPhone " + phone + ")");
-            wvHomepageIntroduceContent.post(new Runnable() {
-                @Override
-                public void run() {
-                    finish();
-                    if (!TextUtils.isEmpty(phone)) {
-                        Bundle mbundle = new Bundle();
-                        mbundle.putString(ConstantValue.BIND_BANK_FLOW, BindBankFlowEnum.TOINTRODUCE.getServicename());
-                        mbundle.putString(ConstantValue.ARG_PARAM2, actionName);
-                        mbundle.putString(ConstantValue.ARG_PARAM3, param);
-                        startActivity(new Intent(IntroduceActivity.this, AddBankActivity.class).putExtras(mbundle));
-                    } else {
-                        Bundle mbundle = new Bundle();
-                        mbundle.putString(ConstantValue.BIND_PHONE_FLOW, BindPhoneFlowEnum.TOINTRODUCE.getServicename());
-                        mbundle.putBoolean(ConstantValue.ARG_PARAM1, false);
-                        mbundle.putString(ConstantValue.ARG_PARAM2, actionName);
-                        mbundle.putString(ConstantValue.ARG_PARAM3, param);
-                        startActivity(new Intent(IntroduceActivity.this, BindPhoneActivity.class).putExtras(mbundle));
-                    }
-                }
-            });
-
-        }
-
-        @JavascriptInterface
-        public void goSysBrowser(String url) {
-            LogUtils.e("javascriptToJava: " + url);
-            Intent intent = new Intent();
-            intent.setAction("android.intent.action.VIEW");
-            Uri uri = Uri.parse(url);
-            intent.setData(uri);
-            startActivity(intent);
-        }
-
-        /**
-         * 跳转到优惠活动列表
-         */
-        @JavascriptInterface
-        public void goPromotionList() {
-            LogUtils.e("javascriptToJava( )");
-
-            wvHomepageIntroduceContent.post(new Runnable() {
-                @Override
-                public void run() {
-                    HomeDiscountsResult homePage = IMDataCenter.getInstance().getMyLocalCenter().getHomePage();
-                    if (homePage == null || homePage.getPromotionsList() == null) {
-                        ToastUtil.showToastLong("优惠活动为空");
-                        return;
-                    }
-                    ArrayList list = new ArrayList();
-                    list.addAll(homePage.getPromotionsList());
-                    Bundle mbundle = new Bundle();
-                    Intent intent = new Intent(IntroduceActivity.this, DiscountsActivity.class);
-                    intent.putExtra(ConstantValue.SKIP_MIAN_TYPE, MainActivity.TAB_INDEX_DEPOSIT);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    mbundle.putParcelableArrayList(ConstantValue.ARG_PARAM1, list);
-                    startActivity(intent);
-                }
-            });
-
-        }
 
     }
 
@@ -575,51 +291,4 @@ public class IntroduceActivity extends BaseActivity {
     }
 
 
-    public void onActivityResult(final int requestCode, final int resultCode, final Intent intent) {
-        if (requestCode == REQUEST_CODE_FILE_PICKER) {
-            if (resultCode == Activity.RESULT_OK) {
-                if (intent != null) {
-                    //Android 5.0以下版本
-                    if (mFileUploadCallbackFirst != null) {
-                        mFileUploadCallbackFirst.onReceiveValue(intent.getData());
-                        mFileUploadCallbackFirst = null;
-                    } else if (mFileUploadCallbackSecond != null) {//Android 5.0及以上版本
-                        Uri[] dataUris = null;
-
-                        try {
-                            if (intent.getDataString() != null) {
-                                dataUris = new Uri[]{Uri.parse(intent.getDataString())};
-                            } else {
-                                if (Build.VERSION.SDK_INT >= 16) {
-                                    if (intent.getClipData() != null) {
-                                        final int numSelectedFiles = intent.getClipData().getItemCount();
-
-                                        dataUris = new Uri[numSelectedFiles];
-
-                                        for (int i = 0; i < numSelectedFiles; i++) {
-                                            dataUris[i] = intent.getClipData().getItemAt(i).getUri();
-                                        }
-                                    }
-                                }
-                            }
-                        } catch (Exception ignored) {
-                        }
-                        mFileUploadCallbackSecond.onReceiveValue(dataUris);
-                        mFileUploadCallbackSecond = null;
-                    }
-                }
-            } else {
-                //这里mFileUploadCallbackFirst跟mFileUploadCallbackSecond在不同系统版本下分别持有了
-                //WebView对象，在用户取消文件选择器的情况下，需给onReceiveValue传null返回值
-                //否则WebView在未收到返回值的情况下，无法进行任何操作，文件选择器会失效
-                if (mFileUploadCallbackFirst != null) {
-                    mFileUploadCallbackFirst.onReceiveValue(null);
-                    mFileUploadCallbackFirst = null;
-                } else if (mFileUploadCallbackSecond != null) {
-                    mFileUploadCallbackSecond.onReceiveValue(null);
-                    mFileUploadCallbackSecond = null;
-                }
-            }
-        }
-    }
 }

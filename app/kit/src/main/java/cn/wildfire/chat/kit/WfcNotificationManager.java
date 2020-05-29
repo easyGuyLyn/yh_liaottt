@@ -12,7 +12,7 @@ import android.text.TextUtils;
 import com.hwangjr.rxbus.RxBus;
 import com.nwf.sports.ConstantValue;
 import com.ivi.imsdk.R;
-import com.nwf.sports.ui.activity.MainActivity;
+import com.nwf.sports.ui.activity.RedpacketGameActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -127,7 +127,7 @@ public class WfcNotificationManager {
             } else {
                 title = "新消息";
             }
-            Intent mainIntent = new Intent(context, MainActivity.class);
+            Intent mainIntent = new Intent(context, RedpacketGameActivity.class);
             Intent conversationIntent = new Intent(context, ConversationActivity.class);
             conversationIntent.putExtra("conversation", message.conversation);
             PendingIntent pendingIntent = PendingIntent.getActivities(context, notificationId(message.conversation), new Intent[]{mainIntent, conversationIntent}, PendingIntent.FLAG_UPDATE_CURRENT);

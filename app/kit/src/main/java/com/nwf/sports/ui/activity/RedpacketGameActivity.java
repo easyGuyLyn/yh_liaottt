@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
+import com.hwangjr.rxbus.RxBus;
+import com.ivi.imsdk.BuildConfig;
 import com.nwf.sports.ConstantValue;
 import com.ivi.imsdk.R;
 import com.nwf.sports.IMApplication;
@@ -42,11 +44,15 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
+import cn.wildfire.chat.kit.IMConnectionStatusViewModel;
+import cn.wildfire.chat.kit.IMServiceStatusViewModel;
 import cn.wildfire.chat.kit.conversation.ConversationActivity;
 import cn.wildfire.chat.kit.group.GroupViewModel;
 import cn.wildfire.chat.kit.user.UserViewModel;
+import cn.wildfirechat.client.ConnectionStatus;
 import cn.wildfirechat.model.Conversation;
 import cn.wildfirechat.model.GroupInfo;
+import cn.wildfirechat.remote.ChatManager;
 import ivi.net.base.netlibrary.callback.RequestCallBack;
 import ivi.net.base.netlibrary.model.ResponseModel;
 import ivi.net.base.netlibrary.request.Request;
@@ -77,6 +83,15 @@ public class RedpacketGameActivity extends BaseActivity {
 
     private int mViewPagerNum = 0;
 
+
+    private boolean isInitialized = false;
+    private Observer<Boolean> imStatusLiveDataObserver = status -> {
+        if (status && !isInitialized) {
+            isInitialized = true;
+        }
+    };
+
+
     @Override
     protected void createLayoutView() {
         setContentView(R.layout.activity_game_red_packet);
@@ -87,6 +102,29 @@ public class RedpacketGameActivity extends BaseActivity {
         if (getIntent() != null) {
             mViewPagerNum = getIntent().getIntExtra(ConstantValue.ARG_PARAM1, -1);
         }
+
+        IMServiceStatusViewModel imServiceStatusViewModel = ViewModelProviders.of(this).get(IMServiceStatusViewModel.class);
+        imServiceStatusViewModel.imServiceStatusLiveData().observe(this, imStatusLiveDataObserver);
+        IMConnectionStatusViewModel connectionStatusViewModel = ViewModelProviders.of(this).get(IMConnectionStatusViewModel.class);
+        connectionStatusViewModel.connectionStatusLiveData().observe(this, status -> {
+            if (status == ConnectionStatus.ConnectionStatusTokenIncorrect
+                    || status == ConnectionStatus.ConnectionStatusSecretKeyMismatch
+                    || status == ConnectionStatus.ConnectionStatusRejected
+                    || status == ConnectionStatus.ConnectionStatusLogout) {
+
+                Log.e("TT", "聊天错误码===" + status);
+                SingleToast.showLongMsg("聊天错误码=== " + status);
+                ChatManager.Instance().disconnect(true);
+
+            } else if (status == ConnectionStatus.ConnectionStatusConnected) {
+                if (BuildConfig.DEBUG) {
+                    SingleToast.showLongMsg("聊天已连接 ");
+                }
+
+            }
+        });
+
+
         vDepNameTitle.setMoreListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -253,7 +291,7 @@ public class RedpacketGameActivity extends BaseActivity {
 
                     String data = decodeToString(loginResult.getUrl());
 
-                    GameTokenBean gameTokenBean = new Gson().fromJson(data,GameTokenBean.class);
+                    GameTokenBean gameTokenBean = new Gson().fromJson(data, GameTokenBean.class);
 
                     IMDataCenter.getInstance().setGame_u2token(gameTokenBean.getGame_u2token());
                     IMDataCenter.getInstance().setGame_token(gameTokenBean.getGame_token());
@@ -276,7 +314,6 @@ public class RedpacketGameActivity extends BaseActivity {
     }
 
 
-
     public static String decodeToString(String str) {
         try {
             return new String(Base64.decode(str.getBytes("UTF-8"), Base64.DEFAULT));
@@ -285,8 +322,6 @@ public class RedpacketGameActivity extends BaseActivity {
         }
         return "";
     }
-
-
 
 
     public void getRedPacket() {

@@ -8,12 +8,10 @@ import android.text.TextUtils;
 import android.util.Base64;
 
 import com.google.gson.Gson;
-import com.hwangjr.rxbus.RxBus;
 import com.nwf.sports.chat.login.model.GameTokenBean;
 import com.nwf.sports.chat.login.model.InGameResult;
 import com.nwf.sports.chat.login.model.LoginResult;
 import com.nwf.sports.net.RetrofitHelper;
-import com.nwf.sports.ui.activity.MainActivity;
 import com.nwf.sports.ui.activity.RedpacketGameActivity;
 import com.nwf.sports.utils.SingleToast;
 import com.nwf.sports.utils.data.IMDataCenter;

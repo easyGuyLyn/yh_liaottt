@@ -12,7 +12,6 @@ import com.hwangjr.rxbus.RxBus;
 import com.king.zxing.Intents;
 import com.ivi.imsdk.R;
 import com.nwf.sports.adapter.AdapterFragment;
-import com.nwf.sports.chat.main.PCLoginActivity;
 import com.nwf.sports.ui.activity.BaseActivity;
 import com.nwf.sports.ui.views.CustomViewPager;
 
@@ -187,9 +186,9 @@ public class ChatFriendActivity extends BaseActivity {
 
 
     private void pcLogin(String token) {
-        Intent intent = new Intent(this, PCLoginActivity.class);
-        intent.putExtra("token", token);
-        startActivity(intent);
+//        Intent intent = new Intent(this, PCLoginActivity.class);
+//        intent.putExtra("token", token);
+//        startActivity(intent);
     }
 
     private void showUser(String uid) {

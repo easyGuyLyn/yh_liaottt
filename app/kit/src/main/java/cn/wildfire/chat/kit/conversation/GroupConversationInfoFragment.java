@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.kyleduo.switchbutton.SwitchButton;
 import com.ivi.imsdk.R;
-import com.nwf.sports.ui.activity.MainActivity;
+import com.nwf.sports.ui.activity.RedpacketGameActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -381,7 +381,7 @@ public class GroupConversationInfoFragment extends Fragment implements Conversat
         if (groupInfo != null && userViewModel.getUserId().equals(groupInfo.owner)) {
             groupViewModel.dismissGroup(conversationInfo.conversation.target, Collections.singletonList(0)).observe(this, aBoolean -> {
                 if (aBoolean != null && aBoolean) {
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    Intent intent = new Intent(getActivity(), RedpacketGameActivity.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(getActivity(), "退出群组失败", Toast.LENGTH_SHORT).show();
@@ -390,7 +390,7 @@ public class GroupConversationInfoFragment extends Fragment implements Conversat
         } else {
             groupViewModel.quitGroup(conversationInfo.conversation.target, Collections.singletonList(0)).observe(this, aBoolean -> {
                 if (aBoolean != null && aBoolean) {
-                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    Intent intent = new Intent(getActivity(), RedpacketGameActivity.class);
                     startActivity(intent);
                 } else {
                     Toast.makeText(getActivity(), "退出群组失败", Toast.LENGTH_SHORT).show();

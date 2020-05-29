@@ -19,15 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.dawoo.coretool.util.activity.ActivityStackManager;
 import com.google.gson.Gson;
-import com.hwangjr.rxbus.RxBus;
-import com.nwf.sports.ConstantValue;
 import com.ivi.imsdk.R;
 import com.nwf.sports.mvp.model.ExtraBean;
-import com.nwf.sports.ui.activity.MainActivity;
 import com.nwf.sports.ui.activity.RedPacketRegulationActivity;
-import com.nwf.sports.ui.activity.RedpacketGameActivity;
 
 import java.util.List;
 import java.util.Map;
@@ -881,8 +876,8 @@ public class ConversationFragment extends Fragment implements
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.img_recharge: //充值
-                RxBus.get().post(ConstantValue.MAINACTIVITY_SWITCHOVER, MainActivity.TAB_INDEX_DEPOSIT);
-                ActivityStackManager.getInstance().finishToActivity(RedpacketGameActivity.class, false);
+//                RxBus.get().post(ConstantValue.MAINACTIVITY_SWITCHOVER, MainActivity.TAB_INDEX_DEPOSIT);
+//                ActivityStackManager.getInstance().finishToActivity(RedpacketGameActivity.class, false);
                 break;
             case R.id.img_live_streaming: //直播
                 break;

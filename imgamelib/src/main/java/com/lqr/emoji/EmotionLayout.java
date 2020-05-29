@@ -92,7 +92,7 @@ public class EmotionLayout extends LinearLayout implements View.OnClickListener 
     public void setEmotionAddVisiable(boolean visiable) {
         mEmotionAddVisiable = visiable;
         if (mRlEmotionAdd != null) {
-            mRlEmotionAdd.setVisibility(mEmotionAddVisiable ? View.VISIBLE : View.GONE);
+            mRlEmotionAdd.setVisibility(mEmotionAddVisiable ? View.GONE : View.GONE);
         }
     }
 
@@ -215,8 +215,8 @@ public class EmotionLayout extends LinearLayout implements View.OnClickListener 
             Drawable selected = mContext.getResources().getDrawable(R.color.gray);
             drawable.addState(new int[]{android.R.attr.state_pressed}, selected);
             mSettingTab.setBackground(drawable);
-            mLlTabContainer.addView(mSettingTab);
-            mTabViewArray.put(mTabViewArray.size(), mSettingTab);
+//            mLlTabContainer.addView(mSettingTab);
+//            mTabViewArray.put(mTabViewArray.size(), mSettingTab);
         }
 
         selectTab(0);

@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 
 import com.dawoo.coretool.util.LogUtils;
 import com.dawoo.coretool.util.ToastUtil;
-import com.nwf.sports.mvp.view.IBaseView;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import androidx.annotation.NonNull;
@@ -18,7 +17,7 @@ import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseFragment extends Fragment implements IBaseView {
+public abstract class BaseFragment extends Fragment {
     Unbinder unbinder;
     protected Context mContext;
     //Fragment的View加载完毕的标记
@@ -94,7 +93,6 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
         }
     }
 
-    @Override
     public void showMessage(String message) {
         if (!TextUtils.isEmpty(message)) {
             ToastUtil.showToastLong(message);

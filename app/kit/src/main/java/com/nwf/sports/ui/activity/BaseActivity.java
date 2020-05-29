@@ -10,7 +10,6 @@ import android.widget.EditText;
 
 import com.dawoo.coretool.util.ToastUtil;
 import com.dawoo.coretool.util.activity.ActivityStackManager;
-import com.nwf.sports.mvp.view.IBaseView;
 import com.zhy.autolayout.AutoLayoutActivity;
 
 import androidx.annotation.Nullable;
@@ -22,7 +21,7 @@ import butterknife.Unbinder;
  * Created by benson on 17-12-19.
  */
 
-public abstract class BaseActivity extends AutoLayoutActivity implements IBaseView {
+public abstract class BaseActivity extends AutoLayoutActivity {
     // private ImmersionBar mImmersionBar;
     private Unbinder mBind;
     protected Context mContext;
@@ -137,7 +136,6 @@ public abstract class BaseActivity extends AutoLayoutActivity implements IBaseVi
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 
-    @Override
     public void showMessage(String message) {
         if (!TextUtils.isEmpty(message)) {
             ToastUtil.showToastLong(message);

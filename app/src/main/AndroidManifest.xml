@@ -62,34 +62,7 @@
             android:name="android.webkit.WebView.EnableSafeBrowsing"
             android:value="true" />
 
-<!--        &lt;!&ndash;地图&ndash;&gt;-->
-<!--        <meta-data-->
-<!--            android:name="TencentMapSDK"-->
-<!--            android:value="TOEBZ-67IR4-ZDHUV-DSDXX-TJZU7-UYFE7" />-->
-<!--        &lt;!&ndash; 百度定位 &ndash;&gt;-->
-<!--        <meta-data-->
-<!--            android:name="com.baidu.lbsapi.API_KEY"-->
-<!--            android:value="HSSfBGPKP3rC1HNZdGGQa2FCzfGOG2ki" />-->
 
-        <activity
-            android:name="com.nwf.sports.ui.activity.LauncherActivity"
-            android:configChanges="keyboardHidden|screenSize|orientation"
-            android:fitsSystemWindows="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowFullscreen="true"
-            android:windowSoftInputMode="adjustPan">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-
-<!--            <meta-data-->
-<!--                android:name="android.notch_support"-->
-<!--                android:value="true" />-->
-
-        </activity>
 
 
         <activity
@@ -100,172 +73,6 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-
-
-
-        <activity
-            android:name="com.nwf.sports.chat.main.SplashActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme.FullScreen">
-<!--            <intent-filter>-->
-<!--            <action android:name="android.intent.action.MAIN" />-->
-<!--            <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.MainActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:fitsSystemWindows="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowFullscreen="true"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.LoginActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:fitsSystemWindows="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowFullscreen="true"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.nwf.sports.ui.activity.RegisterActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:fitsSystemWindows="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowFullscreen="true"
-            android:windowSoftInputMode="adjustPan" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.webview.OnlinePlayActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.DepositTransferActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.DepositbankFasterActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.DepositPointCardActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.BindPhoneActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.BindPhoneSecondActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.AddBankActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.HistoryActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.ManagementPhoneActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.BankManagementActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.ModificationPasswordActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.ServiceActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.DiscountsActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.webview.IntroduceActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.DownloadAppsActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.AboutActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme"
-            android:windowSoftInputMode="stateHidden|adjustPan" />
-
-        <service android:name="com.nwf.sports.utils.line.LineHelperService" />
-        <!--线路检查服务-->
-
-        <activity
-            android:name="com.nwf.sports.ui.activity.webview.XPlayGameActivity"
-            android:configChanges="keyboardHidden|screenSize|orientation"
-            android:fitsSystemWindows="true"
-            android:theme="@style/ImSdkTheme"
-            android:windowFullscreen="true"
-            android:windowSoftInputMode="stateHidden|adjustResize">
-
-            <meta-data
-                android:name="android.notch_support"
-                android:value="true" />
-
         </activity>
 
 
@@ -283,10 +90,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/ImSdkTheme" />
         <activity
-            android:name="com.nwf.sports.chat.login.LoginActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme" />
-        <activity
             android:name="cn.wildfire.chat.kit.user.SetAliasActivity"
             android:label="设置用户备注"
             android:screenOrientation="portrait"
@@ -301,29 +104,19 @@
             android:name="cn.wildfire.chat.kit.mm.TakePhotoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/ImSdkTheme.FullScreen" />
-        <activity
-            android:name="com.nwf.sports.chat.location.ui.activity.MyLocationActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme" />
+<!--        <activity-->
+<!--            android:name="com.nwf.sports.chat.location.ui.activity.MyLocationActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/ImSdkTheme" />-->
         <activity
             android:name="cn.wildfire.chat.kit.group.SetGroupNameActivity"
             android:label="修改群名称"
             android:screenOrientation="portrait"
             android:theme="@style/ImSdkTheme" />
-        <activity
-            android:name="com.nwf.sports.chat.setting.SettingActivity"
-            android:label="设置"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme" />
-        <activity
-            android:name="com.nwf.sports.chat.setting.AboutActivity"
-            android:label="关于"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme" />
-        <activity
-            android:name="com.nwf.sports.chat.location.ui.activity.ShowLocationActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/ImSdkTheme" />
+        <!--        <activity-->
+<!--            android:name="com.nwf.sports.chat.location.ui.activity.ShowLocationActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:theme="@style/ImSdkTheme" />-->
 
         <activity
             android:name="cn.wildfire.chat.kit.mm.MMPreviewActivity"
@@ -408,10 +201,6 @@
             android:label="选取会话"
             android:theme="@style/ImSdkTheme" />
         <activity
-            android:name="com.nwf.sports.chat.login.SMSLoginActivity"
-            android:label="登录"
-            android:theme="@style/ImSdkTheme" />
-        <activity
             android:name="cn.wildfire.chat.kit.channel.ChannelListActivity"
             android:label="频道列表"
             android:theme="@style/ImSdkTheme" />
@@ -425,16 +214,6 @@
         <activity
             android:name="cn.wildfire.chat.kit.channel.ChannelInfoActivity"
             android:theme="@style/ImSdkTheme" />
-        <activity
-            android:name="com.nwf.sports.chat.main.MainActivity"
-            android:label="火信"
-            android:launchMode="singleTask"
-            android:theme="@style/ImSdkTheme">
-            <intent-filter>
-                <action android:name="${applicationId}.main" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
         <activity
             android:name="cn.wildfire.chat.kit.WfcWebViewActivity"
             android:theme="@style/ImSdkTheme">
@@ -453,10 +232,6 @@
             android:name="cn.wildfire.chat.kit.group.PickGroupMemberActivity"
             android:theme="@style/ImSdkTheme" />
 
-        <activity
-            android:name="com.nwf.sports.chat.main.PCLoginActivity"
-            android:label="PC登录"
-            android:theme="@style/ImSdkTheme" />
         <activity
             android:name="cn.wildfire.chat.kit.qrcode.QRCodeActivity"
             android:theme="@style/ImSdkTheme" />
@@ -499,10 +274,6 @@
         <activity
             android:name="com.nwf.sports.ui.activity.RedPacketHistoryActivity"
             android:label="红包记录"
-            android:theme="@style/ImSdkTheme" />
-        <activity
-            android:name="com.nwf.sports.ui.activity.WithdrawalActivity"
-            android:label="取款"
             android:theme="@style/ImSdkTheme" />
         <activity
             android:name="cn.wildfire.chat.kit.group.manage.GroupManageActivity"

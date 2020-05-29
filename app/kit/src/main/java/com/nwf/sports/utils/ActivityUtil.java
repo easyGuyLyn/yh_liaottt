@@ -7,7 +7,6 @@ import android.net.Uri;
 import com.dawoo.coretool.util.LogUtils;
 import com.nwf.sports.mvp.model.OnlinePay;
 import com.nwf.sports.mvp.model.UserInfoBean;
-import com.nwf.sports.ui.activity.ServiceActivity;
 import com.nwf.sports.utils.data.IMDataCenter;
 
 /**
@@ -22,7 +21,7 @@ public class ActivityUtil {
      * 开启客服界面
      */
     public static void skipToService(Context context) {
-        context.startActivity(new Intent(context,ServiceActivity.class));
+        //context.startActivity(new Intent(context,ServiceActivity.class));
     }
 
 

@@ -16,7 +16,6 @@ import com.nwf.sports.RedPacketIMServicesManger;
 import com.nwf.sports.chat.login.model.GameTokenBean;
 import com.nwf.sports.chat.login.model.InGameResult;
 import com.nwf.sports.chat.login.model.LoginResult;
-import com.nwf.sports.ui.activity.MainActivity;
 import com.nwf.sports.utils.data.IMDataCenter;
 
 import java.io.UnsupportedEncodingException;
@@ -128,8 +127,8 @@ public class TestActivity extends AppCompatActivity {
                         .putString("token", loginResult.getToken())
                         .apply();
 
-                Intent intent = new Intent(TestActivity.this, MainActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(TestActivity.this, MainActivity.class);
+//                startActivity(intent);
 
                 RxBus.get().post(ConstantValue.EVENT_TYPE_LOGIN, "login");
 

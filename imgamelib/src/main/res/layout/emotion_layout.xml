@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -35,20 +36,16 @@
 
         <RelativeLayout
             android:id="@+id/rlEmotionAdd"
-            android:layout_width="55dp"
-            android:layout_height="35dp">
-
-            <View
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_alignParentRight="true"
-                android:background="@color/im_line" />
+            android:layout_width="0.1dp"
+            android:layout_height="35dp"
+            tools:ignore="Suspicious0dp">
 
             <ImageView
                 android:id="@+id/ivIcon"
-                android:layout_width="25dp"
+                android:layout_width="0dp"
                 android:layout_height="25dp"
                 android:layout_centerInParent="true"
+                android:visibility="gone"
                 android:src="@drawable/ic_tab_add" />
         </RelativeLayout>
         <!--表情设置Tab-->

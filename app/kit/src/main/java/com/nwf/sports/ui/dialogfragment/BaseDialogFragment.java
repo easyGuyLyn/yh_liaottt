@@ -18,7 +18,6 @@ import android.view.WindowManager;
 
 import com.dawoo.coretool.util.ToastUtil;
 import com.ivi.imsdk.R;
-import com.nwf.sports.mvp.view.IBaseView;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import androidx.annotation.NonNull;
@@ -35,7 +34,7 @@ import butterknife.Unbinder;
  * <p>修改时间：2019-02-14
  * <p>修改备注：
  **/
-public abstract class BaseDialogFragment extends DialogFragment implements IBaseView {
+public abstract class BaseDialogFragment extends DialogFragment  {
     //宽高比例 最高1 最低0
     protected double intScreenWProportion = -1; //宽比例
     protected double intScreenHProportion = -1; //高比例
@@ -171,7 +170,6 @@ public abstract class BaseDialogFragment extends DialogFragment implements IBase
         super.onDestroyView();
     }
 
-    @Override
     public void showMessage(String message) {
         if (!TextUtils.isEmpty(message)) {
             ToastUtil.showToastLong(message);

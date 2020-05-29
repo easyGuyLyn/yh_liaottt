@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.dawoo.coretool.util.SPTool;
 import com.dawoo.coretool.util.file.FileIOUtils;
 import com.dawoo.coretool.util.file.FileUtils;
 import com.dawoo.coretool.util.packageref.DeviceUtils;
@@ -17,14 +16,12 @@ import com.ivi.imsdk.BuildConfig;
 import com.nwf.sports.chat.AppService;
 import com.nwf.sports.chat.BaseApp;
 import com.nwf.sports.chat.Config;
-import com.nwf.sports.chat.viewholder.LocationMessageContentViewHolder;
 import com.nwf.sports.net.ClientConfig;
 import com.nwf.sports.net.RetrofitHelper;
 import com.nwf.sports.utils.CommentUtils;
 import com.nwf.sports.utils.Constant;
 import com.nwf.sports.utils.line.LineErrorDialogBean;
 import com.nwf.sports.utils.ssl.SSLSocketFactoryCompat;
-import com.tencent.bugly.crashreport.CrashReport;
 import com.tencent.smtt.sdk.QbSdk;
 import com.zhy.http.okhttp.OkHttpUtils;
 
@@ -109,7 +106,6 @@ public class IMApplication extends BaseApp {
             wfcUIKit.init(this);
             wfcUIKit.setAppServiceProvider(AppService.Instance());
             PushService.init(this, BuildConfig.APPLICATION_ID);
-            MessageViewHolderManager.getInstance().registerMessageViewHolder(LocationMessageContentViewHolder.class);
             //红包消息
             MessageViewHolderManager.getInstance().registerMessageViewHolder(RedPacketMessageContentViewHolder.class);
             ChatManager.Instance().registerMessageContent(RedPacketMessageContent.class);

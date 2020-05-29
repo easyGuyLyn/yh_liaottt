@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.ivi.imsdk.R;
-import com.nwf.sports.chat.setting.SettingActivity;
 
 import java.util.List;
 
@@ -108,8 +107,8 @@ public class MeFragment extends Fragment {
 
     @OnClick(R.id.settintOptionItemView)
     void setting() {
-        Intent intent = new Intent(getActivity(), SettingActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(getActivity(), SettingActivity.class);
+//        startActivity(intent);
     }
 
     @OnClick(R.id.notificationOptionItemView)

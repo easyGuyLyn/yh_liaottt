@@ -6,7 +6,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.ivi.imsdk.R;
-import com.nwf.sports.ui.activity.MainActivity;
+import com.nwf.sports.ui.activity.RedpacketGameActivity;
 
 import androidx.lifecycle.ViewModelProviders;
 import cn.wildfire.chat.kit.WfcBaseActivity;
@@ -107,7 +107,7 @@ public class UserInfoActivity extends WfcBaseActivity {
             contactViewModel.deleteFriend(userInfo.uid).observe(
                     this, booleanOperateResult -> {
                         if (booleanOperateResult.isSuccess()) {
-                            Intent intent = new Intent(UserInfoActivity.this, MainActivity.class);
+                            Intent intent = new Intent(UserInfoActivity.this, RedpacketGameActivity.class);
                             startActivity(intent);
                         } else {
                             Toast.makeText(this, "delete friend error " + booleanOperateResult.getErrorCode(), Toast.LENGTH_SHORT).show();
