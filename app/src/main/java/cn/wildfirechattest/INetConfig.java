@@ -2,10 +2,8 @@ package cn.wildfirechattest;
 
 
 import com.ivi.imsdk.BuildConfig;
-import com.nwf.sports.IMServicesManger;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import ivi.net.base.netlibrary.config.GatewaysModel;
@@ -23,7 +21,7 @@ public class INetConfig extends NetConfig {
     @Override
     public boolean isLocalEnvironment() {
 
-    //    IMServicesManger.getInstance().setLocalEnvironment(true);
+    //    RedPacketIMServicesManger.getInstance().setLocalEnvironment(true);
 
         return true;
     }
@@ -40,7 +38,7 @@ public class INetConfig extends NetConfig {
         list.add(new GatewaysModel(java_gateway));
 
 
-        //IMServicesManger.getInstance().setAppServerHost("http://www.pt-gateway.com");
+        //RedPacketIMServicesManger.getInstance().setAppServerHost("http://www.pt-gateway.com");
 
         return list;
 

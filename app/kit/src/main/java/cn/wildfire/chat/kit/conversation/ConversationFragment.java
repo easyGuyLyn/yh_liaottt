@@ -540,7 +540,7 @@ public class ConversationFragment extends Fragment implements
                                 floatingWindow.setVisibility(View.VISIBLE);
                                 imgRecharge.setVisibility(View.VISIBLE);
                                 imgPlaying.setVisibility(View.VISIBLE);
-                                imgJoinin.setVisibility(View.VISIBLE);
+                                imgJoinin.setVisibility(View.GONE);
                                 imgLiveStreaming.setVisibility(View.GONE);
                                 imgBet.setVisibility(View.GONE);
                                 break;
@@ -548,7 +548,7 @@ public class ConversationFragment extends Fragment implements
                                 floatingWindow.setVisibility(View.VISIBLE);
                                 imgRecharge.setVisibility(View.GONE);
                                 imgPlaying.setVisibility(View.GONE);
-                                imgJoinin.setVisibility(View.VISIBLE);
+                                imgJoinin.setVisibility(View.GONE);
                                 imgLiveStreaming.setVisibility(View.VISIBLE);
                                 imgBet.setVisibility(View.VISIBLE);
                                 break;

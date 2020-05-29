@@ -5,14 +5,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.text.TextUtils;
+import android.util.Base64;
 
+import com.google.gson.Gson;
 import com.hwangjr.rxbus.RxBus;
+import com.nwf.sports.chat.login.model.GameTokenBean;
+import com.nwf.sports.chat.login.model.InGameResult;
 import com.nwf.sports.chat.login.model.LoginResult;
 import com.nwf.sports.net.RetrofitHelper;
 import com.nwf.sports.ui.activity.MainActivity;
+import com.nwf.sports.ui.activity.RedpacketGameActivity;
 import com.nwf.sports.utils.SingleToast;
 import com.nwf.sports.utils.data.IMDataCenter;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +32,7 @@ import ivi.net.base.netlibrary.request.Request;
  *
  **/
 
-public class IMServicesManger {
+public class RedPacketIMServicesManger {
 
 
     private static boolean isLocalEnvironment_;//是否是本地测试环境
@@ -53,14 +59,6 @@ public class IMServicesManger {
 
     //+ "/redenvelope"
 
-    //纯聊天
-    public static void initParam(boolean isLocalEnvironment, String productId) {
-
-        isLocalEnvironment_ = isLocalEnvironment;
-        productId_ = productId;
-
-    }
-
     //聊天+红包游戏
     public static void initParam(boolean isLocalEnvironment, String redPacketServerHost, String productId) {
 
@@ -68,7 +66,7 @@ public class IMServicesManger {
         redPacketServerHost_ = redPacketServerHost;
         productId_ = productId;
 
-        RetrofitHelper.APP_SERVER_ADDRESS = getRedPacketServerHost() + "/redenvelope";
+        RetrofitHelper.RED_PACKET_SERVER_ADDRESS = getRedPacketServerHost() + "/redenvelope";
 
     }
 
@@ -77,12 +75,12 @@ public class IMServicesManger {
 
 
         if (TextUtils.isEmpty(getProductId())) {
-            SingleToast.showLongMsg("请对 IMServicesManger 设置 productId ");
+            SingleToast.showLongMsg("请对 RedPacketIMServicesManger 设置 productId ");
             return;
         }
 
         if (TextUtils.isEmpty(getRedPacketServerHost())) {
-            SingleToast.showLongMsg("请对 IMServicesManger 设置 redPacketServerHost ");
+            SingleToast.showLongMsg("请对 RedPacketIMServicesManger 设置 redPacketServerHost ");
             return;
         }
 
@@ -109,12 +107,7 @@ public class IMServicesManger {
                 IMDataCenter.getInstance().setLoginName(loginName);
                 IMDataCenter.getInstance().setProductId(getProductId());
 
-
-                Intent intent = new Intent(activity, MainActivity.class);
-                activity.startActivity(intent);
-
-
-                RxBus.get().post(ConstantValue.EVENT_TYPE_LOGIN, "login");
+                inGame(activity);
 
             }
 
@@ -125,6 +118,62 @@ public class IMServicesManger {
 
             }
         });
+    }
+
+
+    public static void inGame(Activity activity) {
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("gameCode", "A01095");
+        params.put("gameKind", 13);
+        params.put("incILog", 1);
+        params.put("isWithTransfer", 1);
+        params.put("incILog", 1);
+        params.put("productId", IMDataCenter.getInstance().getProductId());
+        params.put("verticalApp", 1);
+        params.put("loginName", IMDataCenter.getInstance().getLoginName());
+
+        Request.with(IMApplication.getContext()).post("/game/inGame", params, new RequestCallBack<InGameResult>() {
+            @Override
+            public void onGatewaySuccess(@Nullable InGameResult loginResult, ResponseModel.Head head) {
+
+                if (loginResult != null && !TextUtils.isEmpty(loginResult.getUrl())) {
+
+                    String data = decodeToString(loginResult.getUrl());
+
+                    GameTokenBean gameTokenBean = new Gson().fromJson(data, GameTokenBean.class);
+
+                    IMDataCenter.getInstance().setGame_u2token(gameTokenBean.getGame_u2token());
+                    IMDataCenter.getInstance().setGame_token(gameTokenBean.getGame_token());
+
+
+                    Intent intent = new Intent(activity, RedpacketGameActivity.class);
+                    activity.startActivity(intent);
+
+
+                }
+
+            }
+
+            @Override
+            public void onGatewayError(Throwable exception) {
+                super.onGatewayError(exception);
+
+
+            }
+        });
+
+
+    }
+
+
+    public static String decodeToString(String str) {
+        try {
+            return new String(Base64.decode(str.getBytes("UTF-8"), Base64.DEFAULT));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
 

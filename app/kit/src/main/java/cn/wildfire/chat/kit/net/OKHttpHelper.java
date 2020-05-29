@@ -171,9 +171,9 @@ public class OKHttpHelper {
 
                         String errMsg = statusResult.getHead().getErrMsg();
 
-                        if (!TextUtils.isEmpty(IMErrorCodeEnum.getCodeNameByCode(Integer.parseInt(statusResult.getHead().getErrCode())))) {
-                            errMsg = IMErrorCodeEnum.getCodeNameByCode(Integer.parseInt(statusResult.getHead().getErrCode()));
-                        }
+//                        if (!TextUtils.isEmpty(IMErrorCodeEnum.getCodeNameByCode(Integer.parseInt(statusResult.getHead().getErrCode())))) {
+//                            errMsg = IMErrorCodeEnum.getCodeNameByCode(Integer.parseInt(statusResult.getHead().getErrCode()));
+//                        }
 
                         SingleToast.showLongMsg(errMsg);
                         callback.onFailure(Integer.parseInt(statusResult.getHead().getErrCode()), errMsg);
@@ -190,9 +190,9 @@ public class OKHttpHelper {
 
                         String errMsg = wrapper.getHead().getErrMsg();
 
-                        if (!TextUtils.isEmpty(IMErrorCodeEnum.getCodeNameByCode(Integer.parseInt(wrapper.getHead().getErrCode())))) {
-                            errMsg = IMErrorCodeEnum.getCodeNameByCode(Integer.parseInt(wrapper.getHead().getErrCode()));
-                        }
+//                        if (!TextUtils.isEmpty(IMErrorCodeEnum.getCodeNameByCode(Integer.parseInt(wrapper.getHead().getErrCode())))) {
+//                            errMsg = IMErrorCodeEnum.getCodeNameByCode(Integer.parseInt(wrapper.getHead().getErrCode()));
+//                        }
 
                         SingleToast.showLongMsg(errMsg);
                         callback.onFailure(Integer.parseInt(wrapper.getHead().getErrCode()), errMsg);

@@ -1,7 +1,6 @@
 package com.nwf.sports.net;
 
 import com.dawoo.coretool.util.LogUtils;
-import com.nwf.sports.IMServicesManger;
 import com.nwf.sports.utils.NullOnEmptyConverterFactory;
 import com.nwf.sports.utils.ssl.SSLSocketFactoryCompat;
 
@@ -26,7 +25,7 @@ public class RetrofitHelper {
     private static ProxyCallFactory proxyCallFactory;
     private static String domainUrl = "https://gwapi.czsjnp.com";
     private static String IM_SERVER_HOST = "10.66.72.55";
-    public static String APP_SERVER_ADDRESS;
+    public static String RED_PACKET_SERVER_ADDRESS = "";
 
 
 
@@ -74,14 +73,14 @@ public class RetrofitHelper {
     }
 
     /**
-     * IM域名
+     * 红包域名
      * 1
      *
      * @return
      */
-    public static String imUrl() {
-        // APP_SERVER_ADDRESS = "http://www.pt-gateway.com/redenvelope" ;
-        return APP_SERVER_ADDRESS;
+    public static String getRedPacketServerUrl() {
+        // RED_PACKET_SERVER_ADDRESS = "http://www.pt-gateway.com/redenvelope" ;
+        return RED_PACKET_SERVER_ADDRESS;
     }
 
     /**
@@ -144,8 +143,8 @@ public class RetrofitHelper {
      */
     public static void setImDomain(String host) {
         IM_SERVER_HOST = host;
-        APP_SERVER_ADDRESS = "http://" + IM_SERVER_HOST + ":8888";
-        LogUtils.e("set ImDomain:" + APP_SERVER_ADDRESS);
+        RED_PACKET_SERVER_ADDRESS = "http://" + IM_SERVER_HOST + ":8888";
+        LogUtils.e("set ImDomain:" + RED_PACKET_SERVER_ADDRESS);
     }
 
     /**

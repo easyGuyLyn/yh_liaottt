@@ -6,14 +6,13 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Base64;
-import android.util.Log;
 import android.view.View;
 
 import com.google.gson.Gson;
 import com.hwangjr.rxbus.RxBus;
 import com.ivi.imsdk.R;
 import com.nwf.sports.ConstantValue;
-import com.nwf.sports.IMServicesManger;
+import com.nwf.sports.RedPacketIMServicesManger;
 import com.nwf.sports.chat.login.model.GameTokenBean;
 import com.nwf.sports.chat.login.model.InGameResult;
 import com.nwf.sports.chat.login.model.LoginResult;
@@ -57,7 +56,7 @@ public class TestActivity extends AppCompatActivity {
         findViewById(R.id.b_tt).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IMServicesManger.startImService(TestActivity.this,"gmob386");
+                RedPacketIMServicesManger.startImService(TestActivity.this,"gmob386");
             }
         });
 

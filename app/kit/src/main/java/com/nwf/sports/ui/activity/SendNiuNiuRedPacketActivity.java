@@ -289,7 +289,7 @@ public class SendNiuNiuRedPacketActivity extends BaseActivity {
                     @Override
                     public void onFailure(int code, String msg) {
                         DialogFramentManager.getInstance().clearDialog();
-                        ToastUtil.showToastLong(msg);
+                       // ToastUtil.showToastLong(msg);
                     }
                 });
 

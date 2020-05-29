@@ -48,7 +48,7 @@ public class AppService implements AppServiceProvider {
     @Deprecated //"已经废弃，请使用smsLogin"
     public void namePwdLogin(String account, String password, LoginCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/api/login";
+        String url = RetrofitHelper.getRedPacketServerUrl() + "/api/login";
         Map<String, Object> params = new HashMap<>();
         params.put("name", account);
         params.put("password", password);
@@ -76,7 +76,7 @@ public class AppService implements AppServiceProvider {
 
     public void smsLogin(String phoneNumber, String authCode, LoginCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/login";
+        String url = RetrofitHelper.getRedPacketServerUrl() + "/login";
         Map<String, Object> params = new HashMap<>();
         params.put("mobile", phoneNumber);
         params.put("code", authCode);
@@ -119,7 +119,7 @@ public class AppService implements AppServiceProvider {
 
     public void requestAuthCode(String phoneNumber, SendCodeCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/send_code";
+        String url = RetrofitHelper.getRedPacketServerUrl() + "/send_code";
         Map<String, Object> params = new HashMap<>();
         params.put("mobile", phoneNumber);
         OKHttpHelper.post(url, params, new SimpleCallback<StatusResult>() {
@@ -154,7 +154,7 @@ public class AppService implements AppServiceProvider {
      */
     public void sendRedPacket(Map<String, Object> params, SendRedPacketCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/game/api/packet/send-packet";
+        String url = RetrofitHelper.getRedPacketServerUrl() + "/game/api/packet/send-packet";
 
         OKHttpHelper.post(url, params, new SimpleCallback<RedPacketResult>() {
             @Override
@@ -184,7 +184,7 @@ public class AppService implements AppServiceProvider {
      */
     public void robRedPacket(String packetId, String groupId, RobRedPacketCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/game/api/packet/grab-packet";
+        String url = RetrofitHelper.getRedPacketServerUrl() + "/game/api/packet/grab-packet";
         Map<String, Object> params = new HashMap<>();
 
         params.put("productId", IMDataCenter.getInstance().getProductId());
@@ -220,7 +220,7 @@ public class AppService implements AppServiceProvider {
      */
     public void creditQuery(CreditQueryCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/credit/query";
+        String url = RetrofitHelper.getRedPacketServerUrl() + "/credit/query";
         Map<String, Object> params = new HashMap<>();
         String username = IMDataCenter.getInstance().getLoginName();
         params.put("pid", Constant.PRODUCT_ID);
@@ -258,7 +258,7 @@ public class AppService implements AppServiceProvider {
      */
     public void queryPacketState(String packetId, QueryPacketStateCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/game/api/packet/query-packet";
+        String url = RetrofitHelper.getRedPacketServerUrl() + "/game/api/packet/query-packet";
         Map<String, Object> params = new HashMap<>();
         params.put("packetId", packetId);
         params.put("productId", IMDataCenter.getInstance().getProductId());
@@ -291,7 +291,7 @@ public class AppService implements AppServiceProvider {
      */
     public void RedPacketDetail(String packetId, String pageNo, String pageSize, RedPacketDetailCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/game/api/packet/receive-packet-detail";
+        String url = RetrofitHelper.getRedPacketServerUrl() + "/game/api/packet/receive-packet-detail";
         Map<String, Object> params = new HashMap<>();
 
         params.put("userName", IMDataCenter.getInstance().getLoginName());
@@ -327,7 +327,7 @@ public class AppService implements AppServiceProvider {
      */
     public void QueryRedpacketGroup(int groupType, QueryRedpacketGroupCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/game/api/packet/query-redpacket-group";
+        String url = RetrofitHelper.getRedPacketServerUrl() + "/game/api/packet/query-redpacket-group";
         Map<String, Object> params = new HashMap<>();
         String username = IMDataCenter.getInstance().getLoginName();
         params.put("userName", username);
@@ -361,7 +361,7 @@ public class AppService implements AppServiceProvider {
      */
     public void QueryGroupJoinInfo(String groupId, QueryGroupJoinInfoCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/game/api/packet/query-group-join-info";
+        String url = RetrofitHelper.getRedPacketServerUrl() + "/game/api/packet/query-group-join-info";
         Map<String, Object> params = new HashMap<>();
 
         String username = IMDataCenter.getInstance().getLoginName();
@@ -396,7 +396,7 @@ public class AppService implements AppServiceProvider {
      */
     public void QueryRedPacketRecord(String type, int pageNo, QueryRedPacketRecordCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/game/api/packet/query-my-packet-list";
+        String url = RetrofitHelper.getRedPacketServerUrl() + "/game/api/packet/query-my-packet-list";
         Map<String, Object> params = new HashMap<>();
         params.put("userName", IMDataCenter.getInstance().getLoginName());
         params.put("type", type);
@@ -431,7 +431,7 @@ public class AppService implements AppServiceProvider {
      */
     public void queryChangenameFlag(QueryChangenameFlagCallback callback) {
 
-        String url = RetrofitHelper.imUrl() + "/game/api/packet/query-changename-flag";
+        String url = RetrofitHelper.getRedPacketServerUrl() + "/game/api/packet/query-changename-flag";
         Map<String, Object> params = new HashMap<>();
       //  if (IMDataCenter.getInstance().getUserInfoBean().isRealLogin) {
             String username = IMDataCenter.getInstance().getLoginName();
@@ -460,7 +460,7 @@ public class AppService implements AppServiceProvider {
     }
 
     public void scanPCLogin(String token, ScanPCCallback callback) {
-        String url = RetrofitHelper.imUrl() + "/scan_pc";
+        String url = RetrofitHelper.getRedPacketServerUrl() + "/scan_pc";
         url += "/" + token;
         OKHttpHelper.post(url, null, new SimpleCallback<PCSession>() {
             @Override
@@ -486,7 +486,7 @@ public class AppService implements AppServiceProvider {
     }
 
     public void confirmPCLogin(String token, String userId, PCLoginCallback callback) {
-        String url = RetrofitHelper.imUrl() + "/confirm_pc";
+        String url = RetrofitHelper.getRedPacketServerUrl() + "/confirm_pc";
 
         Map<String, Object> params = new HashMap<>(2);
         params.put("user_id", userId);
@@ -512,7 +512,7 @@ public class AppService implements AppServiceProvider {
     @Override
     public void getGroupAnnouncement(String groupId, AppServiceProvider.GetGroupAnnouncementCallback callback) {
         //从SP中获取到历史数据callback回去，然后再从网络刷新
-        String url = RetrofitHelper.imUrl() + "/get-group-announcement";
+        String url = RetrofitHelper.getRedPacketServerUrl() + "/get-group-announcement";
 
         Map<String, Object> params = new HashMap<>(2);
         params.put("groupId", groupId);
@@ -533,7 +533,7 @@ public class AppService implements AppServiceProvider {
     @Override
     public void updateGroupAnnouncement(String groupId, String announcement, AppServiceProvider.UpdateGroupAnnouncementCallback callback) {
         //更新到应用服务，再保存到本地SP中
-        String url = RetrofitHelper.imUrl() + "/put-group-announcement";
+        String url = RetrofitHelper.getRedPacketServerUrl() + "/put-group-announcement";
 
         Map<String, Object> params = new HashMap<>(2);
         params.put("groupId", groupId);

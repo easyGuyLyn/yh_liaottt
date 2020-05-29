@@ -99,7 +99,7 @@ public class IMApplication extends BaseApp {
 //        }
 
 //        // bugly，务必替换为你自己的!!!
-//        if ("wildfirechat.cn".equals(RetrofitHelper.imUrl())) {
+//        if ("wildfirechat.cn".equals(RetrofitHelper.getRedPacketServerUrl())) {
 //            CrashReport.initCrashReport(getApplicationContext(), Config.BUGLY_ID, false);
 //        }
 

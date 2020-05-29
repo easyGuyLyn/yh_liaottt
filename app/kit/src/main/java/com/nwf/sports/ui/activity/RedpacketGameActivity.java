@@ -2,6 +2,7 @@ package com.nwf.sports.ui.activity;
 
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,26 +11,31 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.tabs.TabLayout;
-import com.ivi.imsdk.BuildConfig;
+import com.google.gson.Gson;
 import com.nwf.sports.ConstantValue;
 import com.ivi.imsdk.R;
-import com.nwf.sports.IMServicesManger;
+import com.nwf.sports.IMApplication;
+import com.nwf.sports.RedPacketIMServicesManger;
 import com.nwf.sports.adapter.CommonAdapter;
 import com.nwf.sports.adapter.ViewHolder;
 import com.nwf.sports.chat.AppService;
+import com.nwf.sports.chat.login.model.GameTokenBean;
+import com.nwf.sports.chat.login.model.InGameResult;
 import com.nwf.sports.mvp.model.HomeGameBean;
 import com.nwf.sports.mvp.model.RedPacketGameListDetailsResult;
 import com.nwf.sports.mvp.model.RedPacketGameListResult;
-import com.nwf.sports.ui.dialogfragment.DialogFramentManager;
-import com.nwf.sports.ui.dialogfragment.LoginDialogFragment;
 import com.nwf.sports.ui.views.PNTitleBar;
 import com.nwf.sports.utils.SingleToast;
 import com.nwf.sports.utils.data.IMDataCenter;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -41,11 +47,10 @@ import cn.wildfire.chat.kit.group.GroupViewModel;
 import cn.wildfire.chat.kit.user.UserViewModel;
 import cn.wildfirechat.model.Conversation;
 import cn.wildfirechat.model.GroupInfo;
-import cn.wildfirechattest.INetConfig;
-import ivi.net.base.netlibrary.config.NetConfig;
+import ivi.net.base.netlibrary.callback.RequestCallBack;
+import ivi.net.base.netlibrary.model.ResponseModel;
 import ivi.net.base.netlibrary.request.Request;
 
-import static com.nwf.sports.ui.fragment.NewHomeFragment.inGame;
 
 /**
  * <p>类描述：
@@ -163,7 +168,7 @@ public class RedpacketGameActivity extends BaseActivity {
 
                         if (TextUtils.isEmpty(IMDataCenter.getInstance().getGame_token())
                                 || TextUtils.isEmpty(IMDataCenter.getInstance().getGame_u2token())) {
-                            if (!IMServicesManger.isLocalEnvironment()) {
+                            if (!RedPacketIMServicesManger.isLocalEnvironment()) {
                                 SingleToast.showLongMsg("红包签名参数异常，请稍后再试");
                                 inGame();
                                 return;
@@ -226,6 +231,63 @@ public class RedpacketGameActivity extends BaseActivity {
         }
         getRedPacket();
     }
+
+
+    public static void inGame() {
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("gameCode", "A01095");
+        params.put("gameKind", 13);
+        params.put("incILog", 1);
+        params.put("isWithTransfer", 1);
+        params.put("incILog", 1);
+        params.put("productId", IMDataCenter.getInstance().getProductId());
+        params.put("verticalApp", 1);
+        params.put("loginName", IMDataCenter.getInstance().getLoginName());
+
+        Request.with(IMApplication.getContext()).post("/game/inGame", params, new RequestCallBack<InGameResult>() {
+            @Override
+            public void onGatewaySuccess(@Nullable InGameResult loginResult, ResponseModel.Head head) {
+
+                if (loginResult != null && !TextUtils.isEmpty(loginResult.getUrl())) {
+
+                    String data = decodeToString(loginResult.getUrl());
+
+                    GameTokenBean gameTokenBean = new Gson().fromJson(data,GameTokenBean.class);
+
+                    IMDataCenter.getInstance().setGame_u2token(gameTokenBean.getGame_u2token());
+                    IMDataCenter.getInstance().setGame_token(gameTokenBean.getGame_token());
+
+
+                }
+
+
+            }
+
+            @Override
+            public void onGatewayError(Throwable exception) {
+                super.onGatewayError(exception);
+
+
+            }
+        });
+
+
+    }
+
+
+
+    public static String decodeToString(String str) {
+        try {
+            return new String(Base64.decode(str.getBytes("UTF-8"), Base64.DEFAULT));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+
+
 
     public void getRedPacket() {
         AppService.Instance().QueryRedpacketGroup(mViewPagerNum, new AppService.QueryRedpacketGroupCallback() {

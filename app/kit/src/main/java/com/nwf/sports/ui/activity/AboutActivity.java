@@ -91,7 +91,7 @@ public class AboutActivity extends BaseActivity {
         mBaseurlSelectRecyclerView.setLayoutManager(gridLayoutManager);
 
         tvwUrlReal.setText(RetrofitHelper.baseUrl());
-        tvwImUrlReal.setText(RetrofitHelper.imUrl());
+        tvwImUrlReal.setText(RetrofitHelper.getRedPacketServerUrl());
 
         String verName = "";
         try {

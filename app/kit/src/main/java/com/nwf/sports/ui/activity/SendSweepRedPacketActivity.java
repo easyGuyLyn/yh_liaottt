@@ -197,7 +197,7 @@ public class SendSweepRedPacketActivity extends BaseActivity {
 
             @Override
             public void onFailure(int code, String msg) {
-                ToastUtil.showToastLong(msg);
+             //   ToastUtil.showToastLong(msg);
             }
         });
 
@@ -305,7 +305,7 @@ public class SendSweepRedPacketActivity extends BaseActivity {
             @Override
             public void onFailure(int code, String msg) {
                 DialogFramentManager.getInstance().clearDialog();
-                ToastUtil.showToastLong(msg);
+            //    ToastUtil.showToastLong(msg);
             }
         });
 

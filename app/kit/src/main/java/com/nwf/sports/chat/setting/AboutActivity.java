@@ -31,7 +31,7 @@ public class AboutActivity extends WfcBaseActivity {
             String info = packageInfo.packageName + "\n"
                     + packageInfo.versionCode + " " + packageInfo.versionName + "\n"
                     + RetrofitHelper.imHost() + "\n"
-                    + RetrofitHelper.imUrl() +  "\n"
+                    + RetrofitHelper.getRedPacketServerUrl() +  "\n"
                     + Config.ICE_ADDRESS + " " + Config.ICE_USERNAME + " " + Config.ICE_PASSWORD + "\n";
 
             infoTextView.setText(info);

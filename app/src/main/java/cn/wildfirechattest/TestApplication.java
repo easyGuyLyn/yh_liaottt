@@ -5,8 +5,7 @@ import android.os.Handler;
 
 
 import com.nwf.sports.IMApplication;
-import com.nwf.sports.IMServicesManger;
-import com.nwf.sports.utils.data.IMDataCenter;
+import com.nwf.sports.RedPacketIMServicesManger;
 
 import androidx.multidex.MultiDex;
 import ivi.net.base.netlibrary.NetLibrary;
@@ -35,7 +34,7 @@ public class TestApplication extends IMApplication {
         super.onCreate();
         mInstance = this;
 
-        IMServicesManger.initParam(true, "http://www.pt-gateway.com", "A01");
+        RedPacketIMServicesManger.initParam(true, "http://www.pt-gateway.com", "A01");
 
 
         //初始化网络操作

@@ -24,10 +24,10 @@ public interface Config {
     //int IM_SERVER_PORT = 80;
 
     //正式商用时，建议用https，确保token安全
-//        String APP_SERVER_ADDRESS = "http://10.91.6.19:8888/"; //Bake本地环境
-//    String APP_SERVER_ADDRESS = "http://10.91.37.3:8888"; //测试环境
-//    String APP_SERVER_ADDRESS = "http://110.173.53.28:8888/"; //UAT环境
-//    String APP_SERVER_ADDRESS = "http://110.173.49.42:8888/"; //正式环境
+//        String RED_PACKET_SERVER_ADDRESS = "http://10.91.6.19:8888/"; //Bake本地环境
+//    String RED_PACKET_SERVER_ADDRESS = "http://10.91.37.3:8888"; //测试环境
+//    String RED_PACKET_SERVER_ADDRESS = "http://110.173.53.28:8888/"; //UAT环境
+//    String RED_PACKET_SERVER_ADDRESS = "http://110.173.49.42:8888/"; //正式环境
 
     String ICE_ADDRESS = "turn:turn.wildfirechat.cn:3478";
     String ICE_USERNAME = "wfchat";
@@ -46,10 +46,10 @@ public interface Config {
     static void validateConfig() {
         if (TextUtils.isEmpty(RetrofitHelper.imHost())
                 || RetrofitHelper.imHost().startsWith("http")
-                || TextUtils.isEmpty(RetrofitHelper.imUrl())
-                || (!RetrofitHelper.imUrl().startsWith("http") && !RetrofitHelper.imUrl().startsWith("https"))
+                || TextUtils.isEmpty(RetrofitHelper.getRedPacketServerUrl())
+                || (!RetrofitHelper.getRedPacketServerUrl().startsWith("http") && !RetrofitHelper.getRedPacketServerUrl().startsWith("https"))
                 || RetrofitHelper.imHost().equals("127.0.0.1")
-                || RetrofitHelper.imUrl().contains("127.0.0.1")
+                || RetrofitHelper.getRedPacketServerUrl().contains("127.0.0.1")
         ) {
             throw new IllegalStateException("im server host config error");
         }
